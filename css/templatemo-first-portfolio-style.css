@@ -501,6 +501,9 @@ strong {
 
 .hero h2 {
 	font-size: 38px;
+	display: block;
+	width: fit-content;
+	max-width: 100%;
 }
 
 .hero-text {
@@ -1201,89 +1204,215 @@ strong {
   padding: 20px 0;
 }
 
-.timeline::after {
+/* ============================================
+   NOUVELLE TIMELINE V2 — Style frise verticale avec grille fluide
+   ============================================ */
+.timeline-v2 {
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  row-gap: 30px;
+  padding: 20px 0;
+}
+
+/* La ligne verticale centrale */
+.timeline-v2::before {
   content: '';
   position: absolute;
-  width: 4px;
-  background: #815443;
   top: 0;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  width: 3px;
+  background: var(--secondary-color);
+  z-index: 0;
 }
 
-.timeline-item {
+/* Conteneur pour le badge de l'année au centre */
+.tl-badge-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  width: 50%;
-  padding: 10px 40px;
-  box-sizing: border-box;
+  z-index: 2;
 }
 
-.timeline-item.left {
-  left: 0;
+/* Badge années sur l'axe */
+.tl-year-badge {
+  background: var(--secondary-color);
+  color: #fff;
+  font-weight: var(--font-weight-bold);
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+
+/* Cellule contenant la carte */
+.tl-item {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.tl-item.left {
+  justify-content: flex-end;
+  padding-right: 30px;
+}
+
+.tl-item.right {
+  justify-content: flex-start;
+  padding-left: 30px;
+}
+
+/* Cellule vide */
+.tl-item.empty {
+  visibility: hidden;
+}
+
+/* Spans pour la ligne de temps */
+.span-2 { grid-row: span 2; }
+.span-3 { grid-row: span 3; }
+.span-4 { grid-row: span 4; }
+
+/* Carte individuelle */
+.tl-card {
+  background: var(--white-color);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  border: 1.5px solid var(--border-color);
+  transition: all 0.3s ease;
+  max-width: 380px;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.tl-card:hover {
+  border-color: var(--secondary-color);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  transform: translateY(-3px);
+  color: inherit;
+}
+
+.tl-item.left .tl-card {
+  border-left: 4px solid var(--secondary-color);
   text-align: right;
 }
 
-.timeline-item.right {
-  left: 50%;
+.tl-item.right .tl-card {
+  border-left: 4px solid var(--marron-fonce);
   text-align: left;
 }
 
-.timeline-icon {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  border-radius: 50%;
-  padding: 10px;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  border: 2px solid #815443;
+.tl-card h4 {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: var(--dark-color);
 }
 
-.timeline-content {
-  padding: 15px;
-  background: #f5f5f5;
-  border-radius: 10px;
-  position: relative;
-  transition: 0.3s ease-in-out;
-}
-
-/* Flèche reliant chaque carte à la ligne centrale */
-.timeline-item.left::after,
-.timeline-item.right::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  top: 20px;
-}
-
-.timeline-item.left::after {
-  right: -10px;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #815443;
-}
-
-.timeline-item.right::after {
-  left: -10px;
-  border-width: 10px 10px 10px 0;
-  border-color: transparent #815443 transparent transparent;
-}
-
-/* Effet au survol */
-.timeline-item-link {
-  text-decoration: none;
-  color: inherit;
+.tl-card .tl-date {
+  font-size: 13px;
+  color: var(--secondary-color);
+  font-weight: var(--font-weight-bold);
   display: block;
+  margin-bottom: 8px;
 }
 
-.timeline-item-link:hover .timeline-content {
-  transform: scale(1.03);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
+.tl-card p {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--p-color);
 }
+
+.tl-card .tl-address {
+  font-size: 12px;
+  color: #aaa;
+  display: block;
+  margin-top: auto;
+}
+
+/* En-têtes de colonnes */
+.timeline-v2-headers {
+  display: grid;
+  grid-template-columns: 1fr 100px 1fr;
+  max-width: 960px;
+  margin: 0 auto 30px auto;
+}
+
+.tl-header-left,
+.tl-header-right {
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: var(--font-weight-bold);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tl-header-left {
+  background: var(--secondary-color);
+  color: #fff;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.tl-header-right {
+  background: var(--marron-fonce);
+  color: #fff;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .timeline-v2 {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+  .timeline-v2::before { 
+    left: 40px; 
+  }
+  .span-2, .span-3, .span-4, .span-5 {
+    grid-row: auto !important;
+  }
+  .tl-badge-wrap {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+  .tl-year-badge {
+    margin-left: 10px;
+  }
+  .tl-item.left,
+  .tl-item.right {
+    justify-content: flex-start;
+    padding: 0 0 0 70px;
+  }
+  .tl-item.left .tl-card { 
+    text-align: left; 
+    border-left: 4px solid var(--secondary-color); 
+  }
+  .timeline-v2-headers { 
+    grid-template-columns: 1fr; 
+    gap: 15px; 
+  }
+  .tl-header-left, .tl-header-right { 
+    justify-content: center; 
+    margin: 0; 
+  }
+}
+
+
+
+
