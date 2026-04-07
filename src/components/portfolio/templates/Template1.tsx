@@ -426,11 +426,15 @@ export const Template1: React.FC<Template1Props> = ({
     formattedProjects = [];
   }
 
+  // Séparer les axes radar des compétences normales
+  const radarSkills = (skills || []).filter((s) => s.category === "__radar__").sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  const nonRadarSkills = (skills || []).filter((s) => s.category !== "__radar__");
+
   // Appliquer l'ordre personnalisé aux autres items
   const orderedSkills =
     itemOrder?.skills && itemOrder.skills.length > 0
-      ? applyItemOrder(skills, itemOrder.skills, (s) => s.id || s.name)
-      : skills;
+      ? applyItemOrder(nonRadarSkills, itemOrder.skills, (s) => s.id || s.name)
+      : nonRadarSkills;
 
   const orderedCertifications =
     itemOrder?.certifications && itemOrder.certifications.length > 0
@@ -1476,50 +1480,69 @@ export const Template1: React.FC<Template1Props> = ({
                 </RevealOnScroll>
 
                 {/* Radar chart */}
-                {orderedSkills.length >= 3 && (
+                {radarSkills.length >= 3 && (
                   <RevealOnScroll delay={100}>
-                    <div className={`mb-12 sm:mb-16 max-w-md mx-auto p-4 rounded-2xl ${isDark ? "bg-slate-800/40" : "bg-white/60"} border ${isDark ? "border-slate-700" : "border-slate-200"}`}>
+                    <div className={`mb-12 sm:mb-16 max-w-lg mx-auto p-6 rounded-2xl ${isDark ? "bg-slate-800/40" : "bg-white/60"} border ${isDark ? "border-slate-700" : "border-slate-200"}`}>
+                      <h3 className={`text-center text-sm font-semibold mb-4 ${isDark ? "text-slate-400" : "text-slate-500"} uppercase tracking-widest`}>
+                        {lang === "en" ? "Skill Overview" : "Vue d'ensemble"}
+                      </h3>
                       <Radar
                         data={{
-                          labels: orderedSkills.slice(0, 5).map((s) => {
+                          labels: radarSkills.map((s) => {
                             const name = s.name || "";
-                            if (name.includes(" & ")) return name.split(" & ").map((p, i, a) => i === a.length - 1 ? p : p + " &");
-                            if (name.includes(" et ")) return name.split(" et ").map((p, i, a) => i === a.length - 1 ? p : p + " et");
-                            if (name.length > 20) return name.split(" ");
+                            // Wrap long labels
+                            if (name.length > 10) return name.split(" ");
                             return name;
                           }),
                           datasets: [{
-                            label: "Niveau",
-                            data: orderedSkills.slice(0, 5).map((s) => {
-                              const str = String(s.level || "50").replace(/%/g, "").trim();
-                              const n = parseInt(str, 10);
-                              return Number.isNaN(n) ? 50 : Math.min(100, Math.max(0, n));
+                            label: lang === "en" ? "Level" : "Niveau",
+                            data: radarSkills.map((s) => {
+                              const str = String(s.level ?? "0").replace(/%/g, "").trim();
+                              const n = parseFloat(str);
+                              // Values are 0-100, convert to 0-5 scale
+                              const val = Number.isNaN(n) ? 0 : Math.min(100, Math.max(0, n));
+                              return Math.round(val / 20 * 10) / 10; // 0-5 with 1 decimal
                             }),
                             backgroundColor: isDark ? "rgba(249, 115, 22, 0.2)" : "rgba(249, 115, 22, 0.15)",
                             borderColor: isDark ? "rgb(251, 146, 60)" : "rgb(234, 88, 12)",
                             borderWidth: 2,
                             pointBackgroundColor: isDark ? "rgb(251, 146, 60)" : "rgb(234, 88, 12)",
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
                           }],
                         }}
                         options={{
                           responsive: true,
                           maintainAspectRatio: true,
-                          layout: { padding: 75 },
+                          layout: { padding: { top: 20, bottom: 20, left: 20, right: 20 } },
                           scales: {
                             r: {
                               min: 0,
-                              max: 100,
-                              ticks: { display: false },
-                              grid: { color: isDark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.08)" },
+                              max: 5,
+                              ticks: {
+                                stepSize: 1,
+                                display: true,
+                                color: isDark ? "rgba(148,163,184,0.5)" : "rgba(71,85,105,0.4)",
+                                font: { size: 9 },
+                                backdropColor: "transparent",
+                              },
+                              grid: { color: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)" },
+                              angleLines: { color: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.06)" },
                               pointLabels: {
                                 color: isDark ? "#94a3b8" : "#475569",
-                                font: { size: 10, weight: 600 },
-                                padding: 15,
-                                centerPointLabels: true,
+                                font: { size: 11, weight: 600 },
+                                padding: 8,
                               },
                             },
                           },
-                          plugins: { legend: { display: false } },
+                          plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                              callbacks: {
+                                label: (ctx) => ` ${ctx.parsed.r}/5`,
+                              },
+                            },
+                          },
                         }}
                       />
                     </div>

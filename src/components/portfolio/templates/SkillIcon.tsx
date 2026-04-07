@@ -19,7 +19,17 @@ interface SkillIconProps {
  * Mapping des technologies vers leurs fichiers SVG officiels stockés dans /public/icons/skills/
  */
 const SKILL_LOGOS: Record<string, string> = {
+  // --- Langages & Outils Dev ---
   python: "python.svg",
+  bash: "bash.svg",
+  shell: "bash.svg",
+  yaml: "yaml.svg",
+  ansible: "ansible.svg",
+  terraform: "terraform.svg",
+  jenkins: "jenkins.svg",
+  linux: "linux.svg",
+
+  // --- Cloud & DevOps ---
   aws: "aws.svg",
   amazon: "aws.svg",
   azure: "azure.svg",
@@ -27,65 +37,78 @@ const SKILL_LOGOS: Record<string, string> = {
   kubernetes: "kubernetes.svg",
   k8s: "kubernetes.svg",
   gitlab: "gitlab.svg",
-  bash: "bash.svg",
-  shell: "bash.svg",
+
+  // --- Outils de sécurité ---
   sonarqube: "sonarqube.svg",
-  yaml: "yaml.svg",
-  ansible: "ansible.svg",
-  terraform: "terraform.svg",
-  jenkins: "jenkins.svg",
-  linux: "linux.svg",
   grype: "grype.svg",
-  // Concepts & Gouvernance (Vrais logos/symboles créés)
-  "devsecops": "devsecops.svg",
+  semgrep: "semgrep.svg",
+  defectdojo: "defectdojo.svg",
+
+  // --- Domaines & Concepts (SVGs custom) ---
+  devsecops: "devsecops.svg",
+  "governance": "grc.svg",
   "gouvernance": "grc.svg",
-  "grc": "grc.svg",
+  grc: "grc.svg",
   "conformité": "grc.svg",
+  "conformite": "grc.svg",
   "intelligence artificielle": "ia.svg",
-  "ia": "ia.svg",
-  "cybersecurite": "cyber-security.svg",
+  "artificial intelligence": "ia.svg",
+  ia: "ia.svg",
+  " ai": "ia.svg",
+  cybersecurite: "cyber-security.svg",
   "cybersécurité": "cyber-security.svg",
+  cybersecurity: "cyber-security.svg",
   "asset management": "asset-management.svg",
   "gestion financière": "finance.svg",
-  "finance": "finance.svg",
+  "financial management": "finance.svg",
+  finance: "finance.svg",
   "réseaux": "network.svg",
-  "network": "network.svg",
+  "reseau": "network.svg",
+  network: "network.svg",
   "gestion de projet": "project-management.svg",
+  "project management": "project-management.svg",
   "management d'équipe": "management.svg",
+  "team management": "management.svg",
   "intelligence relationnelle": "soft-skills.svg",
-  "événementiel": "event.svg",
-  "evenementiel": "event.svg",
+  "interpersonal": "soft-skills.svg",
+  événementiel: "event.svg",
+  evenementiel: "event.svg",
+  "event planning": "event.svg",
 };
 
 /**
  * Retourne une icône Lucide appropriée en fallback
  */
 function getFallbackIcon(skillName: string): keyof typeof LucideIcons {
-  const normalized = skillName.toLowerCase().trim();
+  const n = skillName.toLowerCase().trim();
 
-  // Spécifiques (pour garantir l'unicité)
-  if (normalized.includes("gouvernance") || normalized.includes("grc")) return "ShieldCheck";
-  if (normalized.includes("devsecops") || normalized.includes("analyse")) return "Activity";
-  if (normalized.includes("cybersécurité") || normalized.includes("cybersecurite")) return "Lock";
-  if (normalized.includes("intelligence artificielle") || normalized.includes("(ia)")) return "Brain";
-  if (normalized.includes("réseaux") || normalized.includes("network")) return "Network";
-  if (normalized.includes("asset management")) return "Database";
-  if (normalized.includes("gestion financière")) return "PieChart";
-  if (normalized.includes("gestion de projet")) return "Briefcase";
-  if (normalized.includes("management d'équipe")) return "Users";
-  if (normalized.includes("intelligence relationnelle")) return "Heart";
-  if (normalized.includes("événementiel") || normalized.includes("evenementiel")) return "Calendar";
+  // Concepts & domaines
+  if (n.includes("grc") || n.includes("gouvernance") || n.includes("governance") || n.includes("conformit")) return "ShieldCheck";
+  if (n.includes("devsecops")) return "GitMerge";
+  if (n.includes("cybersec") || n.includes("sécurité") || n.includes("security")) return "Lock";
+  if (n.includes("intelligence artificielle") || n.includes("artificial intelligence") || n === "ia" || n === "ai") return "Brain";
+  if (n.includes("réseau") || n.includes("network")) return "Network";
+  if (n.includes("asset management")) return "Database";
+  if (n.includes("financial") || n.includes("financière") || n.includes("finance")) return "TrendingUp";
+  if (n.includes("iso 27001") || n.includes("iso27001")) return "FileCheck";
 
-  // Génériques
-  if (normalized.includes("security") || normalized.includes("sécurité")) return "Shield";
-  if (normalized.includes("management") || normalized.includes("gestion")) return "Briefcase";
-  if (normalized.includes("ai") || normalized.includes("ia")) return "Sparkles";
-  if (normalized.includes("cloud")) return "Cloud";
-  if (normalized.includes("code") || normalized.includes("dev")) return "Code";
-  if (normalized.includes("data")) return "Database";
-  if (normalized.includes("team") || normalized.includes("équipe")) return "Users";
-  if (normalized.includes("asset")) return "Layers";
-  
+  // Cloud & DevOps
+  if (n.includes("cloud") || n.includes("infra")) return "Cloud";
+  if (n.includes("jenkins")) return "Settings";
+  if (n.includes("pipeline") || n.includes("ci/cd") || n.includes("cicd")) return "GitBranch";
+
+  // Management & Soft Skills
+  if (n.includes("project management") || n.includes("gestion de projet")) return "Briefcase";
+  if (n.includes("team management") || n.includes("management d'équipe") || n.includes("management")) return "Users";
+  if (n.includes("interpersonal") || n.includes("intelligence relationnelle")) return "Heart";
+  if (n.includes("event") || n.includes("événementiel")) return "Calendar";
+
+  // Langages
+  if (n.includes("prompt")) return "Sparkles";
+  if (n.includes("code") || n.includes("dev")) return "Code";
+  if (n.includes("data")) return "Database";
+  if (n.includes("team") || n.includes("équipe")) return "Users";
+
   return "Code";
 }
 

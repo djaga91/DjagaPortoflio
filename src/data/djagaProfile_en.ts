@@ -192,27 +192,29 @@ Economics and Analysis: Study of macroeconomic theories (Keynes, Adam Smith) and
 export const djagaProjectsEN: Project[] = [];
 
 export const djagaSkillsEN: Skill[] = [
-  // --- RADAR CHART AXES (First 5) ---
-  { id: "radar-1", user_id: "user-djaga", name: "Management & Soft Skills", category: "Management and Soft Skills", level: "100%", years_experience: null, order: 1 },
-  { id: "radar-2", user_id: "user-djaga", name: "Governance and Compliance (GRC)", category: "Concept and Domains", level: "80%", years_experience: null, order: 2 },
-  { id: "radar-3", user_id: "user-djaga", name: "DevSecOps & Analysis", category: "Concept and Domains", level: "60%", years_experience: null, order: 3 },
-  { id: "radar-4", user_id: "user-djaga", name: "Languages & AI", category: "Languages", level: "70%", years_experience: null, order: 4 },
-  { id: "radar-5", user_id: "user-djaga", name: "Cloud & Infrastructure", category: "Cloud and DevOps", level: "50%", years_experience: null, order: 5 },
+  // --- RADAR CHART AXES (6 axes) ---
+  // Order matches radar display: GRC, Management, DevSecOps, Infra/Cloud, Cybersecurity, AI
+  { id: "radar-1", user_id: "user-djaga", name: "GRC", category: "__radar__", level: "80", years_experience: null, order: 1 },
+  { id: "radar-2", user_id: "user-djaga", name: "Management", category: "__radar__", level: "100", years_experience: null, order: 2 },
+  { id: "radar-3", user_id: "user-djaga", name: "DevSecOps", category: "__radar__", level: "70", years_experience: null, order: 3 },
+  { id: "radar-4", user_id: "user-djaga", name: "Infra & Cloud", category: "__radar__", level: "50", years_experience: null, order: 4 },
+  { id: "radar-5", user_id: "user-djaga", name: "Cybersecurity", category: "__radar__", level: "70", years_experience: null, order: 5 },
+  { id: "radar-6", user_id: "user-djaga", name: "AI", category: "__radar__", level: "70", years_experience: null, order: 6 },
 
   // --- 1. CONCEPT & DOMAINS ---
-  { id: "c-1", user_id: "user-djaga", name: "Governance and Compliance (GRC)", category: "Concept and Domains", level: "90%", years_experience: null, order: 11 },
-  { id: "c-2", user_id: "user-djaga", name: "DevSecOps & Analysis", category: "Concept and Domains", level: "85%", years_experience: null, order: 12 },
-  { id: "c-3", user_id: "user-djaga", name: "Cybersecurity", category: "Concept and Domains", level: "88%", years_experience: null, order: 13 },
-  { id: "c-4", user_id: "user-djaga", name: "Artificial Intelligence", category: "Concept and Domains", level: "85%", years_experience: null, order: 14 },
+  { id: "c-1", user_id: "user-djaga", name: "Governance & Compliance (GRC)", category: "Concept and Domains", level: "80%", years_experience: null, order: 11 },
+  { id: "c-2", user_id: "user-djaga", name: "Cybersecurity", category: "Concept and Domains", level: "70%", years_experience: null, order: 12 },
+  { id: "c-3", user_id: "user-djaga", name: "Artificial Intelligence", category: "Concept and Domains", level: "70%", years_experience: null, order: 13 },
+  { id: "c-4", user_id: "user-djaga", name: "ISO 27001", category: "Concept and Domains", level: "80%", years_experience: null, order: 14 },
   { id: "c-5", user_id: "user-djaga", name: "Networks", category: "Concept and Domains", level: "75%", years_experience: null, order: 15 },
   { id: "c-6", user_id: "user-djaga", name: "Asset Management", category: "Concept and Domains", level: "90%", years_experience: null, order: 16 },
   { id: "c-7", user_id: "user-djaga", name: "Financial Management", category: "Concept and Domains", level: "82%", years_experience: null, order: 17 },
 
-  // --- 2. LANGUAGES ---
+  // --- 2. LANGUAGES & SCRIPTING ---
   { id: "l-1", user_id: "user-djaga", name: "Python", category: "Languages", level: "85%", years_experience: null, order: 21 },
   { id: "l-2", user_id: "user-djaga", name: "Bash", category: "Languages", level: "80%", years_experience: null, order: 22 },
   { id: "l-3", user_id: "user-djaga", name: "YAML", category: "Languages", level: "85%", years_experience: null, order: 23 },
-  { id: "l-4", user_id: "user-djaga", name: "Prompt Engineering (AI)", category: "Languages", level: "95%", years_experience: null, order: 24 },
+  { id: "l-4", user_id: "user-djaga", name: "Prompt Engineering", category: "Languages", level: "95%", years_experience: null, order: 24 },
 
   // --- 3. MANAGEMENT & SOFT SKILLS ---
   { id: "ms-1", user_id: "user-djaga", name: "Project Management", category: "Management and Soft Skills", level: "95%", years_experience: null, order: 31 },
@@ -225,7 +227,8 @@ export const djagaSkillsEN: Skill[] = [
   { id: "cd-2", user_id: "user-djaga", name: "Azure", category: "Cloud and DevOps", level: "65%", years_experience: null, order: 42 },
   { id: "cd-3", user_id: "user-djaga", name: "Docker", category: "Cloud and DevOps", level: "75%", years_experience: null, order: 43 },
   { id: "cd-4", user_id: "user-djaga", name: "Kubernetes", category: "Cloud and DevOps", level: "65%", years_experience: null, order: 44 },
-  { id: "cd-5", user_id: "user-djaga", name: "GitLab CI", category: "Cloud and DevOps", level: "85%", years_experience: null, order: 45 },
+  { id: "cd-5", user_id: "user-djaga", name: "GitLab CI/CD", category: "Cloud and DevOps", level: "85%", years_experience: null, order: 45 },
+  { id: "cd-6", user_id: "user-djaga", name: "Jenkins", category: "Cloud and DevOps", level: "70%", years_experience: null, order: 46 },
 
   // --- 5. SECURITY TOOLS ---
   { id: "os-1", user_id: "user-djaga", name: "DefectDojo", category: "Security Tools", level: "85%", years_experience: null, order: 51 },
