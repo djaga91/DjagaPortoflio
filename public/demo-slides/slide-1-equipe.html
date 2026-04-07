@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PortfoliA - L'Équipe</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1920x1080 (16:9) -->
+  <div class="relative w-[1920px] h-[1080px] bg-[#0f172b] overflow-hidden flex flex-col">
+
+    <!-- Effets de fond -->
+    <div class="absolute top-[-150px] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#f0661b] opacity-15 blur-[140px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-[-100px] right-[-100px] w-[700px] h-[700px] bg-[#8b5cf6] opacity-10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <!-- Grille -->
+    <div class="absolute inset-0 z-0 opacity-30"
+         style="background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px); background-size: 60px 60px; background-position: center;">
+    </div>
+
+    <!-- Vignette radiale -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0f172b_90%)] pointer-events-none"></div>
+
+    <!-- Header avec logo -->
+    <div class="relative z-10 flex items-center justify-between px-20 pt-16">
+      <div class="flex items-center gap-4">
+        <img src="../logo.svg" alt="PortfoliA" class="h-16 w-auto drop-shadow-xl" />
+        <div class="h-12 w-0.5 bg-slate-700"></div>
+        <div>
+          <p class="text-slate-400 text-sm font-medium tracking-wider uppercase">Engineering Projects 2025-2026</p>
+          <p class="text-white text-xl font-bold">Big Data & Machine Learning</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-20 pb-20">
+
+      <!-- Titre -->
+      <div class="text-center mb-20">
+        <h1 class="text-7xl font-extrabold text-white mb-4 tracking-tight drop-shadow-lg">
+          L'Équipe <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f0661b] to-[#8b5cf6]">PortfoliA</span>
+        </h1>
+        <p class="text-3xl text-slate-400 font-medium">
+          6 développeurs passionnés, 1 mission : <span class="text-[#fae2be]">révolutionner la gestion de carrière</span>
+        </p>
+      </div>
+
+      <!-- Amine centré en haut (speaker) -->
+      <div class="flex justify-center mb-12">
+        <div class="relative group">
+          <div class="absolute inset-0 bg-[#f0661b] blur-lg opacity-20 rounded-2xl group-hover:opacity-40 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-2xl border border-[#334155] p-6 flex flex-col items-center text-center">
+            <img src="photos/amine.jpg" alt="Amine" class="w-24 h-24 rounded-xl object-cover mb-4 shadow-lg" />
+            <p class="text-white text-2xl font-bold">Amine</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reste de l'équipe en ligne -->
+      <div class="grid grid-cols-5 gap-8 max-w-6xl">
+
+        <div class="relative group">
+          <div class="absolute inset-0 bg-[#f0661b] blur-lg opacity-20 rounded-2xl group-hover:opacity-40 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-2xl border border-[#334155] p-6 flex flex-col items-center text-center">
+            <img src="photos/ali.jpg" alt="Ali" class="w-24 h-24 rounded-xl object-cover mb-4 shadow-lg" />
+            <p class="text-white text-2xl font-bold">Ali</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="absolute inset-0 bg-[#8b5cf6] blur-lg opacity-20 rounded-2xl group-hover:opacity-40 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-2xl border border-[#334155] p-6 flex flex-col items-center text-center">
+            <img src="photos/arnaud.jpg" alt="Arnaud" class="w-24 h-24 rounded-xl object-cover mb-4 shadow-lg" />
+            <p class="text-white text-2xl font-bold">Arnaud</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="absolute inset-0 bg-[#f0661b] blur-lg opacity-20 rounded-2xl group-hover:opacity-40 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-2xl border border-[#334155] p-6 flex flex-col items-center text-center">
+            <img src="photos/mehdi.jpg" alt="Mehdi" class="w-24 h-24 rounded-xl object-cover mb-4 shadow-lg" />
+            <p class="text-white text-2xl font-bold">Mehdi</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="absolute inset-0 bg-[#8b5cf6] blur-lg opacity-20 rounded-2xl group-hover:opacity-40 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-2xl border border-[#334155] p-6 flex flex-col items-center text-center">
+            <img src="photos/romain.jpg" alt="Romain" class="w-24 h-24 rounded-xl object-cover mb-4 shadow-lg" />
+            <p class="text-white text-2xl font-bold">Romain</p>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <div class="absolute inset-0 bg-[#f0661b] blur-lg opacity-20 rounded-2xl group-hover:opacity-40 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-2xl border border-[#334155] p-6 flex flex-col items-center text-center">
+            <img src="photos/samy.jpg" alt="Samy" class="w-24 h-24 rounded-xl object-cover mb-4 shadow-lg" />
+            <p class="text-white text-2xl font-bold">Samy</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="relative z-10 pb-12 flex justify-center">
+      <div class="w-20 h-1 bg-gradient-to-r from-[#f0661b] to-[#8b5cf6] rounded-full opacity-80"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>

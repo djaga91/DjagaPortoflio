@@ -1,0 +1,19 @@
+# ======================================
+# robots.txt pour PortfoliA
+# https://portfolia.fr
+# ======================================
+
+# Autoriser tous les robots à indexer le site
+User-agent: *
+Allow: /
+
+# Bloquer l'accès aux ressources non pertinentes
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Sitemap
+Sitemap: https://portfolia.fr/sitemap.xml
+
+# Délai entre les requêtes (en secondes) - optionnel
+Crawl-delay: 1

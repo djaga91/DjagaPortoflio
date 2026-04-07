@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCKRent - Slide 3</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-12">
+  <div class="max-w-7xl w-full">
+    <!-- En-tête -->
+    <div class="text-orange-400 text-sm font-bold tracking-widest mb-4">STRATÉGIE</div>
+    <h1 class="text-6xl font-black text-white mb-12">
+      La Roadmap <span class="text-orange-500">18 Mois</span>
+    </h1>
+
+    <!-- Timeline -->
+    <div class="relative">
+      <!-- Ligne centrale -->
+      <div class="absolute left-12 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-500 via-orange-600 to-red-600"></div>
+
+      <!-- Phase 1 -->
+      <div class="flex gap-8 mb-8 relative">
+        <div class="flex-shrink-0 w-24 flex items-start justify-center pt-2">
+          <div class="w-6 h-6 bg-orange-500 rounded-full ring-4 ring-orange-500/30 z-10"></div>
+        </div>
+        <div class="flex-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-2xl font-bold text-white">Phase 1 : Fondations & Gouvernance</h3>
+            <span class="text-sm font-semibold text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full">Mois 0-3</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">Nomination CDO, Data Owners • Audit SI • Data Catalog • Standards de données</p>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="flex gap-8 mb-8 relative">
+        <div class="flex-shrink-0 w-24 flex items-start justify-center pt-2">
+          <div class="w-6 h-6 bg-orange-500 rounded-full ring-4 ring-orange-500/30 z-10"></div>
+        </div>
+        <div class="flex-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-2xl font-bold text-white">Phase 2 : Construction du Socle Unifié</h3>
+            <span class="text-sm font-semibold text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full">Mois 4-9</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">MDM Client, Véhicule, Agence, Réservation • Migration données • Golden Record • Tests de charge</p>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="flex gap-8 mb-8 relative">
+        <div class="flex-shrink-0 w-24 flex items-start justify-center pt-2">
+          <div class="w-6 h-6 bg-orange-600 rounded-full ring-4 ring-orange-600/30 z-10"></div>
+        </div>
+        <div class="flex-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-2xl font-bold text-white">Phase 3 : Nouveaux Canaux & Services</h3>
+            <span class="text-sm font-semibold text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full">Mois 6-12</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">Site Web unifié • App Mobile • API Disponibilité Temps Réel • Plateforme de réservation</p>
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="flex gap-8 mb-8 relative">
+        <div class="flex-shrink-0 w-24 flex items-start justify-center pt-2">
+          <div class="w-6 h-6 bg-red-600 rounded-full ring-4 ring-red-600/30 z-10"></div>
+        </div>
+        <div class="flex-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-2xl font-bold text-white">Phase 5 : Plateforme Analytique & Data Science</h3>
+            <span class="text-sm font-semibold text-red-400 bg-red-500/10 px-3 py-1 rounded-full">Mois 12-18</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">Data Lake • Business Intelligence • Yield Management • Cas d'usage à forte valeur</p>
+        </div>
+      </div>
+
+      <!-- Phase 5 -->
+      <div class="flex gap-8 relative">
+        <div class="flex-shrink-0 w-24 flex items-start justify-center pt-2">
+          <div class="w-6 h-6 bg-red-600 rounded-full ring-4 ring-red-600/30 z-10"></div>
+        </div>
+        <div class="flex-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-2xl font-bold text-white">Phase 6 : Vision Future</h3>
+            <span class="text-sm font-semibold text-red-400 bg-red-500/10 px-3 py-1 rounded-full">Mois 12-18+</span>
+          </div>
+          <p class="text-slate-300 leading-relaxed">IoT Maintenance Prédictive • Autopartage • Location à la minute • Innovation continue</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

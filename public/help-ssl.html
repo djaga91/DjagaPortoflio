@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aide - Erreur de connexion SSL | PortfoliA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e7;
+            min-height: 100vh;
+            padding: 2rem;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #f97316;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        h2 {
+            color: #fb923c;
+            margin: 2rem 0 1rem;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #f9731633;
+            padding-bottom: 0.5rem;
+        }
+        .error-box {
+            background: #7f1d1d33;
+            border: 1px solid #dc2626;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .error-box code {
+            background: #00000066;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #fca5a5;
+        }
+        .solution-card {
+            background: #ffffff0a;
+            border: 1px solid #ffffff1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .solution-card h3 {
+            color: #22c55e;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .solution-card.recommended {
+            border-color: #22c55e;
+            background: #22c55e0d;
+        }
+        .badge {
+            background: #22c55e;
+            color: #000;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        ul {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        li { margin: 0.5rem 0; }
+        .warning {
+            background: #78350f33;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .info {
+            background: #1e3a5f;
+            border: 1px solid #3b82f6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        a {
+            color: #f97316;
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: #f97316;
+            color: #000;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            background: #fb923c;
+            text-decoration: none;
+        }
+        .diagram {
+            background: #00000066;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Erreur de connexion SSL</h1>
+        <p>Vous voyez probablement un message d'erreur comme celui-ci :</p>
+
+        <div class="error-box">
+            <strong>« Votre connexion n'est pas privée »</strong><br><br>
+            Code d'erreur : <code>NET::ERR_CERT_AUTHORITY_INVALID</code>
+        </div>
+
+        <h2>🤔 Pourquoi cette erreur ?</h2>
+
+        <p>Cette erreur apparaît généralement quand vous êtes connecté à un <strong>réseau d'entreprise, d'école ou d'université</strong> qui utilise un <strong>proxy d'inspection SSL</strong>.</p>
+
+        <div class="info">
+            <strong>Ce n'est PAS un problème avec PortfoliA.</strong> Notre certificat SSL est parfaitement valide et noté <strong>A+</strong> par SSL Labs (la meilleure note possible). C'est le réseau sur lequel vous êtes qui intercepte votre connexion.
+        </div>
+
+        <div class="solution-card" style="border-color: #22c55e;">
+            <h3>🏆 Notre certificat SSL est vérifié A+</h3>
+            <ul style="list-style: none; margin-left: 0;">
+                <li>✅ Émetteur : <strong>Let's Encrypt</strong> (autorité mondiale reconnue)</li>
+                <li>✅ Protocole : <strong>TLS 1.3</strong> (le plus sécurisé)</li>
+                <li>✅ HSTS activé (protection maximale)</li>
+                <li>✅ Aucune vulnérabilité connue</li>
+            </ul>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #9ca3af;">
+                Vérifiez par vous-même : <a href="https://www.ssllabs.com/ssltest/analyze.html?d=portfolia.fr" target="_blank">SSL Labs Test</a>
+            </p>
+        </div>
+
+        <h3>Comment ça fonctionne ?</h3>
+        <div class="diagram">Connexion normale (chez vous) :
+┌─────────────┐      HTTPS sécurisé       ┌─────────────┐
+│ Votre PC    │ ────────────────────────► │ portfolia.fr│
+└─────────────┘  Certificat Let's Encrypt └─────────────┘
+                       ✅ Valide
+
+Connexion via proxy (école/entreprise) :
+┌─────────────┐    Certificat     ┌─────────────┐    Certificat     ┌─────────────┐
+│ Votre PC    │ ───────────────►  │ Proxy école │ ───────────────►  │ portfolia.fr│
+└─────────────┘    de l'école     └─────────────┘   Let's Encrypt   └─────────────┘
+                  ❌ Non reconnu        ↑
+                                   Le proxy "ouvre"
+                                   votre connexion</div>
+
+        <h2>✅ Solutions</h2>
+
+        <div class="solution-card recommended">
+            <h3>📱 Solution 1 : Utilisez vos données mobiles <span class="badge">RECOMMANDÉ</span></h3>
+            <p>La solution la plus simple et la plus rapide :</p>
+            <ul>
+                <li>Désactivez le Wi-Fi de votre appareil</li>
+                <li>Activez les données mobiles (4G/5G)</li>
+                <li>Ou créez un <strong>partage de connexion</strong> depuis votre téléphone</li>
+            </ul>
+        </div>
+
+        <div class="solution-card">
+            <h3>🏠 Solution 2 : Connectez-vous depuis un autre réseau</h3>
+            <p>Essayez d'accéder à PortfoliA depuis :</p>
+            <ul>
+                <li>Votre domicile</li>
+                <li>Un café ou lieu public avec Wi-Fi</li>
+                <li>Un autre réseau non filtré</li>
+            </ul>
+        </div>
+
+        <div class="solution-card">
+            <h3>🔧 Solution 3 : Demandez à votre service informatique</h3>
+            <p>Si vous devez absolument utiliser le réseau de votre école/entreprise :</p>
+            <ul>
+                <li>Contactez le service informatique</li>
+                <li>Demandez l'ajout de <code>portfolia.fr</code> à la liste blanche SSL</li>
+                <li>Ou demandez le certificat racine à installer sur votre appareil</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Attention</strong> : N'installez un certificat racine que si vous faites confiance à l'organisation. Cela leur permet de voir tout votre trafic HTTPS.
+        </div>
+
+        <h2>❓ Questions fréquentes</h2>
+
+        <div class="solution-card">
+            <h3>Est-ce que mes données sont en danger ?</h3>
+            <p>Non. Chrome a <strong>bloqué la connexion avant tout échange de données</strong>. Vos mots de passe et informations n'ont pas été envoyés.</p>
+        </div>
+
+        <div class="solution-card">
+            <h3>Est-ce que PortfoliA est piraté ?</h3>
+            <p>Non. Notre site utilise un certificat SSL valide émis par Let's Encrypt. C'est le proxy de votre réseau qui cause ce problème.</p>
+        </div>
+
+        <div class="solution-card">
+            <h3>Pourquoi l'école fait ça ?</h3>
+            <p>Les établissements utilisent l'inspection SSL pour :</p>
+            <ul>
+                <li>Filtrer les contenus inappropriés</li>
+                <li>Détecter les menaces de sécurité</li>
+                <li>Surveiller l'utilisation du réseau</li>
+            </ul>
+            <p>C'est une pratique courante et légale dans le cadre éducatif ou professionnel.</p>
+        </div>
+
+        <a href="/" class="back-link">← Retour à PortfoliA</a>
+
+        <p style="margin-top: 3rem; color: #71717a; font-size: 0.9rem;">
+            Besoin d'aide supplémentaire ? Contactez-nous à <a href="mailto:support@portfolia.fr">support@portfolia.fr</a>
+        </p>
+    </div>
+</body>
+</html>

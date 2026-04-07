@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Redirection</title>
+  <script>
+    // Détecter la langue du navigateur
+    const userLang = navigator.language || navigator.userLanguage;
+
+    // Vérifier si la langue est le français ('fr' ou variantes 'fr-FR', 'fr-CA', etc.)
+    if (userLang.startsWith('fr')) {
+      // Rediriger vers la version française
+      window.location.href = 'fr.html';
+    } else {
+      // Rediriger vers la version anglaise par défaut
+      window.location.href = 'en.html';
+    }
+  </script>
+  <noscript>
+    <!-- Si JavaScript est désactivé, rediriger directement vers la version française -->
+    <meta http-equiv="refresh" content="0; url=fr.html">
+  </noscript>
+</head>
+<body>
+  <!-- Le corps de la page est vide, car la redirection se produit immédiatement -->
+</body>
+</html>

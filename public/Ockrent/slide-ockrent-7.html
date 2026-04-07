@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCKRent - Slide 7</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-12">
+  <div class="max-w-7xl w-full">
+    <!-- En-tête -->
+    <div class="text-orange-400 text-sm font-bold tracking-widest mb-4">CAS D'USAGE BUSINESS</div>
+    <h1 class="text-5xl font-black text-white mb-8">
+      Maximisation du <span class="text-orange-500">Revenu</span>
+    </h1>
+
+    <div class="grid grid-cols-2 gap-8">
+      <!-- Colonne gauche: Yield Management -->
+      <div>
+        <div class="bg-gradient-to-br from-green-600/20 to-emerald-600/20 border-2 border-green-500 rounded-2xl p-8 mb-6">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="text-5xl">💰</div>
+            <div>
+              <h3 class="text-3xl font-black text-white">Yield Management</h3>
+              <p class="text-green-400 text-sm font-semibold">Tarification Dynamique</p>
+            </div>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="bg-slate-800/50 rounded-lg p-4">
+              <div class="text-xs text-slate-400 mb-2">OBJECTIF</div>
+              <p class="text-white text-sm leading-relaxed">
+                Maximiser le <strong>RevPAR</strong> (Revenu par Véhicule) en ajustant les prix automatiquement selon la demande et la concurrence.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="text-xs text-orange-400 font-bold mb-2">🔄 FLUX DE DONNÉES</div>
+
+            <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
+              <div class="text-blue-300 font-semibold text-xs mb-2">📥 INPUTS</div>
+              <div class="space-y-1 text-slate-300 text-xs">
+                <div>• <strong>Réservation</strong> : Historique + Rythme de remplissage</div>
+                <div>• <strong>Produit</strong> : Stock disponible en temps réel</div>
+                <div>• <strong>Client</strong> : Segmentation (Business vs Loisir)</div>
+                <div>• <strong>Concurrents</strong> : Scraping prix marché (Hertz, Avis)</div>
+                <div>• <strong>Météo & Events</strong> : Facteurs contextuels</div>
+              </div>
+            </div>
+
+            <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-3">
+              <div class="text-purple-300 font-semibold text-xs mb-2">⚙️ PROCESSING</div>
+              <p class="text-slate-300 text-xs">Algorithme de Pricing analyse l'élasticité-prix et calcule le tarif optimal</p>
+            </div>
+
+            <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+              <div class="text-green-300 font-semibold text-xs mb-2">📤 OUTPUT</div>
+              <p class="text-slate-300 text-xs">Mise à jour automatique du tarif dans la fiche Produit (visible Web + Agence)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne droite: Optimisation Ressources -->
+      <div>
+        <div class="bg-gradient-to-br from-orange-600/20 to-red-600/20 border-2 border-orange-500 rounded-2xl p-8 mb-6">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="text-5xl">📊</div>
+            <div>
+              <h3 class="text-3xl font-black text-white">Optimisation Ressources</h3>
+              <p class="text-orange-400 text-sm font-semibold">Staffing & Flotte Agence</p>
+            </div>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="bg-slate-800/50 rounded-lg p-4">
+              <div class="text-xs text-slate-400 mb-2">OBJECTIF</div>
+              <p class="text-white text-sm leading-relaxed">
+                Garantir <strong>"assez de voitures et assez d'agents le jour J"</strong> en anticipant les pics d'activité.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="text-xs text-orange-400 font-bold mb-2">🔄 FLUX DE DONNÉES</div>
+
+            <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
+              <div class="text-blue-300 font-semibold text-xs mb-2">📥 INPUTS</div>
+              <div class="space-y-1 text-slate-300 text-xs">
+                <div>• <strong>Réservation</strong> : Volume départs/retours prévus</div>
+                <div>• <strong>Employé</strong> : Planning actuel + Compétences</div>
+                <div>• <strong>Produit</strong> : État du stock par agence</div>
+                <div>• <strong>Météo</strong> : Impact temps de préparation</div>
+                <div>• <strong>Events</strong> : Concerts, salons (pics atypiques)</div>
+              </div>
+            </div>
+
+            <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-3">
+              <div class="text-purple-300 font-semibold text-xs mb-2">⚙️ PROCESSING</div>
+              <p class="text-slate-300 text-xs">Algorithme prédictif calcule charge de travail estimée (temps × volume pondéré)</p>
+            </div>
+
+            <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+              <div class="text-green-300 font-semibold text-xs mb-2">📤 OUTPUTS</div>
+              <div class="space-y-1 text-slate-300 text-xs">
+                <div>• <strong>RH</strong> : Planning optimisé (ajustements effectifs)</div>
+                <div>• <strong>Logistique</strong> : Transferts inter-agences recommandés</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prévision Demande -->
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-5">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="text-3xl">🔮</div>
+            <h4 class="text-xl font-bold text-white">Prévision Avancée de la Demande</h4>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Modèle transverse alimentant les 2 cas d'usage. Croise <strong>historique réservations</strong> + <strong>météo/events</strong> pour projeter le volume futur avec précision.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI en bas -->
+    <div class="mt-6 grid grid-cols-3 gap-4">
+      <div class="bg-green-500/10 border border-green-500/30 rounded-lg p-4 text-center">
+        <div class="text-2xl font-black text-green-400 mb-1">+15-25%</div>
+        <div class="text-xs text-slate-400">Augmentation CA via Pricing Dynamique</div>
+      </div>
+      <div class="bg-orange-500/10 border border-orange-500/30 rounded-lg p-4 text-center">
+        <div class="text-2xl font-black text-orange-400 mb-1">-30%</div>
+        <div class="text-xs text-slate-400">Réduction temps d'attente client</div>
+      </div>
+      <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 text-center">
+        <div class="text-2xl font-black text-blue-400 mb-1">98%</div>
+        <div class="text-xs text-slate-400">Taux de disponibilité véhicules</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

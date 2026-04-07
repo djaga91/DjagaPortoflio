@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PortfoliA - Rejoignez-nous !</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1920x1080 (16:9) -->
+  <div class="relative w-[1920px] h-[1080px] bg-[#0f172b] overflow-hidden flex flex-col">
+
+    <!-- Effets de fond massifs -->
+    <div class="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[1000px] h-[800px] bg-[#f0661b] opacity-20 blur-[160px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-[-200px] left-[-100px] w-[900px] h-[900px] bg-[#8b5cf6] opacity-15 blur-[150px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-[-200px] right-[-100px] w-[900px] h-[900px] bg-[#6366f1] opacity-15 blur-[150px] rounded-full pointer-events-none"></div>
+
+    <!-- Grille -->
+    <div class="absolute inset-0 z-0 opacity-40"
+         style="background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px); background-size: 60px 60px; background-position: center;">
+    </div>
+
+    <!-- Vignette radiale -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0f172b_85%)] pointer-events-none"></div>
+
+    <!-- Contenu principal -->
+    <div class="relative z-10 flex-1 flex flex-col items-center justify-center px-20">
+
+      <!-- Logo central -->
+      <div class="mb-10 relative group">
+        <div class="absolute inset-0 bg-[#f0661b] blur-3xl opacity-30 rounded-full"></div>
+        <img src="../logo.svg" alt="PortfoliA" class="relative h-32 w-auto drop-shadow-2xl" />
+      </div>
+
+      <!-- Titre massif -->
+      <h1 class="text-7xl font-black text-center text-white mb-5 leading-[1.1] tracking-tight drop-shadow-2xl">
+        Prêt à révolutionner<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f0661b] via-[#fae2be] to-[#8b5cf6]">
+          votre carrière ?
+        </span>
+      </h1>
+
+      <!-- Sous-titre -->
+      <p class="text-3xl text-slate-300 font-bold text-center max-w-4xl mb-12 leading-relaxed">
+        Rejoignez <span class="text-[#f0661b]">PortfoliA</span> dès maintenant et découvrez la nouvelle ère<br/>
+        de la gestion d'identité professionnelle.
+      </p>
+
+      <!-- CTA Cards -->
+      <div class="grid grid-cols-4 gap-6 max-w-7xl mb-10">
+
+        <!-- CTA 1 : Inscription -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#f0661b] to-[#ff6b2b] blur-2xl opacity-40 rounded-3xl group-hover:opacity-60 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-3xl border-2 border-[#f0661b] p-6 flex flex-col items-center text-center">
+            <div class="text-5xl mb-3">🚀</div>
+            <h3 class="text-xl font-extrabold text-white mb-2">Inscrivez-vous</h3>
+            <p class="text-slate-400 text-base">Créez votre compte gratuit en 30 secondes</p>
+          </div>
+        </div>
+
+        <!-- CTA 2 : Compléter profil -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] blur-2xl opacity-40 rounded-3xl group-hover:opacity-60 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-3xl border-2 border-[#8b5cf6] p-6 flex flex-col items-center text-center">
+            <div class="text-5xl mb-3">⭐</div>
+            <h3 class="text-xl font-extrabold text-white mb-2">Complétez</h3>
+            <p class="text-slate-400 text-base">Remplissez votre profil et gagnez XP !</p>
+          </div>
+        </div>
+
+        <!-- CTA 3 : Tester -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#f0661b] to-[#8b5cf6] blur-2xl opacity-40 rounded-3xl group-hover:opacity-60 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-3xl border-2 border-[#f0661b] p-6 flex flex-col items-center text-center">
+            <div class="text-5xl mb-3">🔥</div>
+            <h3 class="text-xl font-extrabold text-white mb-2">Cassez le site</h3>
+            <p class="text-slate-400 text-base">Testez toutes les features intensivement</p>
+          </div>
+        </div>
+
+        <!-- CTA 4 : Discord -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-br from-[#5865F2] to-[#4752C4] blur-2xl opacity-40 rounded-3xl group-hover:opacity-60 transition-opacity"></div>
+          <div class="relative bg-[#1e293b] rounded-3xl border-2 border-[#5865F2] p-6 flex flex-col items-center text-center">
+            <div class="text-5xl mb-3">💬</div>
+            <h3 class="text-xl font-extrabold text-white mb-2">Rejoignez Discord</h3>
+            <p class="text-slate-400 text-sm leading-tight">Entraide · Contact direct · Idées · Annonces</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- URL géante -->
+      <div class="relative mb-8">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#f0661b] to-[#8b5cf6] blur-3xl opacity-30 rounded-full"></div>
+        <div class="relative bg-[#1e293b] rounded-3xl border-2 border-[#fae2be] px-12 py-6">
+          <p class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#fae2be] via-white to-[#fae2be] tracking-wider">
+            portfolia.fr
+          </p>
+        </div>
+      </div>
+
+      <!-- Message final -->
+      <p class="text-2xl text-slate-400 font-bold text-center max-w-3xl">
+        Votre feedback est <span class="text-white">précieux</span>.<br/>
+        Ensemble, construisons le meilleur outil de gestion de carrière ! 🦊
+      </p>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="relative z-10 pb-12 flex flex-col items-center gap-4">
+      <div class="w-24 h-1 bg-gradient-to-r from-[#f0661b] to-[#8b5cf6] rounded-full opacity-80"></div>
+      <p class="text-[#fae2be] font-bold tracking-[0.3em] text-lg uppercase opacity-80">
+        V1 • Décembre 2025
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

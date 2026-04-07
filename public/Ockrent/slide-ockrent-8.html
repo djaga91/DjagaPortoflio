@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OCKRent - Slide 8</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-12">
+  <div class="max-w-7xl w-full">
+    <!-- En-tête -->
+    <div class="text-orange-400 text-sm font-bold tracking-widest mb-4">CAS D'USAGE OPÉRATIONNEL & RISK</div>
+    <h1 class="text-5xl font-black text-white mb-8">
+      Maintenance Prédictive & <span class="text-orange-500">Sécurité</span>
+    </h1>
+
+    <div class="grid grid-cols-5 gap-6">
+      <!-- Colonne 1: Enjeu -->
+      <div class="col-span-2 space-y-6">
+        <div class="bg-gradient-to-br from-red-600/20 to-red-800/20 border-2 border-red-500 rounded-2xl p-8">
+          <div class="text-5xl mb-4">🔧</div>
+          <h3 class="text-3xl font-black text-white mb-4">L'Enjeu</h3>
+          <div class="space-y-4 text-slate-300 text-sm leading-relaxed">
+            <p>
+              <strong class="text-red-400">Problème actuel :</strong> Un véhicule peut être loué alors qu'une défaillance technique mineure est présente mais non détectée.
+            </p>
+            <p>
+              <strong class="text-red-400">Conséquences :</strong>
+            </p>
+            <ul class="space-y-2 ml-4">
+              <li class="flex items-start gap-2">
+                <div class="w-1.5 h-1.5 bg-red-400 rounded-full mt-2"></div>
+                <span>Pannes client en cours de trajet</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <div class="w-1.5 h-1.5 bg-red-400 rounded-full mt-2"></div>
+                <span>Coûts de dépannage élevés</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <div class="w-1.5 h-1.5 bg-red-400 rounded-full mt-2"></div>
+                <span>Image de marque dégradée</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <div class="w-1.5 h-1.5 bg-red-400 rounded-full mt-2"></div>
+                <span>Risques de sécurité majeurs</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-emerald-600/20 border-2 border-emerald-500 rounded-xl p-6">
+          <h4 class="text-xl font-bold text-white mb-3 flex items-center gap-2">
+            <span>🎯</span>
+            <span>Objectif</span>
+          </h4>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            <strong class="text-emerald-400">Anticiper la panne avant qu'elle n'arrive</strong> et bloquer la location préventivement pour garantir la sécurité des clients.
+          </p>
+        </div>
+      </div>
+
+      <!-- Colonne 2: Flux de données -->
+      <div class="col-span-3">
+        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-8 h-full">
+          <div class="text-orange-400 font-bold text-sm mb-6">🔄 ARCHITECTURE IoT & DATA PIPELINE</div>
+
+          <!-- Inputs -->
+          <div class="mb-6">
+            <div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-5">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center text-lg">📥</div>
+                <h4 class="text-blue-300 font-bold text-lg">INPUTS (Sources Internes)</h4>
+              </div>
+              <div class="grid grid-cols-3 gap-3">
+                <div class="bg-slate-900/50 rounded-lg p-3">
+                  <div class="text-2xl mb-2">📊</div>
+                  <div class="text-white font-semibold text-xs mb-1">Données Techniques</div>
+                  <div class="text-slate-400 text-xs">Âge, kilométrage, date dernier contrôle</div>
+                </div>
+                <div class="bg-slate-900/50 rounded-lg p-3">
+                  <div class="text-2xl mb-2">📡</div>
+                  <div class="text-white font-semibold text-xs mb-1">Télémétrie IoT</div>
+                  <div class="text-slate-400 text-xs">Codes erreur temps réel, pression pneus, batterie</div>
+                </div>
+                <div class="bg-slate-900/50 rounded-lg p-3">
+                  <div class="text-2xl mb-2">📅</div>
+                  <div class="text-white font-semibold text-xs mb-1">Réservation</div>
+                  <div class="text-slate-400 text-xs">Statut véhicule, planning retours</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Processing -->
+          <div class="mb-6">
+            <div class="bg-purple-500/10 border border-purple-500/30 rounded-xl p-5">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center text-lg">⚙️</div>
+                <h4 class="text-purple-300 font-bold text-lg">PROCESSING (Data Lake)</h4>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">1</div>
+                  <p class="text-slate-300 text-sm">Ingestion des signaux IoT temps réel dans zone Raw</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">2</div>
+                  <p class="text-slate-300 text-sm">Comparaison données IoT vs règles constructeur</p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0">3</div>
+                  <p class="text-slate-300 text-sm"><strong class="text-purple-400">Règle :</strong> Si "Code Erreur Frein = Vrai" OU "Km > Seuil Révision" → <strong>Risque = Critique</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Outputs -->
+          <div>
+            <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-5">
+              <div class="flex items-center gap-2 mb-4">
+                <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center text-lg">📤</div>
+                <h4 class="text-red-300 font-bold text-lg">OUTPUTS (Actions Automatiques)</h4>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="bg-slate-900/50 rounded-lg p-4 border-l-4 border-red-500">
+                  <div class="text-2xl mb-2">🚫</div>
+                  <div class="text-white font-semibold text-sm mb-2">Blocage Automatique</div>
+                  <p class="text-slate-400 text-xs">Véhicule passe en statut <strong class="text-red-400">"Indisponible"</strong> dans le MDM Produit → Empêche toute nouvelle réservation</p>
+                </div>
+                <div class="bg-slate-900/50 rounded-lg p-4 border-l-4 border-orange-500">
+                  <div class="text-2xl mb-2">🔔</div>
+                  <div class="text-white font-semibold text-sm mb-2">Notification Atelier</div>
+                  <p class="text-slate-400 text-xs">Demande d'intervention envoyée directement à l'<strong class="text-orange-400">Employé Atelier</strong> pour prise en charge immédiate</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPIs en bas -->
+    <div class="mt-6 grid grid-cols-4 gap-4">
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-lg p-3 text-center">
+        <div class="text-xl font-black text-emerald-400 mb-1">-60%</div>
+        <div class="text-xs text-slate-400">Pannes en cours de location</div>
+      </div>
+      <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3 text-center">
+        <div class="text-xl font-black text-blue-400 mb-1">-40%</div>
+        <div class="text-xs text-slate-400">Coûts de dépannage d'urgence</div>
+      </div>
+      <div class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-3 text-center">
+        <div class="text-xl font-black text-purple-400 mb-1">+25%</div>
+        <div class="text-xs text-slate-400">Durée de vie du parc</div>
+      </div>
+      <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-3 text-center">
+        <div class="text-xl font-black text-red-400 mb-1">100%</div>
+        <div class="text-xs text-slate-400">Conformité sécurité légale</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

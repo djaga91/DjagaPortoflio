@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PortfoliA - Place à la Démo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1920x1080 (16:9) -->
+  <div class="relative w-[1920px] h-[1080px] bg-[#0f172b] overflow-hidden flex flex-col items-center justify-center">
+
+    <!-- Effets de fond massifs -->
+    <div class="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[1000px] h-[800px] bg-[#f0661b] opacity-25 blur-[160px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-[-200px] left-[-100px] w-[900px] h-[900px] bg-[#8b5cf6] opacity-20 blur-[150px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-[-200px] right-[-100px] w-[900px] h-[900px] bg-[#6366f1] opacity-20 blur-[150px] rounded-full pointer-events-none"></div>
+
+    <!-- Grille -->
+    <div class="absolute inset-0 z-0 opacity-40"
+         style="background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(90deg, #1e293b 1px, transparent 1px); background-size: 60px 60px; background-position: center;">
+    </div>
+
+    <!-- Vignette radiale -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0f172b_85%)] pointer-events-none"></div>
+
+    <!-- Contenu central -->
+    <div class="relative z-10 flex flex-col items-center">
+
+      <!-- Logo géant en haut -->
+      <div class="mb-16 relative group">
+        <div class="absolute inset-0 bg-[#f0661b] blur-3xl opacity-40 rounded-full"></div>
+        <img src="../logo.svg" alt="PortfoliA" class="relative h-48 w-auto drop-shadow-2xl" />
+      </div>
+
+      <!-- Titre massif -->
+      <h1 class="text-[150px] font-black text-center leading-[1] tracking-tight mb-12">
+        <span class="text-white drop-shadow-2xl">Place à la</span><br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#f0661b] via-[#fae2be] to-[#8b5cf6] drop-shadow-2xl">
+          Démo !
+        </span>
+      </h1>
+
+      <!-- Icône animée -->
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#f0661b] to-[#8b5cf6] blur-3xl opacity-40 rounded-full"></div>
+        <div class="relative text-9xl">🚀</div>
+      </div>
+
+    </div>
+
+    <!-- Footer discret -->
+    <div class="absolute bottom-16 flex justify-center z-10">
+      <div class="w-24 h-1.5 bg-gradient-to-r from-[#f0661b] to-[#8b5cf6] rounded-full opacity-80"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>

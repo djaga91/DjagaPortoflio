@@ -1,0 +1,129 @@
+---
+description: Règles pour le système de thème Light/Dark du frontend
+globs: ["src/**/*.tsx", "src/**/*.ts"]
+alwaysApply: true
+---
+
+# 🎨 Système de Thème - Règles Obligatoires
+
+## Contexte
+
+PortfoliA utilise un système de thème Light/Dark basé sur des **CSS variables** et **Tailwind CSS**.
+Le thème est géré par `ThemeProvider` et persiste dans `localStorage`.
+
+## Classes Tailwind à utiliser
+
+### ❌ NE JAMAIS utiliser directement
+
+| Classe interdite | Raison |
+|------------------|--------|
+| `bg-white` | Ne s'adapte pas au dark mode |
+| `bg-slate-50`, `bg-slate-100` | Idem |
+| `text-slate-900`, `text-slate-800`, `text-slate-700` | Idem |
+| `text-slate-500`, `text-slate-400` | Idem |
+| `border-slate-100`, `border-slate-200` | Idem |
+| `shadow-xl`, `shadow-lg`, `shadow-sm` seuls | Préférer les shadows thématisées |
+
+### ✅ TOUJOURS utiliser les classes theme-*
+
+| Usage | Classe à utiliser |
+|-------|-------------------|
+| Fond de card/modal | `bg-theme-card` |
+| Fond de page | `bg-theme-bg-primary` |
+| Fond secondaire (inputs, sections) | `bg-theme-bg-secondary` |
+| Texte principal | `text-theme-text-primary` |
+| Texte secondaire | `text-theme-text-secondary` |
+| Texte discret/muted | `text-theme-text-muted` |
+| Bordure standard | `border-theme-border` |
+| Bordure légère (cards) | `border-theme-card-border` |
+| Ombres | `shadow-theme-sm`, `shadow-theme-md`, `shadow-theme-lg`, `shadow-theme-xl` |
+
+## Cas spéciaux avec dark:
+
+Pour les éléments colorés (success, error, warning), utiliser le préfixe `dark:` :
+
+```tsx
+// ✅ Correct
+className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800"
+className="bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300"
+className="bg-orange-50 dark:bg-orange-900/20"
+
+// ❌ Incorrect
+className="bg-green-50 border-green-200" // Pas de dark mode
+```
+
+## Ombres sur hover
+
+```tsx
+// ✅ Correct
+className="shadow-lg shadow-indigo-200/50 dark:shadow-indigo-900/30"
+className="hover:shadow-xl hover:shadow-orange-200/50 dark:hover:shadow-orange-900/30"
+
+// ❌ Incorrect
+className="shadow-lg shadow-indigo-200/50" // Ombre trop claire en dark mode
+```
+
+## SVG et cercles
+
+Pour les SVG avec stroke fixe, utiliser des classes Tailwind :
+
+```tsx
+// ✅ Correct
+<circle className="stroke-slate-100 dark:stroke-slate-700" />
+<circle className="stroke-emerald-100 dark:stroke-emerald-900/50" />
+
+// ❌ Incorrect
+<circle stroke="#F1F5F9" /> // Couleur fixe
+```
+
+## Couleurs de marque (inchangées)
+
+Les couleurs de marque restent fixes dans les deux thèmes :
+- Orange Fox : `#FF8C42`, `#FF6B2B`
+- Indigo : `#6366F1`, `#4F46E5`
+
+## Tokens CSS disponibles
+
+Définis dans `src/styles/index.css` :
+
+| Variable | Light | Dark |
+|----------|-------|------|
+| `--color-bg-primary` | slate-50 | slate-900 |
+| `--color-bg-secondary` | slate-100 | slate-800 |
+| `--color-card` | white | slate-800 |
+| `--color-text-primary` | slate-900 | white |
+| `--color-text-secondary` | slate-500 | slate-400 |
+| `--color-text-muted` | slate-400 | slate-500 |
+| `--color-border` | slate-200 | slate-700 |
+| `--color-card-border` | slate-100 | slate-700 |
+
+## Checklist avant commit
+
+- [ ] Aucun `bg-white` ou `bg-slate-*` utilisé directement
+- [ ] Aucun `text-slate-*` utilisé directement
+- [ ] Aucun `border-slate-*` utilisé directement
+- [ ] Les éléments colorés ont leur variante `dark:`
+- [ ] Les ombres utilisent `shadow-theme-*` ou ont `dark:shadow-*`
+- [ ] Les SVG avec couleurs fixes utilisent des classes Tailwind
+
+## Fichier de suivi
+
+Mettre à jour `frontend-game/THEME_STATUS.md` après chaque nouveau composant/page.
+
+## Exemple de composant thématisé
+
+```tsx
+const MyCard: React.FC = () => (
+  <div className="bg-theme-card rounded-2xl border border-theme-card-border shadow-theme-sm p-6">
+    <h2 className="text-theme-text-primary font-bold">Titre</h2>
+    <p className="text-theme-text-secondary">Description</p>
+    <input
+      className="w-full bg-theme-bg-secondary border border-theme-border rounded-xl px-4 py-3 text-theme-text-primary focus:border-[#6366F1] outline-none"
+      placeholder="Placeholder..."
+    />
+    <button className="bg-[#FF8C42] hover:bg-[#E07230] text-white font-bold rounded-xl px-4 py-2 shadow-lg shadow-orange-200/50 dark:shadow-orange-900/30">
+      Action
+    </button>
+  </div>
+);
+```
