@@ -1,163 +1,155 @@
 /**
- * Affiche une icône officielle locale (SVG) pour une compétence/techno.
- * Si le logo local n'est pas disponible, bascule sur une icône Lucide stylisée.
+ * SkillIcon — Affiche une icône colorée pour chaque compétence.
+ * Priorité : SVG officiel local → Icône Lucide colorée.
+ * Ne disparaît JAMAIS (plus de display:none sur erreur).
  */
 
-import React from "react";
+import React, { useState } from "react";
 import * as LucideIcons from "lucide-react";
 
 interface SkillIconProps {
   skillName: string;
   className?: string;
   size?: number;
-  showLabel?: boolean;
-  useBadge?: boolean;
-  isDark?: boolean;
 }
 
-/**
- * Mapping des technologies vers leurs fichiers SVG officiels stockés dans /public/icons/skills/
- */
-const SKILL_LOGOS: Record<string, string> = {
-  // --- Langages & Outils Dev ---
-  python: "python.svg",
-  bash: "bash.svg",
-  shell: "bash.svg",
-  yaml: "yaml.svg",
-  ansible: "ansible.svg",
-  terraform: "terraform.svg",
-  jenkins: "jenkins.svg",
-  linux: "linux.svg",
+interface SkillConfig {
+  icon: keyof typeof LucideIcons;
+  color: string;
+  svgFile?: string;
+}
 
-  // --- Cloud & DevOps ---
-  aws: "aws.svg",
-  amazon: "aws.svg",
-  azure: "azure.svg",
-  docker: "docker.svg",
-  kubernetes: "kubernetes.svg",
-  k8s: "kubernetes.svg",
-  gitlab: "gitlab.svg",
+// ─────────────────────────────────────────────────────────────
+// Config des icônes — Ordonné du plus spécifique au plus générique
+// Chaque entrée : [ [patterns à chercher dans le nom], config ]
+// ─────────────────────────────────────────────────────────────
+const SKILL_CONFIGS: Array<[string[], SkillConfig]> = [
+  // ── SVG officiels disponibles ──────────────────────────────
+  [["python"],              { icon: "Code",        color: "#3776ab", svgFile: "python.svg" }],
+  [["docker"],              { icon: "Box",         color: "#0db7ed", svgFile: "docker.svg" }],
+  [["kubernetes", "k8s"],   { icon: "Settings2",   color: "#326ce5", svgFile: "kubernetes.svg" }],
+  [["sonarqube"],           { icon: "Activity",    color: "#4e9bcd", svgFile: "sonarqube.svg" }],
+  [["grype"],               { icon: "ScanLine",    color: "#ef4444", svgFile: "grype.svg" }],
+  [["jenkins"],             { icon: "Settings",    color: "#d33833", svgFile: "jenkins.svg" }],
+  [["terraform"],           { icon: "Layers",      color: "#7b42bc", svgFile: "terraform.svg" }],
+  [["gitlab"],              { icon: "GitBranch",   color: "#fc6d26", svgFile: "gitlab.svg" }],
+  [["ansible"],             { icon: "Terminal",    color: "#e00", svgFile: "ansible.svg" }],
+  [["linux"],               { icon: "Terminal",    color: "#f9c642", svgFile: "linux.svg" }],
 
-  // --- Outils de sécurité ---
-  sonarqube: "sonarqube.svg",
-  grype: "grype.svg",
-  semgrep: "semgrep.svg",
-  defectdojo: "defectdojo.svg",
+  // ── AWS / Azure : SVG + couleurs brand ────────────────────
+  [["amazon web services", "aws"],  { icon: "Cloud",  color: "#ff9900", svgFile: "aws.svg" }],
+  [["microsoft azure", "azure"],    { icon: "Cloud",  color: "#0078d4", svgFile: "azure.svg" }],
 
-  // --- Domaines & Concepts (SVGs custom) ---
-  devsecops: "devsecops.svg",
-  "governance": "grc.svg",
-  "gouvernance": "grc.svg",
-  grc: "grc.svg",
-  "conformité": "grc.svg",
-  "conformite": "grc.svg",
-  "intelligence artificielle": "ia.svg",
-  "artificial intelligence": "ia.svg",
-  ia: "ia.svg",
-  " ai": "ia.svg",
-  cybersecurite: "cyber-security.svg",
-  "cybersécurité": "cyber-security.svg",
-  cybersecurity: "cyber-security.svg",
-  "asset management": "asset-management.svg",
-  "gestion financière": "finance.svg",
-  "financial management": "finance.svg",
-  finance: "finance.svg",
-  "réseaux": "network.svg",
-  "reseau": "network.svg",
-  network: "network.svg",
-  "gestion de projet": "project-management.svg",
-  "project management": "project-management.svg",
-  "management d'équipe": "management.svg",
-  "team management": "management.svg",
-  "intelligence relationnelle": "soft-skills.svg",
-  "interpersonal": "soft-skills.svg",
-  événementiel: "event.svg",
-  evenementiel: "event.svg",
-  "event planning": "event.svg",
-};
+  // ── Concept & Domaines ─────────────────────────────────────
+  [["cybersécurité", "cybersecurite", "cybersecurity"],        { icon: "Shield",      color: "#ef4444", svgFile: "cyber-security.svg" }],
+  [["devsecops"],                                               { icon: "GitMerge",    color: "#f97316", svgFile: "devsecops.svg" }],
+  [["gouvernance", "governance", "grc", "conformit"],           { icon: "ShieldCheck", color: "#22c55e", svgFile: "grc.svg" }],
+  [["intelligence artificielle", "artificial intelligence"],    { icon: "Brain",       color: "#a855f7", svgFile: "ia.svg" }],
+  [["analyse de données", "data analysis", "statistique", "calcul numérique", "numerical"], { icon: "BarChart2", color: "#14b8a6" }],
+  [["réseau", "network", "vlan", "subnet"],                    { icon: "Network",     color: "#3b82f6", svgFile: "network.svg" }],
+  [["asset management"],                                        { icon: "Database",    color: "#06b6d4", svgFile: "asset-management.svg" }],
+  [["iso 27001", "iso27001"],                                   { icon: "FileCheck",   color: "#22c55e" }],
 
-/**
- * Retourne une icône Lucide appropriée en fallback
- */
-function getFallbackIcon(skillName: string): keyof typeof LucideIcons {
+  // ── Langages & Scripts ─────────────────────────────────────
+  [["bash", "shell"],           { icon: "Terminal",   color: "#4ade80", svgFile: "bash.svg" }],
+  [["yaml"],                    { icon: "FileCode",   color: "#f59e0b", svgFile: "yaml.svg" }],
+  [["prompt engineering"],      { icon: "Sparkles",   color: "#a855f7" }],
+
+  // ── Cloud & DevOps (spécifiques) ──────────────────────────
+  [["hyperviseur", "hypervisor", "vmware", "virtualbox", "vm &"], { icon: "Monitor",  color: "#10b981" }],
+  [["malware", "sandbox"],                                          { icon: "Microscope", color: "#dc2626" }],
+  [["depscan"],                                                     { icon: "ScanLine",   color: "#fc6d26" }],
+  [["semgrep"],                                                     { icon: "Search",     color: "#f97316" }],
+  [["defectdojo"],                                                  { icon: "Bug",        color: "#ef4444" }],
+
+  // ── Business & Opérations ─────────────────────────────────
+  [["marketing", "stratégie commerciale", "commercial strategy"],     { icon: "TrendingUp",    color: "#22c55e" }],
+  [["vente", "sale", "relation client", "customer relation"],         { icon: "ShoppingBag",   color: "#f97316" }],
+  [["financ", "trésorerie", "caisse", "budget"],                      { icon: "Wallet",        color: "#22c55e", svgFile: "finance.svg" }],
+  [["logistique", "logistics", "stock", "inventory"],                 { icon: "Package",       color: "#6366f1" }],
+  [["contrat", "contract", "rh", " hr ", "ressources humaines", "human resources"], { icon: "FileText", color: "#94a3b8" }],
+
+  // ── Management & Leadership ───────────────────────────────
+  [["pack office", "excel", "word"],                              { icon: "FileSpreadsheet", color: "#22c55e" }],
+  [["gestion de projet", "project management"],                   { icon: "Briefcase",       color: "#3b82f6", svgFile: "project-management.svg" }],
+  [["management d'équipe", "team management", "supervision", "coordination"], { icon: "Users", color: "#6366f1", svgFile: "management.svg" }],
+  [["événementiel", "evenementiel", "event planning", "festival"],            { icon: "Calendar", color: "#f97316", svgFile: "event.svg" }],
+
+  // ── Soft Skills ───────────────────────────────────────────
+  [["intelligence relationnelle", "interpersonal", "communication efficace"],  { icon: "MessageCircle", color: "#a855f7" }],
+  [["aisance relationnelle", "networking", "fédérer", "liens de confiance"],   { icon: "Share2",        color: "#3b82f6" }],
+  [["leadership", "autonomi", "décision", "direc"],                            { icon: "Target",        color: "#ef4444" }],
+  [["analyse et résolution", "résolution de problèmes", "problem solving", "approche méthodique"], { icon: "Lightbulb", color: "#f59e0b" }],
+  [["adaptabilité", "interculturel", "international", "adaptability"],         { icon: "Globe",         color: "#22c55e" }],
+  [["rigueur", "rigor", "documentation", "normes", "precision"],               { icon: "CheckSquare",   color: "#3b82f6" }],
+  [["vulgarisation", "expliquer", "populariz", "schéma", "guides", "technical communication"], { icon: "BookOpen", color: "#14b8a6" }],
+
+  // ── Génériques ────────────────────────────────────────────
+  [["cloud", "infra"],      { icon: "Cloud",     color: "#3b82f6" }],
+  [["security", "sécurité"],{ icon: "Shield",    color: "#ef4444" }],
+  [["management", "gestion"],{ icon: "Briefcase", color: "#6366f1" }],
+  [["data", "donnée"],      { icon: "Database",  color: "#06b6d4" }],
+  [["soft skill"],          { icon: "Heart",     color: "#a855f7", svgFile: "soft-skills.svg" }],
+];
+
+function getSkillConfig(skillName: string): SkillConfig {
   const n = skillName.toLowerCase().trim();
 
-  // Concepts & domaines
-  if (n.includes("grc") || n.includes("gouvernance") || n.includes("governance") || n.includes("conformit")) return "ShieldCheck";
-  if (n.includes("devsecops")) return "GitMerge";
-  if (n.includes("cybersec") || n.includes("sécurité") || n.includes("security")) return "Lock";
-  if (n.includes("intelligence artificielle") || n.includes("artificial intelligence") || n === "ia" || n === "ai") return "Brain";
-  if (n.includes("réseau") || n.includes("network")) return "Network";
-  if (n.includes("asset management")) return "Database";
-  if (n.includes("financial") || n.includes("financière") || n.includes("finance")) return "TrendingUp";
-  if (n.includes("iso 27001") || n.includes("iso27001")) return "FileCheck";
+  // IA / AI : exact word match uniquement pour éviter faux positifs dans "financière", etc.
+  const isIA = n === "ia" || n === "ai" || n.startsWith("ia ") || n.startsWith("ai ");
+  if (isIA) return { icon: "Brain", color: "#a855f7", svgFile: "ia.svg" };
 
-  // Cloud & DevOps
-  if (n.includes("cloud") || n.includes("infra")) return "Cloud";
-  if (n.includes("jenkins")) return "Settings";
-  if (n.includes("pipeline") || n.includes("ci/cd") || n.includes("cicd")) return "GitBranch";
-
-  // Management & Soft Skills
-  if (n.includes("project management") || n.includes("gestion de projet")) return "Briefcase";
-  if (n.includes("team management") || n.includes("management d'équipe") || n.includes("management")) return "Users";
-  if (n.includes("interpersonal") || n.includes("intelligence relationnelle")) return "Heart";
-  if (n.includes("event") || n.includes("événementiel")) return "Calendar";
-
-  // Langages
-  if (n.includes("prompt")) return "Sparkles";
-  if (n.includes("code") || n.includes("dev")) return "Code";
-  if (n.includes("data")) return "Database";
-  if (n.includes("team") || n.includes("équipe")) return "Users";
-
-  return "Code";
-}
-
-export const SkillIcon: React.FC<SkillIconProps> = ({
-  skillName,
-  className = "",
-  size = 20,
-  isDark = true,
-}) => {
-  const normalized = skillName.toLowerCase().trim();
-  
-  // 1. Chercher si un logo officiel local existe
-  let logoFile = null;
-  for (const [key, file] of Object.entries(SKILL_LOGOS)) {
-    if (normalized.includes(key)) {
-      logoFile = file;
-      break;
+  for (const [patterns, config] of SKILL_CONFIGS) {
+    if (patterns.some((p) => n.includes(p))) {
+      return config;
     }
   }
 
-  if (logoFile) {
-    return (
-      <div className={`flex items-center justify-center ${className} p-1 rounded-lg ${isDark ? 'bg-white/5' : 'bg-slate-50'}`}>
-        <img 
-          src={`/icons/skills/${logoFile}`} 
-          alt={skillName}
-          style={{ width: size, height: size, objectFit: 'contain' }}
-          className="transition-transform duration-300 group-hover:scale-110"
-          onError={(e) => {
-            // Fallback si l'image ne charge pas (404)
-            (e.target as any).parentElement.style.display = 'none';
-          }}
-        />
-      </div>
-    );
-  }
+  return { icon: "Code", color: "#64748b" };
+}
 
-  // 2. Fallback sur Lucide
-  const IconName = getFallbackIcon(skillName);
-  const IconComponent = (LucideIcons as any)[IconName] || LucideIcons.Code;
+// ─────────────────────────────────────────────────────────────
+// Composant principal
+// ─────────────────────────────────────────────────────────────
+export const SkillIcon: React.FC<SkillIconProps> = ({
+  skillName,
+  className = "",
+  size = 22,
+}) => {
+  const [svgFailed, setSvgFailed] = useState(false);
+  const config = getSkillConfig(skillName);
+
+  // ── Rendu partagé (SVG ou Lucide) ────────────────────────
+  const renderIcon = () => {
+    if (config.svgFile && !svgFailed) {
+      return (
+        <img
+          src={`/icons/skills/${config.svgFile}`}
+          alt={skillName}
+          style={{ width: size, height: size, objectFit: "contain" }}
+          onError={() => setSvgFailed(true)}
+        />
+      );
+    }
+    const IconComponent = (LucideIcons as any)[config.icon] || LucideIcons.Code;
+    return (
+      <IconComponent
+        size={size}
+        strokeWidth={2}
+        style={{ color: config.color }}
+      />
+    );
+  };
 
   return (
-    <div className={`flex items-center justify-center ${className}`}>
-      <IconComponent 
-        size={size} 
-        strokeWidth={2} 
-        className={className} 
-      />
+    <div
+      className={`flex items-center justify-center ${className} p-2 rounded-xl transition-all duration-300 shadow-sm`}
+      style={{ 
+        background: `${config.color}25`, // Plus vibrant (15%)
+        border: `1px solid ${config.color}40`, // Bordure subtile assortie
+      }}
+    >
+      {renderIcon()}
     </div>
   );
 };
-

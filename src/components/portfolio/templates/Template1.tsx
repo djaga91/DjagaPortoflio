@@ -61,6 +61,7 @@ import * as LucideIcons from "lucide-react";
 import { API_URL } from "../../../services/api";
 import { DragAndDropList } from "../DragAndDropList";
 import { applyItemOrder, getItemOrder } from "../../../utils/itemOrder";
+import { useTheme } from "../../../contexts/ThemeContext";
 
 ChartJS.register(
   RadarController,
@@ -225,9 +226,10 @@ export const Template1: React.FC<Template1Props> = ({
   onItemOrderChange,
   lang = "fr",
 }) => {
+  const { resolvedTheme, toggleTheme: globalToggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [theme, setTheme] = useState<"light" | "dark">(initialTheme);
+  const [theme, setTheme] = useState<"light" | "dark">(resolvedTheme);
   const [hasError] = useState(false);
   const [errorMessage] = useState<string | null>(null);
 
@@ -291,18 +293,17 @@ export const Template1: React.FC<Template1Props> = ({
     setEditingField(null);
   };
 
+  // Keep local theme in sync with global resolved theme when it changes externally
   useEffect(() => {
-    if (initialTheme !== theme) {
-      setTheme(initialTheme);
-    }
-  }, [initialTheme, theme]);
+    setTheme(resolvedTheme);
+  }, [resolvedTheme]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "contact"];
+      const sectionIds = ["home", ...visibleSectionsInOrder.map(s => s.id)];
       const scrollPosition = window.scrollY + 100;
 
-      for (const section of sections) {
+      for (const section of sectionIds) {
         const element = document.getElementById(section);
         if (
           element &&
@@ -319,9 +320,8 @@ export const Template1: React.FC<Template1Props> = ({
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    onThemeChange?.(newTheme);
+    globalToggleTheme();
+    onThemeChange?.(resolvedTheme === "dark" ? "light" : "dark");
   };
 
   const scrollTo = (id: string) => {
@@ -332,7 +332,7 @@ export const Template1: React.FC<Template1Props> = ({
     }
   };
 
-  const isDark = theme === "dark";
+  const isDark = resolvedTheme === "dark";
 
   // Données formatées (avec vérifications de sécurité)
   // IMPORTANT : n'afficher que des informations réellement présentes dans le profil / user
@@ -362,13 +362,13 @@ export const Template1: React.FC<Template1Props> = ({
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-900 text-white">
         <div className="text-center">
-          <p className="text-2xl mb-4 text-red-500">❌ Erreur de rendu</p>
+          <p className="text-2xl mb-4 text-indigo-500">❌ Erreur de rendu</p>
           <p className="text-slate-400 mb-4">
             {errorMessage || "Une erreur est survenue"}
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600"
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
           >
             Recharger la page
           </button>
@@ -460,7 +460,7 @@ export const Template1: React.FC<Template1Props> = ({
   return (
     <div
       data-template="1"
-      className={`min-h-screen w-full ${isDark ? "bg-slate-900 text-slate-100" : "bg-slate-50 text-slate-900"} ${fontClass} selection:bg-orange-500 selection:text-white overflow-visible`}
+      className={`min-h-screen w-full ${isDark ? "bg-slate-900 text-slate-100" : "bg-amber-50 text-stone-900"} ${fontClass} selection:bg-blue-500 selection:text-white overflow-visible`}
       style={{
         ["--font-titles" as string]: fontTitles,
         ["--font-subtitles" as string]: fontSubtitles,
@@ -522,14 +522,14 @@ export const Template1: React.FC<Template1Props> = ({
           animation-delay: 4s;
         }
         .glass-nav {
-          background: ${isDark ? "rgba(15, 23, 42, 0.95)" : "rgba(255, 255, 255, 0.95)"};
+          background: ${isDark ? "rgba(15, 23, 42, 0.95)" : "rgba(250, 245, 235, 0.95)"};
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-bottom: 1px solid ${isDark ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.15)"};
           box-shadow: ${isDark ? "0 4px 12px -2px rgba(0, 0, 0, 0.4)" : "0 4px 12px -2px rgba(0, 0, 0, 0.15)"};
         }
         .glass-card {
-          background: ${isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.6)"};
+          background: ${isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(250, 245, 235, 0.7)"};
           backdrop-filter: blur(10px);
           border: 1px solid ${isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.1)"};
         }
@@ -608,7 +608,7 @@ export const Template1: React.FC<Template1Props> = ({
                 setIsMenuOpen(false);
               }}
             >
-              <span className="portfolio-nav-title text-base sm:text-lg md:text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-600 truncate block">
+              <span className="portfolio-nav-title text-base sm:text-lg md:text-xl lg:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600 truncate block">
                 PORTFOLIO
               </span>
             </div>
@@ -618,23 +618,24 @@ export const Template1: React.FC<Template1Props> = ({
               <div className="flex items-center gap-1 lg:gap-2 xl:gap-4">
                 {[
                   { label: lang === "en" ? "Home" : "Accueil", id: "home" },
-                  { label: lang === "en" ? "About" : "À propos", id: "about" },
-                  { label: lang === "en" ? "Experience" : "Expérience", id: "experience" },
-                  { label: lang === "en" ? "Education" : "Formation", id: "education" },
-                  { label: lang === "en" ? "Projects" : "Projets", id: "projects" },
-                  { label: lang === "en" ? "Contact" : "Contact", id: "contact" },
+                  ...visibleSectionsInOrder
+                    .filter(s => s.id !== "hero")
+                    .map(s => ({
+                      label: s.label,
+                      id: s.id
+                    }))
                 ].map(({ label, id }) => {
-                  const sectionId = id === "home" ? "about" : id;
-                  if (id !== "home" && !checkSectionVisible(sectionId))
-                    return null;
+                  const scrollId = id;
+                  // Pour l'accueil, on scroll vers le hero (id=home)
+                  // Les autres sections sont déjà checkées par visibleSectionsInOrder
                   return (
                     <button
                       key={id}
-                      onClick={() => scrollTo(id)}
+                      onClick={() => scrollTo(scrollId)}
                       className={`px-2 xl:px-3 py-1.5 rounded-md text-xs xl:text-sm font-medium transition-colors duration-300 whitespace-nowrap flex-shrink-0 ${
                         activeSection === id
-                          ? `${isDark ? "text-orange-400 bg-white/5" : "text-orange-600 bg-orange-50"}`
-                          : `${isDark ? "text-slate-400 hover:text-white hover:bg-white/5" : "text-slate-600 hover:text-slate-900 hover:bg-orange-50"}`
+                          ? `${isDark ? "text-blue-400 bg-white/5" : "text-blue-600 bg-blue-50"}`
+                          : `${isDark ? "text-slate-400 hover:text-white hover:bg-white/5" : "text-slate-600 hover:text-slate-900 hover:bg-blue-50"}`
                       }`}
                     >
                       {label}
@@ -703,11 +704,12 @@ export const Template1: React.FC<Template1Props> = ({
               <div className="px-3 pt-2 pb-3 space-y-1 w-full">
                 {[
                   { label: lang === "en" ? "Home" : "Accueil", id: "home" },
-                  { label: lang === "en" ? "About" : "À propos", id: "about" },
-                  { label: lang === "en" ? "Experience" : "Expérience", id: "experience" },
-                  { label: lang === "en" ? "Education" : "Formation", id: "education" },
-                  { label: lang === "en" ? "Projects" : "Projets", id: "projects" },
-                  { label: lang === "en" ? "Contact" : "Contact", id: "contact" },
+                  ...visibleSectionsInOrder
+                    .filter(s => s.id !== "hero")
+                    .map(s => ({
+                      label: s.label,
+                      id: s.id
+                    }))
                 ].map(({ label, id }) => (
                   <button
                     key={id}
@@ -715,7 +717,7 @@ export const Template1: React.FC<Template1Props> = ({
                       scrollTo(id);
                       setIsMenuOpen(false);
                     }}
-                    className={`block w-full text-left px-3 py-2.5 text-sm font-medium ${isDark ? "text-slate-300 hover:text-white hover:bg-white/10" : "text-slate-700 hover:text-slate-900 hover:bg-orange-50"} rounded-md transition-colors truncate`}
+                    className={`block w-full text-left px-3 py-2.5 text-sm font-medium ${isDark ? "text-slate-300 hover:text-white hover:bg-white/10" : "text-slate-700 hover:text-slate-900 hover:bg-blue-50"} rounded-md transition-colors truncate`}
                   >
                     {label}
                   </button>
@@ -742,17 +744,32 @@ export const Template1: React.FC<Template1Props> = ({
         )}
       </nav>
 
-      {/* --- Hero Section : design refonte template ok (couleurs Template 1 = orange/rouge) --- */}
+      {/* --- Hero Section : design refonte template ok (couleurs Template 1 = blue/rouge) --- */}
       {/* --- Section Hero - Premium Facelift --- */}
       <section
         id="home"
         className={`relative min-h-screen flex flex-col justify-center pt-24 pb-16 overflow-hidden ${isDark ? "bg-[#0b0f1a]" : "bg-slate-50"}`}
       >
-        {/* Glow Blobs Background */}
+        {/* Background GIF/Video Layer */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-orange-500/20 rounded-full blur-[120px] animate-blob" />
-          <div className="absolute top-[20%] -right-[5%] w-[35%] h-[35%] bg-red-600/10 rounded-full blur-[100px] animate-blob [animation-delay:2s]" />
-          <div className="absolute -bottom-[10%] left-[20%] w-[30%] h-[30%] bg-orange-600/10 rounded-full blur-[80px] animate-blob [animation-delay:4s]" />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-50 md:opacity-60"
+          >
+            <source src="https://media.tenor.com/_YljgR4MJOkAAAPo/chill.mp4" type="video/mp4" />
+          </video>
+          {/* Subtle Overlay to ensure readability */}
+          <div className={`absolute inset-0 ${isDark ? "bg-[#0b0f1a]/50" : "bg-white/30"}`} />
+        </div>
+
+        {/* Glow Blobs Background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50">
+          <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-500/20 rounded-full blur-[120px] animate-blob" />
+          <div className="absolute top-[20%] -right-[5%] w-[35%] h-[35%] bg-indigo-600/10 rounded-full blur-[100px] animate-blob [animation-delay:2s]" />
+          <div className="absolute -bottom-[10%] left-[20%] w-[30%] h-[30%] bg-blue-600/10 rounded-full blur-[80px] animate-blob [animation-delay:4s]" />
         </div>
 
         <div
@@ -768,7 +785,7 @@ export const Template1: React.FC<Template1Props> = ({
                 <HeroEditHint
                   show={isEditable && !!onHeroOverridesChange}
                   groupName="hero-subtitle"
-                  className={isDark ? "text-orange-300" : "text-orange-600"}
+                  className={isDark ? "text-blue-300" : "text-blue-600"}
                 />
                 {isEditable &&
                 onHeroOverridesChange &&
@@ -783,12 +800,12 @@ export const Template1: React.FC<Template1Props> = ({
                       (e.preventDefault(), commitHeroEdit())
                     }
                     autoFocus
-                    className={`portfolio-font-item block w-full bg-transparent border-b border-orange-500/50 focus:border-orange-500 focus:outline-none text-lg md:text-xl font-medium ${isDark ? "text-white/90" : "text-slate-800"}`}
+                    className={`portfolio-font-item block w-full bg-transparent border-b border-blue-500/50 focus:border-blue-500 focus:outline-none text-lg md:text-xl font-medium ${isDark ? "text-white/90" : "text-slate-800"}`}
                     placeholder={lang === "en" ? "Hello, I am..." : "Bonjour, je suis…"}
                   />
                 ) : (
                   <h2
-                    className={`portfolio-font-item block text-lg md:text-xl font-medium tracking-tight ${isDark ? "text-orange-400" : "text-orange-600"} ${isEditable && onHeroOverridesChange ? "cursor-pointer rounded px-1 -mx-1 hover:ring-2 hover:ring-orange-500/40" : ""}`}
+                    className={`portfolio-font-item block text-lg md:text-xl font-medium tracking-tight ${isDark ? "text-blue-400" : "text-blue-600"} ${isEditable && onHeroOverridesChange ? "cursor-pointer rounded px-1 -mx-1 hover:ring-2 hover:ring-blue-500/40" : ""}`}
                     onClick={() =>
                       isEditable &&
                       onHeroOverridesChange &&
@@ -809,7 +826,7 @@ export const Template1: React.FC<Template1Props> = ({
                 <HeroEditHint
                   show={isEditable && !!onHeroOverridesChange}
                   groupName="hero-title"
-                  className={isDark ? "text-orange-300" : "text-orange-600"}
+                  className={isDark ? "text-blue-300" : "text-blue-600"}
                 />
                 {isEditable &&
                 onHeroOverridesChange &&
@@ -824,12 +841,12 @@ export const Template1: React.FC<Template1Props> = ({
                       (e.preventDefault(), commitHeroEdit())
                     }
                     autoFocus
-                    className="portfolio-font-title block w-full text-4xl md:text-6xl font-black bg-transparent border-b border-orange-500/50 focus:border-orange-500 focus:outline-none text-white"
+                    className="portfolio-font-title block w-full text-4xl md:text-6xl font-black bg-transparent border-b border-blue-500/50 focus:border-blue-500 focus:outline-none text-white"
                     placeholder={lang === "en" ? "Your name or title" : "Votre nom ou titre"}
                   />
                 ) : (
                   <h1
-                    className={`text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] ${isEditable && onHeroOverridesChange ? "cursor-pointer rounded px-1 -mx-1 hover:ring-2 hover:ring-orange-500/40" : ""}`}
+                    className={`text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] ${isEditable && onHeroOverridesChange ? "cursor-pointer rounded px-1 -mx-1 hover:ring-2 hover:ring-blue-500/40" : ""}`}
                     onClick={() =>
                       isEditable &&
                       onHeroOverridesChange &&
@@ -839,11 +856,11 @@ export const Template1: React.FC<Template1Props> = ({
                     title={isEditable ? (lang === "en" ? "Click to edit" : "Cliquer pour modifier") : undefined}
                     aria-live="polite"
                   >
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-orange-400 to-red-500 drop-shadow-sm">
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-400 to-indigo-500 drop-shadow-sm">
                       {editingField === "title" ? heroTitle : typedTitle}
                       {editingField !== "title" &&
                         typedTitle.length < heroTitle.length && (
-                          <span className="inline-block w-[3px] h-[0.8em] bg-orange-500 ml-1 animate-pulse" />
+                          <span className="inline-block w-[3px] h-[0.8em] bg-blue-500 ml-1 animate-pulse" />
                         )}
                     </span>
                   </h1>
@@ -855,7 +872,7 @@ export const Template1: React.FC<Template1Props> = ({
               <HeroEditHint
                 show={isEditable && !!onHeroOverridesChange}
                 groupName="hero-bio"
-                className={isDark ? "text-orange-300" : "text-orange-600"}
+                className={isDark ? "text-blue-300" : "text-blue-600"}
               />
               {isEditable && onHeroOverridesChange && editingField === "bio" ? (
                 <textarea
@@ -864,12 +881,12 @@ export const Template1: React.FC<Template1Props> = ({
                   onBlur={commitHeroEdit}
                   autoFocus
                   rows={3}
-                  className={`block w-full max-w-lg mx-auto md:mx-0 text-lg md:text-xl resize-none overflow-hidden bg-transparent border border-orange-500/50 focus:border-orange-500 focus:outline-none rounded-lg px-3 py-2 leading-relaxed ${isDark ? "text-gray-400" : "text-slate-600"}`}
+                  className={`block w-full max-w-lg mx-auto md:mx-0 text-lg md:text-xl resize-none overflow-hidden bg-transparent border border-blue-500/50 focus:border-blue-500 focus:outline-none rounded-lg px-3 py-2 leading-relaxed ${isDark ? "text-gray-400" : "text-slate-600"}`}
                   placeholder={lang === "en" ? "Write a short hook for the hero..." : "Écrivez une accroche courte pour le hero..."}
                 />
               ) : (
                 <p
-                  className={`text-lg md:text-xl max-w-lg mx-auto md:mx-0 leading-relaxed font-light ${!heroBio && isEditable ? "text-slate-500 italic" : isDark ? "text-slate-400" : "text-slate-600"} ${isEditable && onHeroOverridesChange ? "cursor-pointer rounded px-2 -mx-2 py-1 hover:ring-2 hover:ring-orange-500/40" : ""}`}
+                  className={`text-lg md:text-xl max-w-lg mx-auto md:mx-0 leading-relaxed font-light ${!heroBio && isEditable ? "text-slate-500 italic" : isDark ? "text-slate-400" : "text-slate-600"} ${isEditable && onHeroOverridesChange ? "cursor-pointer rounded px-2 -mx-2 py-1 hover:ring-2 hover:ring-blue-500/40" : ""}`}
                   onClick={() =>
                     isEditable &&
                     onHeroOverridesChange &&
@@ -907,7 +924,7 @@ export const Template1: React.FC<Template1Props> = ({
               </a>
               <a
                 href={`mailto:${email}`}
-                className="hover:text-orange-500 hover:scale-125 transition-all transform duration-300"
+                className="hover:text-blue-500 hover:scale-125 transition-all transform duration-300"
               >
                 <Mail size={24} />
               </a>
@@ -917,10 +934,10 @@ export const Template1: React.FC<Template1Props> = ({
           <div className="flex-1 flex justify-center items-center relative animate-fade-in-up hero-delay-300 mt-12 md:mt-0">
             {/* Cercles orbitaux futuristes */}
             <div
-              className={`absolute w-[450px] h-[450px] border rounded-full animate-spin-slow opacity-20 ${isDark ? "border-orange-500" : "border-slate-300"}`}
+              className={`absolute w-[450px] h-[450px] border rounded-full animate-spin-slow opacity-20 ${isDark ? "border-blue-500" : "border-slate-300"}`}
             />
             <div
-              className={`absolute w-[320px] h-[320px] border border-dashed rounded-full animate-[spin_20s_linear_infinite_reverse] opacity-20 ${isDark ? "border-red-500" : "border-slate-400"}`}
+              className={`absolute w-[320px] h-[320px] border border-dashed rounded-full animate-[spin_20s_linear_infinite_reverse] opacity-20 ${isDark ? "border-indigo-500" : "border-slate-400"}`}
             />
 
             <div className="relative group/hero-photo w-64 h-64 md:w-80 md:h-80">
@@ -929,7 +946,7 @@ export const Template1: React.FC<Template1Props> = ({
                 groupName="hero-photo"
                 className="top-2 right-2 text-white/90"
               />
-              <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-full blur-2xl opacity-20 group-hover/hero-photo:opacity-40 transition duration-1000" />
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full blur-2xl opacity-20 group-hover/hero-photo:opacity-40 transition duration-1000" />
               <div
                 className={`relative w-full h-full rounded-full overflow-hidden ring-4 ${isDark ? "ring-white/5 bg-[#0a0f1d]" : "ring-white bg-white"} flex items-center justify-center transition-all duration-700 transform group-hover/hero-photo:scale-105 shadow-2xl ${isEditable ? "cursor-pointer" : ""}`}
                 onClick={() => isEditable && heroFileInputRef.current?.click()}
@@ -953,34 +970,34 @@ export const Template1: React.FC<Template1Props> = ({
                 )}
               </div>
 
-              {/* Carte flottante Expérience - Glass Premium */}
               <div
-                className={`absolute -bottom-8 -left-8 glass-premium p-4 rounded-2xl shadow-2xl flex items-center gap-4 animate-float hover-glow group`}
+                onClick={() => scrollTo("experiences")}
+                className={`absolute -bottom-8 -left-8 glass-premium p-4 rounded-2xl shadow-2xl flex items-center gap-4 animate-float hover-glow group cursor-pointer`}
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-sm font-black text-white shadow-lg group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-sm font-black text-white shadow-lg group-hover:scale-110 transition-transform">
                   {experiences.length > 0 ? `${experiences.length}+` : "0"}
                 </div>
                 <div className="text-left">
                   <p
-                    className={`text-[10px] uppercase font-bold tracking-[0.2em] ${isDark ? "text-orange-400/80" : "text-orange-600/80"}`}
+                    className={`text-[10px] uppercase font-bold tracking-[0.2em] ${isDark ? "text-blue-400/80" : "text-blue-600/80"}`}
                   >
-                    {lang === "en" ? "Experience" : "Expériences"}
+                    {lang === "en" ? "Professional" : "Expériences"}
                   </p>
                   <p
                     className={`text-sm font-bold ${isDark ? "text-white" : "text-slate-900"}`}
                   >
-                    {lang === "en" ? "Professional" : "Professionnel"}
+                    {lang === "en" ? "Experience" : "Professionnelles"}
                   </p>
                 </div>
               </div>
 
-              {/* Carte flottante Projets - Glass Premium */}
               <div
-                className={`absolute -top-6 -right-10 glass-premium p-4 rounded-2xl shadow-2xl flex items-center gap-4 animate-float hero-delay-700 hover-glow group`}
+                onClick={() => scrollTo("projects")}
+                className={`absolute -top-6 -right-10 glass-premium p-4 rounded-2xl shadow-2xl flex items-center gap-4 animate-float hero-delay-700 hover-glow group cursor-pointer`}
               >
                 <div className="text-left">
                   <p
-                    className={`text-lg font-black bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-500`}
+                    className={`text-lg font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500`}
                   >
                     {projects.length > 0 ? projects.length : "0"}+
                   </p>
@@ -1000,7 +1017,7 @@ export const Template1: React.FC<Template1Props> = ({
           <div className="flex flex-col sm:flex-row items-center gap-6 animate-fade-in-up hero-delay-700">
             <button
               onClick={() => scrollTo("projects")}
-              className="group relative px-10 py-5 rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(249,115,22,0.3)] hover:shadow-[0_0_50px_rgba(249,115,22,0.5)]"
+              className="group relative px-10 py-5 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(249,115,22,0.3)] hover:shadow-[0_0_50px_rgba(249,115,22,0.5)]"
             >
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
               <span className="relative flex items-center gap-3">
@@ -1016,7 +1033,9 @@ export const Template1: React.FC<Template1Props> = ({
             </button>
           </div>
           <div
-            className={`animate-bounce-slow mt-8 ${isDark ? "text-orange-500/50" : "text-slate-400"}`}
+            onClick={() => scrollTo("about")}
+            className={`animate-bounce-slow mt-8 cursor-pointer ${isDark ? "text-blue-500/50" : "text-slate-400"}`}
+            title={lang === "en" ? "Scroll down" : "Défiler vers le bas"}
           >
             <ChevronDown size={40} />
           </div>
@@ -1048,7 +1067,7 @@ export const Template1: React.FC<Template1Props> = ({
                             className={`text-2xl sm:text-3xl md:text-4xl font-bold flex items-center gap-2 sm:gap-3 ${isDark ? "text-slate-100" : "text-slate-900"}`}
                           >
                             <span
-                              className={`w-8 sm:w-12 h-1 ${isDark ? "bg-orange-500" : "bg-orange-600"} rounded-full`}
+                              className={`w-8 sm:w-12 h-1 ${isDark ? "bg-blue-500" : "bg-blue-600"} rounded-full`}
                             ></span>
                             {lang === "en" ? "About" : "À Propos"}
                           </h2>
@@ -1076,8 +1095,8 @@ export const Template1: React.FC<Template1Props> = ({
                                       (templateOverrides?.about_layout ||
                                         "image_top") === layout.value
                                         ? isDark
-                                          ? "bg-orange-500/20 border-orange-500/50 text-orange-300"
-                                          : "bg-orange-100 border-orange-300 text-orange-700"
+                                          ? "bg-blue-500/20 border-blue-500/50 text-blue-300"
+                                          : "bg-blue-100 border-blue-300 text-blue-700"
                                         : isDark
                                           ? "border-slate-600 hover:bg-slate-700 text-slate-400"
                                           : "border-slate-300 hover:bg-slate-100 text-slate-600"
@@ -1158,7 +1177,7 @@ export const Template1: React.FC<Template1Props> = ({
                           <div className="mt-8">
                             {/* Main Bio Card */}
                             <div className={`glass-premium p-8 sm:p-10 rounded-3xl relative overflow-hidden group animate-fade-in-up hover-glow`}>
-                              <div className="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl group-hover:bg-orange-500/20 transition-all duration-700" />
+                              <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700" />
                               <h3 className={`text-xl sm:text-2xl font-bold mb-6 ${isDark ? "text-white" : "text-slate-900"}`}>
                                 {lang === "en" 
                                   ? "No matter where I am, I will find a way to thrive !" 
@@ -1187,7 +1206,7 @@ export const Template1: React.FC<Template1Props> = ({
                             href={githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`p-3 glass-card rounded-full ${isDark ? "text-slate-400" : "text-slate-600"} ${isDark ? "text-orange-400" : "text-orange-600"} hover:border-orange-500/50 transition-all`}
+                            className={`p-3 glass-card rounded-full ${isDark ? "text-slate-400" : "text-slate-600"} ${isDark ? "text-blue-400" : "text-blue-600"} hover:border-blue-500/50 transition-all`}
                           >
                             <Github size={24} />
                           </a>
@@ -1197,7 +1216,7 @@ export const Template1: React.FC<Template1Props> = ({
                             href={linkedinUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`p-3 glass-card rounded-full ${isDark ? "text-slate-400" : "text-slate-600"} ${isDark ? "text-orange-400" : "text-orange-600"} hover:border-orange-500/50 transition-all`}
+                            className={`p-3 glass-card rounded-full ${isDark ? "text-slate-400" : "text-slate-600"} ${isDark ? "text-blue-400" : "text-blue-600"} hover:border-blue-500/50 transition-all`}
                           >
                             <Linkedin size={24} />
                           </a>
@@ -1205,7 +1224,7 @@ export const Template1: React.FC<Template1Props> = ({
                         {email && (
                           <a
                             href={`mailto:${email}`}
-                            className={`p-3 glass-card rounded-full ${isDark ? "text-slate-400" : "text-slate-600"} ${isDark ? "text-orange-400" : "text-orange-600"} hover:border-orange-500/50 transition-all`}
+                            className={`p-3 glass-card rounded-full ${isDark ? "text-slate-400" : "text-slate-600"} ${isDark ? "text-blue-400" : "text-blue-600"} hover:border-blue-500/50 transition-all`}
                           >
                             <Mail size={24} />
                           </a>
@@ -1217,10 +1236,10 @@ export const Template1: React.FC<Template1Props> = ({
                   {showSkillsInAbout && (
                     <RevealOnScroll delay={200}>
                       <div
-                        className={`glass-card p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl relative overflow-hidden ${isDark ? "bg-slate-800/30" : "bg-white/80"}`}
+                        className={`glass-card p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl relative overflow-hidden ${isDark ? "bg-slate-800/30" : "bg-stone-50/90"}`}
                       >
                         <div
-                          className={`absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 ${isDark ? "bg-orange-500/10" : "bg-orange-50"} rounded-full filter blur-2xl -mr-8 sm:-mr-10 -mt-8 sm:-mt-10`}
+                          className={`absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 ${isDark ? "bg-blue-500/10" : "bg-blue-50"} rounded-full filter blur-2xl -mr-8 sm:-mr-10 -mt-8 sm:-mt-10`}
                         ></div>
                         <h3
                           className={`text-lg sm:text-xl font-bold ${isDark ? "text-slate-100" : "text-slate-900"} mb-4 sm:mb-6`}
@@ -1236,19 +1255,17 @@ export const Template1: React.FC<Template1Props> = ({
                                 className={`group relative px-4 py-2.5 rounded-xl border transition-all duration-300 hover:scale-105
                                   ${
                                     isDark
-                                      ? "bg-gradient-to-br from-white/5 to-white/10 border-white/10 hover:border-orange-500/50 hover:shadow-lg hover:shadow-orange-500/10"
-                                      : "bg-white border-slate-200 hover:border-orange-300 hover:shadow-lg"
+                                      ? "bg-gradient-to-br from-white/5 to-white/10 border-white/10 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10"
+                                      : "bg-white border-slate-200 hover:border-blue-300 hover:shadow-lg"
                                   }`}
                               >
                                 {/* Glow effect */}
-                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
 
                                 <div className="relative z-10 flex items-center gap-2">
                                   <SkillIcon
                                     skillName={skill.name}
                                     size={18}
-                                    useBadge={true}
-                                    showLabel={false}
                                     className="flex-shrink-0"
                                   />
                                   <span
@@ -1262,7 +1279,7 @@ export const Template1: React.FC<Template1Props> = ({
                                       String(skill.level).trim(),
                                     ) && (
                                       <span
-                                        className={`ml-1 px-1.5 py-0.5 rounded text-xs ${isDark ? "bg-orange-500/20 text-orange-300" : "bg-orange-100 text-orange-600"}`}
+                                        className={`ml-1 px-1.5 py-0.5 rounded text-xs ${isDark ? "bg-blue-500/20 text-blue-300" : "bg-blue-100 text-blue-600"}`}
                                       >
                                         {typeof skill.level === "number"
                                           ? `${skill.level}%`
@@ -1308,8 +1325,8 @@ export const Template1: React.FC<Template1Props> = ({
                 )
               : orderedSkills;
 
-          // On sépare le radar (5 premiers) du reste de la grille
-          const skillsToGroup = skillsToGrid.slice(5);
+          // orderedSkills already excludes __radar__ items — no slice needed
+          const skillsToGroup = skillsToGrid;
 
           // Grouper les compétences par catégorie (ne jamais afficher "Auto-detected" → Autres)
           const skillsByCategory = (
@@ -1348,22 +1365,22 @@ export const Template1: React.FC<Template1Props> = ({
               gradient: "from-purple-500 to-violet-500",
             },
             DevOps: {
-              bg: "from-orange-500/20 to-red-500/20",
-              text: "text-orange-400",
-              border: "border-orange-500/30",
-              gradient: "from-orange-500 to-red-500",
+              bg: "from-blue-500/20 to-indigo-500/20",
+              text: "text-blue-400",
+              border: "border-blue-500/30",
+              gradient: "from-blue-500 to-indigo-500",
             },
             Mobile: {
-              bg: "from-pink-500/20 to-rose-500/20",
+              bg: "from-pink-500/20 to-cyan-500/20",
               text: "text-pink-400",
               border: "border-pink-500/30",
-              gradient: "from-pink-500 to-rose-500",
+              gradient: "from-pink-500 to-cyan-500",
             },
             Design: {
-              bg: "from-yellow-500/20 to-amber-500/20",
+              bg: "from-yellow-500/20 to-sky-500/20",
               text: "text-yellow-400",
               border: "border-yellow-500/30",
-              gradient: "from-yellow-500 to-amber-500",
+              gradient: "from-yellow-500 to-sky-500",
             },
             Autres: {
               bg: "from-slate-500/20 to-gray-500/20",
@@ -1372,16 +1389,16 @@ export const Template1: React.FC<Template1Props> = ({
               gradient: "from-slate-500 to-gray-500",
             },
             "Gouvernance, Risques et Conformité (GRC)": {
-              bg: "from-amber-500/20 to-yellow-500/20",
-              text: "text-amber-400",
-              border: "border-amber-500/30",
-              gradient: "from-amber-600 to-yellow-500",
+              bg: "from-sky-500/20 to-yellow-500/20",
+              text: "text-sky-400",
+              border: "border-sky-500/30",
+              gradient: "from-sky-600 to-yellow-500",
             },
             "Governance, Risk and Compliance (GRC)": {
-              bg: "from-amber-500/20 to-yellow-500/20",
-              text: "text-amber-400",
-              border: "border-amber-500/30",
-              gradient: "from-amber-600 to-yellow-500",
+              bg: "from-sky-500/20 to-yellow-500/20",
+              text: "text-sky-400",
+              border: "border-sky-500/30",
+              gradient: "from-sky-600 to-yellow-500",
             },
             "Concept et Domaines": {
               bg: "from-blue-500/20 to-cyan-500/20",
@@ -1408,16 +1425,16 @@ export const Template1: React.FC<Template1Props> = ({
               gradient: "from-emerald-600 to-teal-500",
             },
             "Outils de Sécurité": {
-              bg: "from-red-500/20 to-orange-500/20",
-              text: "text-red-400",
-              border: "border-red-500/30",
-              gradient: "from-red-600 to-orange-500",
+              bg: "from-indigo-500/20 to-blue-500/20",
+              text: "text-indigo-400",
+              border: "border-indigo-500/30",
+              gradient: "from-indigo-600 to-blue-500",
             },
             "Security Tools": {
-              bg: "from-red-500/20 to-orange-500/20",
-              text: "text-red-400",
-              border: "border-red-500/30",
-              gradient: "from-red-600 to-orange-500",
+              bg: "from-indigo-500/20 to-blue-500/20",
+              text: "text-indigo-400",
+              border: "border-indigo-500/30",
+              gradient: "from-indigo-600 to-blue-500",
             },
             "Cloud & DevOps": {
               bg: "from-cyan-500/20 to-blue-500/20",
@@ -1443,6 +1460,43 @@ export const Template1: React.FC<Template1Props> = ({
               border: "border-indigo-500/30",
               gradient: "from-indigo-600 to-purple-500",
             },
+            // ── Nouvelles catégories ─────────────────────────
+            "Management & Leadership": {
+              bg: "from-blue-600/20 to-indigo-500/20",
+              text: "text-blue-400",
+              border: "border-blue-500/30",
+              gradient: "from-blue-600 to-indigo-500",
+            },
+            "Business & Operations": {
+              bg: "from-green-500/20 to-emerald-500/20",
+              text: "text-green-400",
+              border: "border-green-500/30",
+              gradient: "from-green-600 to-emerald-500",
+            },
+            "Business & Opérations": {
+              bg: "from-green-500/20 to-emerald-500/20",
+              text: "text-green-400",
+              border: "border-green-500/30",
+              gradient: "from-green-600 to-emerald-500",
+            },
+            "Soft Skills": {
+              bg: "from-violet-500/20 to-purple-500/20",
+              text: "text-violet-400",
+              border: "border-violet-500/30",
+              gradient: "from-violet-600 to-purple-500",
+            },
+            "Langages": {
+              bg: "from-emerald-500/20 to-teal-500/20",
+              text: "text-emerald-400",
+              border: "border-emerald-500/30",
+              gradient: "from-emerald-600 to-teal-500",
+            },
+            "Languages": {
+              bg: "from-emerald-500/20 to-teal-500/20",
+              text: "text-emerald-400",
+              border: "border-emerald-500/30",
+              gradient: "from-emerald-600 to-teal-500",
+            },
           };
 
           const getColors = (category: string) =>
@@ -1452,12 +1506,12 @@ export const Template1: React.FC<Template1Props> = ({
             <section
               key={section.id}
               id="skills"
-              className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-900" : "bg-slate-50"} relative overflow-hidden`}
+              className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-900" : "bg-transparent"} relative overflow-hidden`}
             >
               {/* Background decoration */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div
-                  className={`absolute -top-40 -right-40 w-80 h-80 ${isDark ? "bg-orange-500/5" : "bg-orange-100"} rounded-full blur-3xl`}
+                  className={`absolute -top-40 -right-40 w-80 h-80 ${isDark ? "bg-blue-500/5" : "bg-blue-100"} rounded-full blur-3xl`}
                 ></div>
                 <div
                   className={`absolute -bottom-40 -left-40 w-80 h-80 ${isDark ? "bg-blue-500/5" : "bg-blue-100"} rounded-full blur-3xl`}
@@ -1467,7 +1521,7 @@ export const Template1: React.FC<Template1Props> = ({
               <div className={`${sectionMaxW} mx-auto px-4 sm:px-6 lg:px-8 relative z-10`}>
                 <RevealOnScroll>
                   <div className="text-center mb-12 sm:mb-16">
-                    <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 ${isDark ? "bg-orange-500/10 text-orange-400" : "bg-orange-100 text-orange-600"}`}>
+                    <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 ${isDark ? "bg-blue-500/10 text-blue-400" : "bg-blue-100 text-blue-600"}`}>
                       {lang === "en" ? "Skills" : "Compétences"}
                     </span>
                     <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${isDark ? "text-white" : "text-slate-900"}`}>
@@ -1482,7 +1536,7 @@ export const Template1: React.FC<Template1Props> = ({
                 {/* Radar chart */}
                 {radarSkills.length >= 3 && (
                   <RevealOnScroll delay={100}>
-                    <div className={`mb-12 sm:mb-16 max-w-lg mx-auto p-6 rounded-2xl ${isDark ? "bg-slate-800/40" : "bg-white/60"} border ${isDark ? "border-slate-700" : "border-slate-200"}`}>
+                    <div className={`mb-12 sm:mb-16 max-w-lg mx-auto p-6 rounded-2xl ${isDark ? "bg-slate-800/40" : "bg-stone-50/80"} border ${isDark ? "border-slate-700" : "border-slate-200"}`}>
                       <h3 className={`text-center text-sm font-semibold mb-4 ${isDark ? "text-slate-400" : "text-slate-500"} uppercase tracking-widest`}>
                         {lang === "en" ? "Skill Overview" : "Vue d'ensemble"}
                       </h3>
@@ -1579,13 +1633,13 @@ export const Template1: React.FC<Template1Props> = ({
                                 className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"
                                 strategy="grid"
                                 renderItem={(skill: Skill, skillIndex: number) => (
-                                  <div key={skillIndex} className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-default ${isDark ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 hover:scale-105" : "bg-slate-50 border-slate-200 hover:bg-white hover:shadow-lg hover:scale-105 hover:border-orange-200"}`}>
+                                  <div key={skillIndex} className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-default ${isDark ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 hover:scale-105" : "bg-slate-50 border-slate-200 hover:bg-white hover:shadow-lg hover:scale-105 hover:border-blue-200"}`}>
                                     <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${colors.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                                     <div className="relative z-10 text-center">
                                       <div className="mx-auto mb-3 flex items-center justify-center">
-                                        <SkillIcon skillName={skill.name} size={22} isDark={isDark} />
+                                        <SkillIcon skillName={skill.name} size={22} />
                                       </div>
-                                      <p className={`portfolio-font-item font-medium text-sm ${isDark ? "text-white" : "text-slate-900"} line-clamp-2`}>{skill.name}</p>
+                                      <p className={`portfolio-font-item font-medium text-sm ${isDark ? "text-white" : "text-slate-900"} break-words`}>{skill.name}</p>
                                     </div>
                                   </div>
                                 )}
@@ -1593,13 +1647,13 @@ export const Template1: React.FC<Template1Props> = ({
                             ) : (
                               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
                                 {categorySkills.map((skill, skillIndex) => (
-                                  <div key={skillIndex} className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-default ${isDark ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 hover:scale-105" : "bg-slate-50 border-slate-200 hover:bg-white hover:shadow-lg hover:scale-105 hover:border-orange-200"}`}>
+                                  <div key={skillIndex} className={`group relative p-4 rounded-xl border transition-all duration-300 cursor-default ${isDark ? "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 hover:scale-105" : "bg-slate-50 border-slate-200 hover:bg-white hover:shadow-lg hover:scale-105 hover:border-blue-200"}`}>
                                     <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${colors.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                                     <div className="relative z-10 text-center">
                                       <div className="mx-auto mb-3 flex items-center justify-center">
-                                        <SkillIcon skillName={skill.name} size={22} isDark={isDark} />
+                                        <SkillIcon skillName={skill.name} size={22} />
                                       </div>
-                                      <p className={`portfolio-font-item font-medium text-sm ${isDark ? "text-white" : "text-slate-900"} line-clamp-2`}>
+                                      <p className={`portfolio-font-item font-medium text-sm ${isDark ? "text-white" : "text-slate-900"} break-words`}>
                                         {skill.name}
                                       </p>
                                     </div>
@@ -1616,7 +1670,7 @@ export const Template1: React.FC<Template1Props> = ({
                   <RevealOnScroll>
                     <div className={`text-center py-16 rounded-2xl border-2 border-dashed ${isDark ? "border-slate-700 text-slate-500" : "border-slate-300 text-slate-400"}`}>
                       <Sparkles size={48} className="mx-auto mb-4 opacity-50" />
-                      <p className="text-lg">{lang === "en" ? "No skills entered" : "Aucune compétence renseignée"}</p>
+                      <p className="text-lg">{lang === "en" ? "No skills enteindigo" : "Aucune compétence renseignée"}</p>
                     </div>
                   </RevealOnScroll>
                 )}
@@ -1629,11 +1683,11 @@ export const Template1: React.FC<Template1Props> = ({
         if (section.id === "projects") {
           if (formattedProjects.length === 0) {
             return (
-              <section key={section.id} id="projects" className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-900/50" : "bg-slate-50"}`}>
+              <section key={section.id} id="projects" className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-900/50" : "bg-transparent"}`}>
                 <div className={`${sectionMaxNarrow} mx-auto px-4 sm:px-6 lg:px-8`}>
                   <RevealOnScroll>
                     <div className="flex items-center gap-3 mb-10 sm:mb-14">
-                      <span className={`w-10 h-1 rounded-full ${isDark ? "bg-orange-500" : "bg-orange-600"}`} aria-hidden />
+                      <span className={`w-10 h-1 rounded-full ${isDark ? "bg-blue-500" : "bg-blue-600"}`} aria-hidden />
                       <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold ${isDark ? "text-slate-100" : "text-slate-900"}`}>
                         {lang === "en" ? "My Projects" : "Mes Projets"}
                       </h2>
@@ -1679,7 +1733,7 @@ export const Template1: React.FC<Template1Props> = ({
                     });
                   }
                 }}
-                className={`group portfolio-card-project w-full text-left glass-card rounded-lg sm:rounded-xl overflow-hidden border ${isDark ? "border-slate-700/50 bg-slate-800/30" : "border-slate-200 bg-white/80"} h-full min-h-[380px] sm:min-h-[400px] flex flex-col transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500/50 cursor-pointer`}
+                className={`group portfolio-card-project w-full text-left glass-card rounded-lg sm:rounded-xl overflow-hidden border ${isDark ? "border-slate-700/50 bg-slate-800/30" : "border-slate-200 bg-stone-50/90"} h-full min-h-[380px] sm:min-h-[400px] flex flex-col transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50 cursor-pointer`}
               >
                 {/* Image ou Icône : project_icon > url_image > placeholder */}
                 <div className="relative w-full h-[200px] sm:h-[220px] lg:h-[240px] overflow-hidden flex-shrink-0">
@@ -1702,14 +1756,14 @@ export const Template1: React.FC<Template1Props> = ({
                         if (!IconComponent) {
                           return (
                             <LucideIcons.Code
-                              className={`w-full h-full p-12 ${isDark ? "text-orange-400" : "text-orange-600"}`}
+                              className={`w-full h-full p-12 ${isDark ? "text-blue-400" : "text-blue-600"}`}
                               strokeWidth={1.5}
                             />
                           );
                         }
                         return (
                           <IconComponent
-                            className={`w-full h-full p-12 ${isDark ? "text-orange-400" : "text-orange-600"}`}
+                            className={`w-full h-full p-12 ${isDark ? "text-blue-400" : "text-blue-600"}`}
                             strokeWidth={1.5}
                           />
                         );
@@ -1728,7 +1782,7 @@ export const Template1: React.FC<Template1Props> = ({
                     >
                       <svg
                         viewBox="0 0 120 80"
-                        className="w-24 h-16 sm:w-28 sm:h-20 text-orange-500/60"
+                        className="w-24 h-16 sm:w-28 sm:h-20 text-blue-500/60"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="1.5"
@@ -1748,7 +1802,7 @@ export const Template1: React.FC<Template1Props> = ({
                   {project.category && (
                     <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10">
                       <span
-                        className={`px-2 sm:px-3 py-1 text-xs font-semibold rounded-full border backdrop-blur-md ${isDark ? "bg-black/60 border-orange-500/30 text-orange-400" : "bg-white/80 border-orange-600/50 text-orange-600"}`}
+                        className={`px-2 sm:px-3 py-1 text-xs font-semibold rounded-full border backdrop-blur-md ${isDark ? "bg-black/60 border-blue-500/30 text-blue-400" : "bg-stone-50/90 border-blue-600/50 text-blue-600"}`}
                       >
                         <span className="hidden sm:inline">
                           {project.category}
@@ -1775,7 +1829,7 @@ export const Template1: React.FC<Template1Props> = ({
                       .replace(/\n-\s+/g, "\n→ ")}
                   </p>
                   <span
-                    className={`text-sm font-medium mt-auto ${isDark ? "text-orange-400" : "text-orange-600"}`}
+                    className={`text-sm font-medium mt-auto ${isDark ? "text-blue-400" : "text-blue-600"}`}
                   >
                     {lang === "en" ? "View description →" : "Voir la description →"}
                   </span>
@@ -1788,7 +1842,7 @@ export const Template1: React.FC<Template1Props> = ({
             <section
               key={section.id}
               id="projects"
-              className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-800/30" : "bg-slate-100/50"}`}
+              className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-800/30" : "bg-transparent"}`}
             >
               <div className={`${sectionMaxW} mx-auto px-4 sm:px-6 lg:px-8`}>
                 <RevealOnScroll>
@@ -1798,13 +1852,6 @@ export const Template1: React.FC<Template1Props> = ({
                     >
                       {lang === "en" ? "Recent Projects" : "Mes Projets Récents"}
                     </h2>
-                    <p
-                      className={`portfolio-section-intro ${isDark ? "text-slate-400" : "text-slate-600"} max-w-2xl mx-auto text-sm sm:text-base px-4`}
-                    >
-                      {lang === "en"
-                        ? "A selection of my favorite works, ranging from complex web applications to creative showcase sites."
-                        : "Une sélection de mes travaux favoris, allant des applications web complexes aux sites vitrines créatifs."}
-                    </p>
                   </div>
                 </RevealOnScroll>
 
@@ -1869,7 +1916,7 @@ export const Template1: React.FC<Template1Props> = ({
                     </div>
                     {projectModal.category && (
                       <p
-                        className={`text-sm font-medium mb-4 ${isDark ? "text-orange-400" : "text-orange-600"}`}
+                        className={`text-sm font-medium mb-4 ${isDark ? "text-blue-400" : "text-blue-600"}`}
                       >
                         {projectModal.category}
                       </p>
@@ -1889,7 +1936,15 @@ export const Template1: React.FC<Template1Props> = ({
                           rel="noopener noreferrer"
                           className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium ${isDark ? "bg-slate-700 text-slate-200 hover:bg-slate-600" : "bg-slate-100 text-slate-800 hover:bg-slate-200"}`}
                         >
-                          <Github size={18} /> {lang === "en" ? "Source code" : "Code source"}
+                          {String(projectModal.github).toLowerCase().endsWith(".pdf") ? (
+                            <>
+                              <LucideIcons.FileText size={18} /> {lang === "en" ? "Proof of Publication" : "Preuve de Publication"}
+                            </>
+                          ) : (
+                            <>
+                              <Github size={18} /> {lang === "en" ? "Source code" : "Code source"}
+                            </>
+                          )}
                         </a>
                       )}
                       {projectModal.link && (
@@ -1897,9 +1952,17 @@ export const Template1: React.FC<Template1Props> = ({
                           href={projectModal.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-orange-500 text-white hover:bg-orange-600"
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-blue-500 text-white hover:bg-blue-600"
                         >
-                          <ExternalLink size={18} /> {lang === "en" ? "View project" : "Voir le projet"}
+                          {String(projectModal.link).toLowerCase().endsWith(".pdf") ? (
+                            <>
+                              <LucideIcons.FileText size={18} /> {String(projectModal.title).toLowerCase().includes("vel express") ? (lang === "en" ? "View Menu" : "Voir le menu") : (lang === "en" ? "View Document" : "Voir le document")}
+                            </>
+                          ) : (
+                            <>
+                              <ExternalLink size={18} /> {lang === "en" ? "View website" : "Voir le site"}
+                            </>
+                          )}
                         </a>
                       )}
                     </div>
@@ -1911,12 +1974,12 @@ export const Template1: React.FC<Template1Props> = ({
         }
 
         // Section Experiences (Timeline verticale — design épuré et lisible)
-        if (section.id === "experience" && experiences.length > 0) {
+        if ((section.id === "experiences" || section.id === "experience") && experiences.length > 0) {
           return (
             <section
               key={section.id}
-              id="experience"
-              className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-800/30" : "bg-slate-100/50"}`}
+              id={section.id}
+              className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-800/30" : "bg-transparent"}`}
             >
               <div
                 className={`${sectionMaxNarrow} mx-auto px-4 sm:px-6 lg:px-8`}
@@ -1924,7 +1987,7 @@ export const Template1: React.FC<Template1Props> = ({
                 <RevealOnScroll>
                   <div className="flex items-center gap-3 mb-10 sm:mb-14">
                     <span
-                      className={`w-10 h-1 rounded-full ${isDark ? "bg-orange-500" : "bg-orange-600"}`}
+                      className={`w-10 h-1 rounded-full ${isDark ? "bg-blue-500" : "bg-blue-600"}`}
                       aria-hidden
                     />
                     <h2
@@ -1955,7 +2018,7 @@ export const Template1: React.FC<Template1Props> = ({
                       ) {
                         descriptionItems = exp.achievements;
                       } else if (exp.description) {
-                        // Split by newline to handle structured descriptions
+                        // Split by newline to handle structuindigo descriptions
                         descriptionItems = exp.description
                           .split("\n")
                           .filter((line) => line.trim().length > 0);
@@ -1993,8 +2056,8 @@ export const Template1: React.FC<Template1Props> = ({
                               <div
                                 className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-lg ${
                                   isDark
-                                    ? "bg-slate-800/80 border border-white/10 text-orange-400 group-hover:border-orange-500/50"
-                                    : "bg-white border border-slate-200 text-orange-600 group-hover:border-orange-400"
+                                    ? "bg-slate-800/80 border border-white/10 text-blue-400 group-hover:border-blue-500/50"
+                                    : "bg-white border border-slate-200 text-blue-600 group-hover:border-blue-400"
                                 }`}
                               >
                                 {exp.logo_url ? (
@@ -2011,7 +2074,7 @@ export const Template1: React.FC<Template1Props> = ({
                                 )}
                               </div>
                               <span
-                                className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center leading-tight w-full px-0.5 ${isDark ? "text-slate-500 group-hover:text-orange-400" : "text-slate-400 group-hover:text-orange-600"} transition-colors duration-500`}
+                                className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center leading-tight w-full px-0.5 ${isDark ? "text-slate-500 group-hover:text-blue-400" : "text-slate-400 group-hover:text-blue-600"} transition-colors duration-500`}
                               >
                                 {dateStr}
                               </span>
@@ -2029,7 +2092,7 @@ export const Template1: React.FC<Template1Props> = ({
                                       {exp.title || (lang === "en" ? "Position" : "Poste")}
                                     </h3>
                                     <p
-                                      className={`text-base sm:text-lg font-semibold mt-1 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-500`}
+                                      className={`text-base sm:text-lg font-semibold mt-1 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500`}
                                     >
                                       {exp.company || (lang === "en" ? "Company" : "Entreprise")}
                                       {exp.location && (
@@ -2046,8 +2109,8 @@ export const Template1: React.FC<Template1Props> = ({
                                   <span
                                     className={`inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase flex-shrink-0 ${
                                       isDark
-                                        ? "bg-orange-500/10 text-orange-400 border border-orange-500/20"
-                                        : "bg-orange-50 text-orange-600 border border-orange-100"
+                                        ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                                        : "bg-blue-50 text-blue-600 border border-blue-100"
                                     }`}
                                   >
                                     {lang === "en" ? "Current" : "En cours"}
@@ -2068,7 +2131,7 @@ export const Template1: React.FC<Template1Props> = ({
                                     if (isHeader) {
                                       return (
                                         <li key={i} className="pt-2 first:pt-0 list-none">
-                                          <span className={`font-bold text-base sm:text-lg ${isDark ? "text-orange-400" : "text-orange-600"}`}>
+                                          <span className={`font-bold text-base sm:text-lg ${isDark ? "text-blue-400" : "text-blue-600"}`}>
                                             {cleanItem}
                                           </span>
                                         </li>
@@ -2081,7 +2144,7 @@ export const Template1: React.FC<Template1Props> = ({
                                         className="flex items-start gap-3 group/item"
                                       >
                                         <LucideIcons.CheckCircle
-                                          className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isDark ? "text-orange-500/60" : "text-orange-500"} group-hover/item:scale-110 transition-transform`}
+                                          className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isDark ? "text-blue-500/60" : "text-blue-500"} group-hover/item:scale-110 transition-transform`}
                                           strokeWidth={2}
                                           aria-hidden
                                         />
@@ -2120,12 +2183,12 @@ export const Template1: React.FC<Template1Props> = ({
             <section
               key={section.id}
               id="education"
-              className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-900/50" : "bg-slate-50"}`}
+              className={`py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-900/50" : "bg-transparent"}`}
             >
               <div className={`${sectionMaxNarrow} mx-auto px-4 sm:px-6 lg:px-8`}>
                 <RevealOnScroll>
                   <div className="flex items-center gap-3 mb-10 sm:mb-14">
-                    <span className={`w-10 h-1 rounded-full ${isDark ? "bg-orange-500" : "bg-orange-600"}`} aria-hidden />
+                    <span className={`w-10 h-1 rounded-full ${isDark ? "bg-blue-500" : "bg-blue-600"}`} aria-hidden />
                     <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold ${isDark ? "text-slate-100" : "text-slate-900"}`}>
                       {lang === "en" ? "Education" : "Formation"}
                     </h2>
@@ -2133,11 +2196,25 @@ export const Template1: React.FC<Template1Props> = ({
                 </RevealOnScroll>
                 <div className="space-y-6">
                   {educations.map((edu, index) => {
-                    const yearStr = edu.is_current
-                      ? `${new Date(edu.start_date).getFullYear()} - ${lang === "en" ? "Current" : "En cours"}`
-                      : edu.end_date
-                        ? `${new Date(edu.start_date).getFullYear()} - ${new Date(edu.end_date).getFullYear()}`
-                        : `${new Date(edu.start_date).getFullYear()}`;
+                    const safeEduDate = (d: string | null | undefined): string => {
+                      if (!d) return "";
+                      const date = new Date(d);
+                      return Number.isNaN(date.getTime())
+                        ? ""
+                        : date.toLocaleDateString(lang === "en" ? "en-US" : "fr-FR", {
+                            month: "long",
+                            year: "numeric",
+                          });
+                    };
+
+                    const startStr = safeEduDate(edu.start_date);
+                    const endStr = edu.is_current
+                      ? (lang === "en" ? "Present" : "Présent")
+                      : safeEduDate(edu.end_date);
+
+                    const yearStr = (edu.end_date || edu.is_current)
+                      ? `${startStr} - ${endStr}`
+                      : startStr;
 
                     const educationDescriptionItems = edu.description
                       ? edu.description.split("\n").filter(l => l.trim().length > 0)
@@ -2146,9 +2223,9 @@ export const Template1: React.FC<Template1Props> = ({
                     return (
                       <RevealOnScroll key={edu.id || index} delay={index * 150}>
                         <div
-                          className={`glass-premium p-6 sm:p-8 rounded-3xl relative overflow-hidden hover-glow transition-all duration-500 group`}
+                          className={`p-6 sm:p-8 rounded-3xl relative overflow-hidden hover-glow transition-all duration-500 group ${isDark ? "glass-premium" : "bg-white border border-slate-200"}`}
                         >
-                          <div className="absolute -top-12 -right-12 w-24 h-24 bg-orange-500/5 rounded-full blur-2xl group-hover:bg-orange-500/10 transition-all duration-700" />
+                          <div className="absolute -top-12 -right-12 w-24 h-24 bg-blue-500/5 rounded-full blur-2xl group-hover:bg-blue-500/10 transition-all duration-700" />
                           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                             <div className="flex items-start gap-6 flex-1">
                               {edu.logo_url && (
@@ -2173,7 +2250,7 @@ export const Template1: React.FC<Template1Props> = ({
                                   {edu.school || "École"}
                                 </h3>
                                 <p
-                                  className={`text-base sm:text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-500 mb-2`}
+                                  className={`text-base sm:text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500 mb-2`}
                                 >
                                   {edu.degree || "Diplôme"}
                                 </p>
@@ -2197,7 +2274,7 @@ export const Template1: React.FC<Template1Props> = ({
                                       if (isHeader) {
                                         return (
                                           <li key={i} className="pt-2 first:pt-0 list-none">
-                                            <span className={`font-bold text-base sm:text-lg ${isDark ? "text-orange-400" : "text-orange-600"}`}>
+                                            <span className={`font-bold text-base sm:text-lg ${isDark ? "text-blue-400" : "text-blue-600"}`}>
                                               {cleanItem}
                                             </span>
                                           </li>
@@ -2210,7 +2287,7 @@ export const Template1: React.FC<Template1Props> = ({
                                           className="flex items-start gap-3 group/item"
                                         >
                                           <LucideIcons.CheckCircle
-                                            className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isDark ? "text-orange-500/60" : "text-orange-500"} group-hover/item:scale-110 transition-transform`}
+                                            className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isDark ? "text-blue-500/60" : "text-blue-500"} group-hover/item:scale-110 transition-transform`}
                                             strokeWidth={2}
                                             aria-hidden
                                           />
@@ -2249,13 +2326,13 @@ export const Template1: React.FC<Template1Props> = ({
           );
         }
 
-        // Section Langues — grille cartes style HUD (couleurs Template 1 : orange/rouge) — affichée même vide
+        // Section Langues — grille cartes style HUD (couleurs Template 1 : blue/rouge) — affichée même vide
         if (section.id === "languages") {
           return (
             <section
               key={section.id}
               id="languages"
-              className={`relative z-10 py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-900/50" : "bg-slate-50"}`}
+              className={`relative z-10 py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-900/50" : "bg-transparent"}`}
             >
               <div
                 className={`${sectionMaxNarrow} mx-auto px-6 sm:px-8 lg:px-10`}
@@ -2265,10 +2342,10 @@ export const Template1: React.FC<Template1Props> = ({
                     <div className="w-full lg:w-80 flex-shrink-0 space-y-3">
                       <div className="flex items-center gap-2 mb-2">
                         <Zap
-                          className={`w-5 h-5 flex-shrink-0 ${isDark ? "text-orange-400" : "text-orange-600"}`}
+                          className={`w-5 h-5 flex-shrink-0 ${isDark ? "text-blue-400" : "text-blue-600"}`}
                         />
                         <span
-                          className={`text-xs font-bold tracking-wider uppercase ${isDark ? "text-orange-400" : "text-orange-600"}`}
+                          className={`text-xs font-bold tracking-wider uppercase ${isDark ? "text-blue-400" : "text-blue-600"}`}
                         >
                           {lang === "en" ? "Linguistic Proficiency" : "Maîtrise linguistique"}
                         </span>
@@ -2316,21 +2393,35 @@ export const Template1: React.FC<Template1Props> = ({
                             delay={index * 80}
                           >
                             <div
-                              className={`group relative rounded-2xl backdrop-blur-sm border p-5 sm:p-6 min-w-0 transition-all duration-300 hover:-translate-y-1 ${isDark ? "bg-white/[0.03] hover:bg-white/[0.06] border-white/5 hover:border-white/10" : "bg-white/80 hover:bg-white border-slate-200 hover:border-orange-200 shadow-sm"}`}
+                              className={`group relative rounded-2xl backdrop-blur-sm border p-5 sm:p-6 min-w-0 transition-all duration-300 hover:-translate-y-1 ${isDark ? "bg-white/[0.03] hover:bg-white/[0.06] border-white/5 hover:border-white/10" : "bg-stone-50/90 hover:bg-white border-slate-200 hover:border-blue-200 shadow-sm"}`}
                             >
                               <div className="flex justify-between items-start mb-4">
                                 <div
-                                  className={`w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center font-bold text-sm ${isDark ? "bg-slate-800 border border-white/10 text-slate-400 group-hover:text-orange-400" : "bg-slate-100 border border-slate-200 text-slate-600 group-hover:text-orange-600"}`}
+                                  className={`w-12 h-12 flex-shrink-0 rounded-xl flex items-center justify-center font-bold text-sm overflow-hidden ${isDark ? "bg-slate-800 border border-white/10 text-slate-400 group-hover:text-blue-400" : "bg-slate-100 border border-slate-200 text-slate-600 group-hover:text-blue-600"}`}
                                 >
-                                  {code}
+                                  {lang.code === 'ta' ? (
+                                    <span className="text-2xl pt-1">த</span>
+                                  ) : lang.code ? (
+                                    <img 
+                                      src={`/icons/languages/${lang.code}.svg`}
+                                      alt={lang.name}
+                                      className="w-full h-full object-cover"
+                                      onError={(e) => {
+                                        (e.target as HTMLImageElement).style.display = 'none';
+                                        (e.target as HTMLImageElement).parentElement!.innerText = code;
+                                      }}
+                                    />
+                                  ) : (
+                                    code
+                                  )}
                                 </div>
                                 <Zap
-                                  className={`w-4 h-4 flex-shrink-0 ${isDark ? "text-slate-600 group-hover:text-orange-400 opacity-0 group-hover:opacity-100" : "text-slate-400 group-hover:text-orange-500 opacity-0 group-hover:opacity-100"} transition-opacity`}
+                                  className={`w-4 h-4 flex-shrink-0 ${isDark ? "text-slate-600 group-hover:text-blue-400 opacity-0 group-hover:opacity-100" : "text-slate-400 group-hover:text-blue-500 opacity-0 group-hover:opacity-100"} transition-opacity`}
                                 />
                               </div>
                               <div className="space-y-1 min-w-0">
                                 <h3
-                                  className={`portfolio-font-item text-lg font-semibold break-words ${isDark ? "text-white group-hover:text-orange-100" : "text-slate-900 group-hover:text-orange-800"}`}
+                                  className={`portfolio-font-item text-lg font-semibold break-words ${isDark ? "text-white group-hover:text-blue-100" : "text-slate-900 group-hover:text-blue-800"}`}
                                 >
                                   {lang.name}
                                 </h3>
@@ -2370,21 +2461,35 @@ export const Template1: React.FC<Template1Props> = ({
                               delay={index * 80}
                             >
                               <div
-                                className={`group relative rounded-2xl backdrop-blur-sm border p-5 sm:p-6 min-w-0 transition-all duration-300 hover:-translate-y-1 ${isDark ? "bg-white/[0.03] hover:bg-white/[0.06] border-white/5 hover:border-white/10" : "bg-white/80 hover:bg-white border-slate-200 hover:border-orange-200 shadow-sm"}`}
+                                className={`group relative rounded-2xl backdrop-blur-sm border p-5 sm:p-6 min-w-0 transition-all duration-300 hover:-translate-y-1 ${isDark ? "bg-white/[0.03] hover:bg-white/[0.06] border-white/5 hover:border-white/10" : "bg-stone-50/90 hover:bg-white border-slate-200 hover:border-blue-200 shadow-sm"}`}
                               >
                                 <div className="flex justify-between items-start mb-4">
                                   <div
-                                    className={`w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center font-bold text-sm ${isDark ? "bg-slate-800 border border-white/10 text-slate-400 group-hover:text-orange-400" : "bg-slate-100 border border-slate-200 text-slate-600 group-hover:text-orange-600"}`}
+                                    className={`w-10 h-10 flex-shrink-0 rounded-lg flex items-center justify-center font-bold text-sm ${isDark ? "bg-slate-800 border border-white/10 text-slate-400 group-hover:text-blue-400" : "bg-slate-100 border border-slate-200 text-slate-600 group-hover:text-blue-600"}`}
                                   >
-                                    {code}
+                                    {lang.code === 'ta' ? (
+                                      <span className="text-xl pt-1">த</span>
+                                    ) : lang.code ? (
+                                      <img 
+                                        src={`/icons/languages/${lang.code}.svg`}
+                                        alt={lang.name}
+                                        className="w-full h-full object-cover"
+                                        onError={(e) => {
+                                          (e.target as HTMLImageElement).style.display = 'none';
+                                          (e.target as HTMLImageElement).parentElement!.innerText = code;
+                                        }}
+                                      />
+                                    ) : (
+                                      code
+                                    )}
                                   </div>
                                   <Zap
-                                    className={`w-4 h-4 flex-shrink-0 ${isDark ? "text-slate-600 group-hover:text-orange-400 opacity-0 group-hover:opacity-100" : "text-slate-400 group-hover:text-orange-500 opacity-0 group-hover:opacity-100"} transition-opacity`}
+                                    className={`w-4 h-4 flex-shrink-0 ${isDark ? "text-slate-600 group-hover:text-blue-400 opacity-0 group-hover:opacity-100" : "text-slate-400 group-hover:text-blue-500 opacity-0 group-hover:opacity-100"} transition-opacity`}
                                   />
                                 </div>
                                 <div className="space-y-1 min-w-0">
                                   <h3
-                                    className={`portfolio-font-item text-lg font-semibold break-words ${isDark ? "text-white group-hover:text-orange-100" : "text-slate-900 group-hover:text-orange-800"}`}
+                                    className={`portfolio-font-item text-lg font-semibold break-words ${isDark ? "text-white group-hover:text-blue-100" : "text-slate-900 group-hover:text-blue-800"}`}
                                   >
                                     {lang.name}
                                   </h3>
@@ -2435,7 +2540,7 @@ export const Template1: React.FC<Template1Props> = ({
           );
         }
 
-        // Section Certifications — liste style HUD (couleurs Template 1 : orange/rouge) — affichée même vide
+        // Section Certifications — liste style HUD (couleurs Template 1 : blue/rouge) — affichée même vide
         if (section.id === "certifications") {
           return (
             <section
@@ -2449,28 +2554,11 @@ export const Template1: React.FC<Template1Props> = ({
                 <div className="flex flex-col lg:flex-row-reverse gap-10 lg:gap-14 items-start">
                   <RevealOnScroll>
                     <div className="w-full lg:w-80 flex-shrink-0 space-y-3 lg:text-right">
-                      <div className="flex items-center justify-end gap-2 mb-2">
-                        <Shield
-                          className={`w-5 h-5 flex-shrink-0 ${isDark ? "text-orange-400" : "text-orange-600"}`}
-                        />
-                        <span
-                          className={`text-xs font-bold tracking-wider uppercase ${isDark ? "text-orange-400" : "text-orange-600"}`}
-                        >
-                          {lang === "en" ? "System Validation" : "Validation système"}
-                        </span>
-                      </div>
                       <h2
                         className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${isDark ? "text-slate-100" : "text-slate-900"}`}
                       >
                         Certifications
                       </h2>
-                      <p
-                        className={`portfolio-section-intro text-sm leading-relaxed ${isDark ? "text-slate-400" : "text-slate-600"}`}
-                      >
-                        {lang === "en"
-                          ? "Official recognition of technical skills. Validation by industry leaders."
-                          : "Reconnaissances officielles des compétences techniques. Validation par les leaders de l'industrie."}
-                      </p>
                     </div>
                   </RevealOnScroll>
                   {isEditable &&
@@ -2498,20 +2586,20 @@ export const Template1: React.FC<Template1Props> = ({
                           delay={index * 80}
                         >
                           <div
-                            className={`group relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-5 sm:p-6 rounded-xl border transition-all duration-300 ${isDark ? "bg-white/[0.02] border-white/5 hover:border-orange-500/30 hover:bg-white/[0.04]" : "bg-white/80 border-slate-200 hover:border-orange-300 hover:shadow-md"}`}
+                            className={`group relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-5 sm:p-6 rounded-xl border transition-all duration-300 ${isDark ? "bg-white/[0.02] border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04]" : "bg-stone-50/90 border-slate-200 hover:border-blue-300 hover:shadow-md"}`}
                           >
                             <div
-                              className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity ${isDark ? "bg-orange-500" : "bg-orange-500"}`}
+                              className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity ${isDark ? "bg-blue-500" : "bg-blue-500"}`}
                             />
                             <div className="flex items-start gap-4 min-w-0 flex-1">
                               <div
-                                className={`p-3 flex-shrink-0 rounded-full transition-transform duration-300 ${isDark ? "bg-white/5 text-orange-300 group-hover:scale-110" : "bg-orange-50 text-orange-600 group-hover:scale-110"}`}
+                                className={`p-3 flex-shrink-0 rounded-full transition-transform duration-300 ${isDark ? "bg-white/5 text-blue-300 group-hover:scale-110" : "bg-blue-50 text-blue-600 group-hover:scale-110"}`}
                               >
                                 <Award className="w-6 h-6" />
                               </div>
                               <div className="min-w-0 flex-1">
                                 <h4
-                                  className={`portfolio-font-item text-base sm:text-lg font-medium break-words ${isDark ? "text-white group-hover:text-orange-200" : "text-slate-900 group-hover:text-orange-800"}`}
+                                  className={`portfolio-font-item text-base sm:text-lg font-medium break-words ${isDark ? "text-white group-hover:text-blue-200" : "text-slate-900 group-hover:text-blue-800"}`}
                                 >
                                   {cert.name}
                                 </h4>
@@ -2532,20 +2620,19 @@ export const Template1: React.FC<Template1Props> = ({
                               </div>
                             </div>
                             <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 flex-shrink-0 pl-12 sm:pl-0">
-                              <div
-                                className={`flex items-center gap-2 text-xs font-bold tracking-wider opacity-60 group-hover:opacity-100 transition-opacity ${isDark ? "text-orange-400" : "text-orange-600"}`}
-                              >
-                                <CheckCircle className="w-3 h-3 flex-shrink-0" />{" "}
-                                {lang === "en" ? "VERIFIED" : "VÉRIFIÉ"}
-                              </div>
                               {cert.url && (
                                 <a
                                   href={cert.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className={`text-[10px] font-mono uppercase tracking-widest transition-colors ${isDark ? "text-slate-600 group-hover:text-orange-400/80" : "text-slate-500 group-hover:text-orange-600"}`}
+                                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-300 ${
+                                    isDark
+                                      ? "bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/40"
+                                      : "bg-blue-50 text-blue-600 border border-blue-100 hover:bg-blue-100 hover:border-blue-200"
+                                  }`}
                                 >
-                                  {lang === "en" ? "Link" : "Lien"}
+                                  <LucideIcons.FileText size={14} className="flex-shrink-0" />
+                                  {lang === "en" ? "CONSULT" : "CONSULTER"}
                                 </a>
                               )}
                             </div>
@@ -2562,20 +2649,20 @@ export const Template1: React.FC<Template1Props> = ({
                             delay={index * 80}
                           >
                             <div
-                              className={`group relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-5 sm:p-6 rounded-xl border transition-all duration-300 ${isDark ? "bg-white/[0.02] border-white/5 hover:border-orange-500/30 hover:bg-white/[0.04]" : "bg-white/80 border-slate-200 hover:border-orange-300 hover:shadow-md"}`}
+                              className={`group relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-5 sm:p-6 rounded-xl border transition-all duration-300 ${isDark ? "bg-white/[0.02] border-white/5 hover:border-blue-500/30 hover:bg-white/[0.04]" : "bg-stone-50/90 border-slate-200 hover:border-blue-300 hover:shadow-md"}`}
                             >
                               <div
-                                className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity ${isDark ? "bg-orange-500" : "bg-orange-500"}`}
+                                className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity ${isDark ? "bg-blue-500" : "bg-blue-500"}`}
                               />
                               <div className="flex items-start gap-4 min-w-0 flex-1">
                                 <div
-                                  className={`p-3 flex-shrink-0 rounded-full transition-transform duration-300 ${isDark ? "bg-white/5 text-orange-300 group-hover:scale-110" : "bg-orange-50 text-orange-600 group-hover:scale-110"}`}
+                                  className={`p-3 flex-shrink-0 rounded-full transition-transform duration-300 ${isDark ? "bg-white/5 text-blue-300 group-hover:scale-110" : "bg-blue-50 text-blue-600 group-hover:scale-110"}`}
                                 >
                                   <Award className="w-6 h-6" />
                                 </div>
                                 <div className="min-w-0 flex-1">
                                   <h4
-                                    className={`portfolio-font-item text-base sm:text-lg font-medium break-words ${isDark ? "text-white group-hover:text-orange-200" : "text-slate-900 group-hover:text-orange-800"}`}
+                                    className={`portfolio-font-item text-base sm:text-lg font-medium break-words ${isDark ? "text-white group-hover:text-blue-200" : "text-slate-900 group-hover:text-blue-800"}`}
                                   >
                                     {cert.name}
                                   </h4>
@@ -2596,20 +2683,19 @@ export const Template1: React.FC<Template1Props> = ({
                                 </div>
                               </div>
                               <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 flex-shrink-0 pl-12 sm:pl-0">
-                                <div
-                                  className={`flex items-center gap-2 text-xs font-bold tracking-wider opacity-60 group-hover:opacity-100 transition-opacity ${isDark ? "text-orange-400" : "text-orange-600"}`}
-                                >
-                                  <CheckCircle className="w-3 h-3 flex-shrink-0" />{" "}
-                                  VÉRIFIÉ
-                                </div>
                                 {cert.url && (
                                   <a
                                     href={cert.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`text-[10px] font-mono uppercase tracking-widest transition-colors ${isDark ? "text-slate-600 group-hover:text-orange-400/80" : "text-slate-500 group-hover:text-orange-600"}`}
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-300 ${
+                                      isDark
+                                        ? "bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/40"
+                                        : "bg-blue-50 text-blue-600 border border-blue-100 hover:bg-blue-100 hover:border-blue-200"
+                                    }`}
                                   >
-                                    Lien
+                                    <LucideIcons.FileText size={14} className="flex-shrink-0" />
+                                    {lang === "en" ? "VIEW" : "CONSULTER"}
                                   </a>
                                 )}
                               </div>
@@ -2645,7 +2731,7 @@ export const Template1: React.FC<Template1Props> = ({
             <section
               key={section.id}
               id="interests"
-              className={`relative z-10 py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-800/30" : "bg-slate-100/50"}`}
+              className={`relative z-10 py-12 sm:py-16 lg:py-24 ${isDark ? "bg-slate-800/30" : "bg-stone-200/60"}`}
             >
               <div
                 className={`${sectionMaxNarrow} mx-auto px-6 sm:px-8 lg:px-10`}
@@ -2655,24 +2741,25 @@ export const Template1: React.FC<Template1Props> = ({
                     <div className="w-full lg:w-80 flex-shrink-0 space-y-3">
                       <div className="flex items-center gap-2 mb-2">
                         <Heart
-                          className={`w-5 h-5 ${isDark ? "text-orange-400" : "text-orange-600"}`}
+                          className={`w-5 h-5 ${isDark ? "text-blue-400" : "text-blue-600"}`}
                         />
                         <span
-                          className={`text-xs font-bold tracking-wider uppercase ${isDark ? "text-orange-400" : "text-orange-600"}`}
+                          className={`text-xs font-bold tracking-wider uppercase ${isDark ? "text-blue-400" : "text-blue-600"}`}
                         >
-                          Passions & centres d'intérêt
+                          {lang === "en" ? "Passions & Interests" : "Passions & centres d'intérêt"}
                         </span>
                       </div>
                       <h2
                         className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${isDark ? "text-slate-100" : "text-slate-900"}`}
                       >
-                        Ce qui me motive
+                        {lang === "en" ? "What drives me" : "Ce qui me motive"}
                       </h2>
                       <p
                         className={`portfolio-section-intro text-sm leading-relaxed ${isDark ? "text-slate-400" : "text-slate-600"}`}
                       >
-                        Domaines et sujets qui nourrissent ma curiosité et ma
-                        motivation au quotidien.
+                        {lang === "en"
+                           ? "Fields and topics that fuel my curiosity and daily motivation."
+                           : "Domaines et sujets qui nourrissent ma curiosité et ma motivation au quotidien."}
                       </p>
                     </div>
                   </RevealOnScroll>
@@ -2702,10 +2789,10 @@ export const Template1: React.FC<Template1Props> = ({
                           delay={index * 60}
                         >
                           <span
-                            className={`portfolio-font-item group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 ${isDark ? "bg-white/[0.03] border-white/10 hover:border-orange-500/40 hover:bg-white/[0.06] text-slate-200" : "bg-white border-slate-200 hover:border-orange-300 hover:shadow-md text-slate-800"}`}
+                            className={`portfolio-font-item group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 ${isDark ? "bg-white/[0.03] border-white/10 hover:border-blue-500/40 hover:bg-white/[0.06] text-slate-200" : "bg-white border-slate-200 hover:border-blue-300 hover:shadow-md text-slate-800"}`}
                           >
                             <Heart
-                              className={`w-4 h-4 flex-shrink-0 ${isDark ? "text-orange-400" : "text-orange-500"}`}
+                              className={`w-4 h-4 flex-shrink-0 ${isDark ? "text-blue-400" : "text-blue-500"}`}
                             />
                             {interest.name}
                           </span>
@@ -2713,21 +2800,30 @@ export const Template1: React.FC<Template1Props> = ({
                       )}
                     />
                   ) : (
-                    <div className="w-full min-w-0 flex flex-wrap gap-3">
+                    <div className="w-full min-w-0 grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {orderedInterests && orderedInterests.length > 0 ? (
                         orderedInterests.map((interest, index) => (
                           <RevealOnScroll
                             key={interest.id || index}
                             delay={index * 60}
                           >
-                            <span
-                              className={`portfolio-font-item inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 ${isDark ? "bg-white/[0.03] border-white/10 hover:border-orange-500/40 hover:bg-white/[0.06] text-slate-200" : "bg-white border-slate-200 hover:border-orange-300 hover:shadow-md text-slate-800"}`}
+                            <div
+                              className={`group relative flex gap-4 p-5 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${isDark ? "bg-white/[0.03] border-white/5 hover:border-blue-500/30 hover:bg-white/[0.06]" : "bg-white border-slate-200 hover:border-blue-300 hover:shadow-md"}`}
                             >
-                              <Heart
-                                className={`w-4 h-4 flex-shrink-0 ${isDark ? "text-orange-400" : "text-orange-500"}`}
-                              />
-                              {interest.name}
-                            </span>
+                              <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${isDark ? "bg-white/5 border border-white/10" : "bg-slate-50 border border-slate-200"}`}>
+                                {(interest as any).icon || "❤️"}
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <h4 className={`portfolio-font-item font-semibold text-sm sm:text-base mb-1 ${isDark ? "text-white group-hover:text-blue-200" : "text-slate-900 group-hover:text-blue-700"}`}>
+                                  {interest.name}
+                                </h4>
+                                {(interest as any).description && (
+                                  <p className={`text-xs sm:text-sm leading-relaxed ${isDark ? "text-slate-400" : "text-slate-600"}`}>
+                                    {(interest as any).description}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
                           </RevealOnScroll>
                         ))
                       ) : (
@@ -2764,7 +2860,7 @@ export const Template1: React.FC<Template1Props> = ({
             >
               {/* Decorative background - Responsive */}
               <div
-                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[600px] lg:h-[600px] ${isDark ? "bg-orange-600/10" : "bg-orange-200/30"} rounded-full filter blur-3xl -z-10 pointer-events-none`}
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] lg:w-[600px] lg:h-[600px] ${isDark ? "bg-blue-600/10" : "bg-blue-200/30"} rounded-full filter blur-3xl -z-10 pointer-events-none`}
               ></div>
               <div
                 className={`${sectionMaxContact} mx-auto px-4 sm:px-6 lg:px-8`}
@@ -2786,7 +2882,7 @@ export const Template1: React.FC<Template1Props> = ({
                         : "Envoyez un message à cet email :"}{" "}
                       <a
                         href="mailto:djaganadane16@gmail.com"
-                        className="font-bold text-orange-500 hover:text-orange-400 transition-colors break-all"
+                        className="font-bold text-blue-500 hover:text-blue-400 transition-colors break-all"
                       >
                         djaganadane16@gmail.com
                       </a>
@@ -2794,7 +2890,7 @@ export const Template1: React.FC<Template1Props> = ({
                     <div className="flex justify-center">
                       <a
                         href="mailto:djaganadane16@gmail.com"
-                        className="bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-xl font-bold hover:shadow-lg hover:shadow-orange-500/25 transition-all transform hover:-translate-y-1 flex items-center gap-3"
+                        className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold hover:shadow-lg hover:shadow-blue-500/25 transition-all transform hover:-translate-y-1 flex items-center gap-3"
                       >
                         {lang === "en" ? "Send an email" : "Envoyer un email"}{" "}
                         <Send size={20} />
@@ -2818,7 +2914,7 @@ export const Template1: React.FC<Template1Props> = ({
           className={`${isDark ? "text-slate-500" : "text-slate-400"} text-xs sm:text-sm`}
         >
           © {new Date().getFullYear()} {fullName}. {lang === "en" ? "Designed and developed with" : "Conçu et développé avec"}{" "}
-          <span className="text-red-500">❤</span> {lang === "en" ? "and React" : "et React"}.
+          <span className="text-indigo-500">❤</span> {lang === "en" ? "and React" : "et React"}.
         </p>
         {(fullName || email || profile?.phone) && (
           <p

@@ -11,6 +11,7 @@ import {
   djagaSkillsFR,
   djagaLanguagesFR,
   djagaCertificationsFR,
+  djagaInterestsFR,
   djagaConfigFR
 } from "./data/djagaProfile_fr";
 
@@ -23,6 +24,7 @@ import {
   djagaSkillsEN,
   djagaLanguagesEN,
   djagaCertificationsEN,
+  djagaInterestsEN,
   djagaConfigEN
 } from "./data/djagaProfile_en";
 
@@ -39,6 +41,7 @@ function App() {
   const skills = isFR ? djagaSkillsFR : djagaSkillsEN;
   const languages = isFR ? djagaLanguagesFR : djagaLanguagesEN;
   const certifications = isFR ? djagaCertificationsFR : djagaCertificationsEN;
+  const interests = isFR ? djagaInterestsFR : djagaInterestsEN;
   const config = isFR ? djagaConfigFR : djagaConfigEN;
 
   return (
@@ -49,13 +52,13 @@ function App() {
         <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-theme-card dark:bg-[#1a1c23] border border-theme-border rounded-full p-1 shadow-lg">
           <button 
             onClick={() => setLang('fr')} 
-            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-colors ${lang === 'fr' ? 'bg-orange-500 text-white' : 'text-theme-text-secondary hover:bg-theme-bg-secondary'}`}
+            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-colors ${lang === 'fr' ? 'bg-blue-600 text-white' : 'text-theme-text-secondary hover:bg-theme-bg-secondary'}`}
           >
             FR 🇫🇷
           </button>
           <button 
             onClick={() => setLang('en')} 
-            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-colors ${lang === 'en' ? 'bg-orange-500 text-white' : 'text-theme-text-secondary hover:bg-theme-bg-secondary'}`}
+            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-colors ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-theme-text-secondary hover:bg-theme-bg-secondary'}`}
           >
             EN 🇬🇧
           </button>
@@ -73,7 +76,7 @@ function App() {
             skills={skills}
             languages={languages}
             certifications={certifications}
-            interests={[]}
+            interests={interests}
             isPreview={false}
             lang={lang}
           />

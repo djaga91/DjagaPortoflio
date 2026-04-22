@@ -12,14 +12,14 @@
    * ======================================== */
   :root {
     /* Background */
-    --color-bg-primary: 248 250 252; /* #F8FAFC - slate-50 */
-    --color-bg-secondary: 255 255 255; /* #FFFFFF - white */
-    --color-bg-tertiary: 241 245 249; /* #F1F5F9 - slate-100 */
+    --color-bg-primary: 255 244 238; /* #FFF4EE - pale peach sunset */
+    --color-bg-secondary: 248 243 234; /* #F8F3EA - light cream */
+    --color-bg-tertiary: 235 225 210; /* #EBE1D2 - muted stone */
 
     /* Cards & Panels */
-    --color-card: 255 255 255; /* white */
-    --color-card-hover: 248 250 252; /* slate-50 */
-    --color-card-border: 241 245 249; /* slate-100 */
+    --color-card: 248 243 234; /* light cream */
+    --color-card-hover: 242 235 224; /* soft beige */
+    --color-card-border: 220 210 190; /* muted border */
 
     /* Text */
     --color-text-primary: 15 23 42; /* #0F172A - slate-900 */
@@ -37,7 +37,7 @@
     --color-input-focus: 99 102 241; /* indigo-500 */
 
     /* Accents - Brand Colors (unchanged in both modes) */
-    --color-accent-orange: 255 140 66; /* #FF8C42 */
+    --color-accent-blue: 59 130 246; /* #3B82F6 - blue-500 */
     --color-accent-indigo: 99 102 241; /* #6366F1 */
     --color-accent-green: 16 185 129; /* #10B981 */
     --color-accent-purple: 168 85 247; /* #A855F7 */
@@ -53,13 +53,13 @@
       0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     --shadow-xl:
       0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-accent: 0 4px 14px 0 rgb(255 140 66 / 0.25);
+    --shadow-accent: 0 4px 14px 0 rgb(59 130 246 / 0.25);
 
     /* Special Effects */
     --gradient-hero: linear-gradient(
       135deg,
-      rgb(var(--color-accent-orange)) 0%,
-      rgb(239 68 68) 100%
+      rgb(var(--color-accent-blue)) 0%,
+      rgb(37 99 235) 100%
     );
     --gradient-card: linear-gradient(
       to bottom right,
@@ -68,8 +68,8 @@
     );
 
     /* Header/Nav */
-    --color-nav-bg: 255 255 255;
-    --color-nav-border: 226 232 240;
+    --color-nav-bg: 242 235 224;
+    --color-nav-border: 220 210 190;
   }
 
   /* ========================================
@@ -99,7 +99,7 @@
     /* Inputs */
     --color-input-bg: 30 41 59; /* slate-800 */
     --color-input-border: 71 85 105; /* slate-600 */
-    --color-input-focus: 249 115 22; /* orange-500 */
+    --color-input-focus: 59 130 246; /* blue-500 */
 
     /* Shadows (more subtle in dark mode) */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
@@ -109,13 +109,13 @@
       0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
     --shadow-xl:
       0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.5);
-    --shadow-accent: 0 4px 14px 0 rgb(249 115 22 / 0.35);
+    --shadow-accent: 0 4px 14px 0 rgb(59 130 246 / 0.35);
 
     /* Special Effects */
     --gradient-hero: linear-gradient(
       135deg,
-      rgb(var(--color-accent-orange)) 0%,
-      rgb(239 68 68) 100%
+      rgb(var(--color-accent-blue)) 0%,
+      rgb(37 99 235) 100%
     );
     --gradient-card: linear-gradient(
       to bottom right,
@@ -172,7 +172,7 @@ body {
   }
 
   .stroke-theme-accent {
-    stroke: rgb(var(--color-accent-orange));
+    stroke: rgb(var(--color-accent-blue));
   }
 
   .fill-theme-bg {
@@ -236,11 +236,11 @@ body {
   }
 
   .dark .hover-glow:hover {
-    @apply border-orange-500/50 shadow-[0_0_20px_rgba(249,115,22,0.15)];
+    @apply border-blue-500/50 shadow-[0_0_20px_rgba(59,130,246,0.15)];
   }
-
+ 
   .light .hover-glow:hover {
-    @apply border-orange-300/80 shadow-[0_0_20px_rgba(249,115,22,0.1)];
+    @apply border-blue-300/80 shadow-[0_0_20px_rgba(59,130,246,0.1)];
   }
 
   @keyframes fall {
@@ -318,7 +318,7 @@ body {
   /* Custom Scrollbar for Skill Suggestions */
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: #f59e0b #fef3c7;
+    scrollbar-color: #3b82f6 #dbeafe;
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -326,17 +326,17 @@ body {
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: linear-gradient(to bottom, #fef3c7, #fed7aa);
+    background: linear-gradient(to bottom, #dbeafe, #bfdbfe);
     border-radius: 10px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #f59e0b, #ea580c);
+    background: linear-gradient(to bottom, #3b82f6, #2563eb);
     border-radius: 10px;
     transition: background 0.3s ease;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #d97706, #c2410c);
+    background: linear-gradient(to bottom, #2563eb, #1d4ed8);
   }
 }
