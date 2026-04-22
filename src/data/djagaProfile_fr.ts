@@ -24,7 +24,7 @@ Mon parcours illustre assez bien cette idée. Chez Thales, où j'évolue en tant
 
 En dehors du travail, je suis quelqu'un que la curiosité ne quitte jamais. L'histoire et la géopolitique me fascinent depuis longtemps pas de manière académique, mais parce que je ne peux pas m'empêcher de creuser. Apprendre que l'Alaska était russe avant d'être vendu aux États-Unis pour 7,2 millions de dollars, c'est le genre de détail qui me fait passer deux heures à remonter le fil. Plus récemment, je me suis découvert une vraie passion pour les voitures et les parfums.
 
-Mon péché mignon, c'est le theorycraft. Peu importe la situation choisir un menu au fast-food, acheter un parfum, allouer un budget  je vais systématiquement comparer, peser, optimiser pour trouver le meilleur rapport plaisir-coût. Ce réflexe, qui amuse souvent mon entourage, est en réalité ce qui me rend efficace dès qu'il s'agit de gérer des ressources ou de trouver une solution à un problème contraint.
+Ma force, c'est le theorycraft. Peu importe la situation choisir un menu au fast-food, acheter un parfum, allouer un budget  je vais systématiquement comparer, peser, optimiser pour trouver le meilleur rapport plaisir-coût. Ce réflexe, qui amuse souvent mon entourage, est en réalité ce qui me rend efficace dès qu'il s'agit de gérer des ressources ou de trouver une solution à un problème contraint.
 
 J'ai aussi un goût prononcé pour l'entrepreneuriat. J'ai commencé par faire du dropshipping sur des bijoux une première expérience qui m'a beaucoup appris sur la vente et la gestion. Aujourd'hui, je m'intéresse sérieusement au marketing digital, avec l'envie de me lancer dans quelque chose de concret dans ce domaine.
 
