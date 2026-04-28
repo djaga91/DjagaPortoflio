@@ -744,6 +744,33 @@ export const Template1: React.FC<Template1Props> = ({
         )}
       </nav>
 
+      {/* --- Mobile Pill Nav Bar (scrollable, sous la navbar) --- */}
+      <div className={`md:hidden sticky top-14 z-20 w-full glass-nav border-b ${isDark ? "border-slate-700/60" : "border-slate-200/60"}`}>
+        <div
+          className="flex items-center gap-2 px-3 py-2 overflow-x-auto"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {[
+            { label: lang === "en" ? "Home" : "Accueil", id: "home" },
+            ...visibleSectionsInOrder
+              .filter(s => s.id !== "hero")
+              .map(s => ({ label: s.label, id: s.id }))
+          ].map(({ label, id }) => (
+            <button
+              key={id}
+              onClick={() => scrollTo(id)}
+              className={`whitespace-nowrap flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                activeSection === id
+                  ? `${isDark ? "bg-blue-500 text-white" : "bg-blue-600 text-white"}`
+                  : `${isDark ? "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white" : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600"}`
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
       {/* --- Hero Section : design refonte template ok (couleurs Template 1 = blue/rouge) --- */}
       {/* --- Section Hero - Premium Facelift --- */}
       <section
