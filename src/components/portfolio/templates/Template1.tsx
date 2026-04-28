@@ -2911,26 +2911,18 @@ export const Template1: React.FC<Template1Props> = ({
         className={`portfolio-footer-text py-6 sm:py-8 border-t ${isDark ? "border-slate-700 bg-slate-900" : "border-slate-200 bg-white"} text-center px-4`}
       >
         <p
-          className={`${isDark ? "text-slate-500" : "text-slate-400"} text-xs sm:text-sm`}
+          className={`${isDark ? "text-slate-500" : "text-slate-400"} text-xs sm:text-sm flex items-center justify-center gap-2`}
         >
-          © {new Date().getFullYear()} {fullName}. {lang === "en" ? "Designed and developed with" : "Conçu et développé avec"}{" "}
-          <span className="text-indigo-500">❤</span> {lang === "en" ? "and React" : "et React"}.
+          {fullName}
+          <img src="/favicon-saiyan.png" alt="Saiyan" className="w-6 h-6 object-contain" />
         </p>
-        {(fullName || email || profile?.phone) && (
+        {email && (
           <p
-            className={`${isDark ? "text-slate-500" : "text-slate-400"} text-xs mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1`}
+            className={`${isDark ? "text-slate-500" : "text-slate-400"} text-xs mt-2`}
           >
-            {fullName && <span>{fullName}</span>}
-            {email && (
-              <a href={`mailto:${email}`} className="hover:underline">
-                {email}
-              </a>
-            )}
-            {profile?.phone && (
-              <a href={`tel:${profile.phone}`} className="hover:underline">
-                {profile.phone}
-              </a>
-            )}
+            <a href={`mailto:${email}`} className="hover:underline">
+              {email}
+            </a>
           </p>
         )}
       </footer>
