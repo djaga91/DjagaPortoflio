@@ -34,7 +34,7 @@ Je termine mon alternance et obtiens mon diplôme prochainement. Je suis ouvert 
   title: "Ingénieur en informatique",
   location: "Paris, France",
   phone: "",
-  linkedin_url: "https://www.linkedin.com/in/-a39a571ab/",
+  linkedin_url: "https://www.linkedin.com/in/djagam/",
   github_url: "https://github.com/djaga91",
   portfolio_url: "",
   profile_picture_url: "",

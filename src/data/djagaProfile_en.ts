@@ -34,7 +34,7 @@ I will finish my co-op program and get my degree in the near future. I am eagerl
   title: "Computer Engineer",
   location: "Paris, France",
   phone: "",
-  linkedin_url: "https://www.linkedin.com/in/-a39a571ab/",
+  linkedin_url: "https://www.linkedin.com/in/djagam/",
   github_url: "https://github.com/djaga91",
   portfolio_url: "",
   profile_picture_url: "",
