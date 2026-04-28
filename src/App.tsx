@@ -48,17 +48,17 @@ function App() {
     <ThemeProvider defaultTheme="system">
       <div className="min-h-screen relative font-sans text-theme-text-primary bg-theme-bg-primary transition-colors duration-300">
         
-        {/* Language Switcher Floating Button */}
-        <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-theme-card dark:bg-[#1a1c23] border border-theme-border rounded-full p-1 shadow-lg">
+        {/* Language Switcher - Bottom on mobile, top-right on desktop */}
+        <div className="fixed bottom-4 right-4 sm:bottom-auto sm:top-4 sm:right-4 z-50 flex items-center gap-1 sm:gap-2 bg-theme-card dark:bg-[#1a1c23] border border-theme-border rounded-full p-0.5 sm:p-1 shadow-lg">
           <button 
             onClick={() => setLang('fr')} 
-            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-colors ${lang === 'fr' ? 'bg-blue-600 text-white' : 'text-theme-text-secondary hover:bg-theme-bg-secondary'}`}
+            className={`px-2.5 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm font-bold rounded-full transition-colors ${lang === 'fr' ? 'bg-blue-600 text-white' : 'text-theme-text-secondary hover:bg-theme-bg-secondary'}`}
           >
             FR 🇫🇷
           </button>
           <button 
             onClick={() => setLang('en')} 
-            className={`px-4 py-1.5 text-sm font-bold rounded-full transition-colors ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-theme-text-secondary hover:bg-theme-bg-secondary'}`}
+            className={`px-2.5 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm font-bold rounded-full transition-colors ${lang === 'en' ? 'bg-blue-600 text-white' : 'text-theme-text-secondary hover:bg-theme-bg-secondary'}`}
           >
             EN 🇬🇧
           </button>

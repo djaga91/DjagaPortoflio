@@ -47,24 +47,23 @@ export const djagaExperiencesFR: Experience[] = [
   {
     id: "exp-1",
     user_id: "user-djaga",
-    title: "Alternant en développement informatique (DevSecOps)",
+    title: "Alternant en développement informatique",
     company: "Thales LAS France",
     location: "Rungis, France",
     start_date: "2023-09-01",
     end_date: "2026-08-31",
     is_current: false,
-    description: `Développement et Automatisation (DevSecOps)
--Conception d'un pipeline DevSecOps (Projet "Faulty Projects") : Création d'un environnement de test automatisé pour évaluer la pertinence d'outils de scan de vulnérabilités (Semgrep, SonarQube, Grype, GitLab DepScan).
--Centralisation des données : Intégration et agrégation des rapports d'analyses vers le dashboard de sécurité DefectDojo.
+    description: `-Script Python pour lister les tokens GitLab : Développement d'un script Python pour lister les tokens GitLab de l'équipe.
+-Mise en place de pipelines CI/CD GitLab pour déployer Codetogether (en binôme) : Implémentation de pipelines CI/CD GitLab pour automatiser le déploiement de Codetogether.
+-Mise en place de pipelines CI/CD GitLab pour déployer DefectDojo (en binôme) : Implémentation de pipelines CI/CD GitLab pour automatiser le déploiement de DefectDojo.
+-Renforcement de la sécurité des machines virtuelles Linux avec OpenSCAP : Renforcement de la sécurité des machines virtuelles Linux de l'environnement avec OpenSCAP.
+-Audit ISO 27001 : Pilotage du respect des standards de sécurité ISO 27001 et production des preuves d'audit pour préparer la certification.
+-Implémentation de mesures de sécurité : Application des mesures de sécurité dans les projets livrés par l'équipe afin de répondre aux exigences de la DSI.
+-Cartographie de l'architecture de Confluence et SonarQube : Modélisation de l'architecture de Confluence et SonarQube et création de la documentation associée pour l'équipe.
+-Conception d'un pipeline DevSecOps — Projet "Faulty Projects" : Création d'un environnement de test automatisé pour évaluer la pertinence d'outils de scan de vulnérabilités (Semgrep, SonarQube, Grype, GitLab DepScan) et centralisation des rapports d'analyses vers le dashboard de sécurité DefectDojo.
 -Infrastructure & Cloud : Déploiement de pipelines sur des clusters Kubernetes (K8s) isolés et gestion de VM sur Azure (provisionnement et sécurisation).
--Développement : Automatisation de l'inventaire des outils internes via des scripts Python.
-
-Gouvernance, Risques et Conformité (GRC)
--Norme ISO 27001 : Pilotage du respect des standards de sécurité et production des preuves d'audit.
--Asset Management : Développement de scripts Python exploitant les API Azure pour l'inventaire automatisé des ressources (VM, DBaaS, utilisateurs), publiés sous forme de pages de reporting détaillées via GitLab Pages pour une visibilité complète du parc informatique.
--Homologation de sécurité : Application des bonnes pratiques de sécurité imposées par la DSI au sein de l'équipe support.
--Threat Modeling : Création de scénarios d'attaque basés sur la Cyber Kill Chain et MITRE ATT&CK pour chaque outil utilisé par l'équipe.
--Documentation technique : Rédaction de guides et création de schémas d’architecture des outils utilisés.`,
+-Asset Management : Développement de scripts Python exploitant les API Azure pour l'inventaire automatisé des ressources (VM, DBaaS, utilisateurs), publiés via GitLab Pages pour une visibilité complète du parc informatique.
+-Threat Modeling — Cyber Kill Chain & MITRE ATT&CK : Création de scénarios d'attaque basés sur la Cyber Kill Chain et MITRE ATT&CK pour chaque outil utilisé par l'équipe.`,
     achievements: null,
     technologies: null,
     logo_url: "images/logos/thales.png",
@@ -78,7 +77,7 @@ Gouvernance, Risques et Conformité (GRC)
     company: "Universiti Kebangsaan Malaysia (UKM)",
     location: "Malaisie",
     start_date: "2025-07-01",
-    end_date: "2025-09-30",
+    end_date: "2025-10-31",
     is_current: false,
     description: `Projet gouvernemental : Contribution à un projet d'État majeur visant à développer une intelligence artificielle souveraine pour la Malaisie.
 Recherche et conception : Rédaction du framework théorique pour le projet "IA-Warisan", une IA native malaisienne.

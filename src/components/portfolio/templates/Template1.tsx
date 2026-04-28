@@ -748,7 +748,7 @@ export const Template1: React.FC<Template1Props> = ({
       {/* --- Section Hero - Premium Facelift --- */}
       <section
         id="home"
-        className={`relative min-h-screen flex flex-col justify-center pt-24 pb-16 overflow-hidden ${isDark ? "bg-[#0b0f1a]" : "bg-slate-50"}`}
+        className={`relative min-h-screen flex flex-col justify-center pt-20 sm:pt-24 pb-12 sm:pb-16 overflow-hidden ${isDark ? "bg-[#0b0f1a]" : "bg-slate-50"}`}
       >
         {/* Background GIF/Video Layer */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -773,7 +773,7 @@ export const Template1: React.FC<Template1Props> = ({
         </div>
 
         <div
-          className={`${sectionMaxW} mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-12 lg:gap-20`}
+          className={`${sectionMaxW} mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center gap-8 sm:gap-12 lg:gap-20`}
         >
           {/* Partie gauche : texte */}
           <div className="flex-1 space-y-8 text-center md:text-left overflow-visible">
@@ -846,7 +846,7 @@ export const Template1: React.FC<Template1Props> = ({
                   />
                 ) : (
                   <h1
-                    className={`text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] ${isEditable && onHeroOverridesChange ? "cursor-pointer rounded px-1 -mx-1 hover:ring-2 hover:ring-blue-500/40" : ""}`}
+                    className={`text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[1.1] ${isEditable && onHeroOverridesChange ? "cursor-pointer rounded px-1 -mx-1 hover:ring-2 hover:ring-blue-500/40" : ""}`}
                     onClick={() =>
                       isEditable &&
                       onHeroOverridesChange &&
@@ -931,16 +931,16 @@ export const Template1: React.FC<Template1Props> = ({
             </div>
           </div>
 
-          <div className="flex-1 flex justify-center items-center relative animate-fade-in-up hero-delay-300 mt-12 md:mt-0">
-            {/* Cercles orbitaux futuristes */}
+          <div className="flex-1 flex justify-center items-center relative animate-fade-in-up hero-delay-300 mt-8 md:mt-0">
+            {/* Cercles orbitaux futuristes — cachés sur très petit écran */}
             <div
-              className={`absolute w-[450px] h-[450px] border rounded-full animate-spin-slow opacity-20 ${isDark ? "border-blue-500" : "border-slate-300"}`}
+              className={`absolute hidden sm:block w-[280px] sm:w-[360px] lg:w-[450px] h-[280px] sm:h-[360px] lg:h-[450px] border rounded-full animate-spin-slow opacity-20 ${isDark ? "border-blue-500" : "border-slate-300"}`}
             />
             <div
-              className={`absolute w-[320px] h-[320px] border border-dashed rounded-full animate-[spin_20s_linear_infinite_reverse] opacity-20 ${isDark ? "border-indigo-500" : "border-slate-400"}`}
+              className={`absolute hidden sm:block w-[200px] sm:w-[260px] lg:w-[320px] h-[200px] sm:h-[260px] lg:h-[320px] border border-dashed rounded-full animate-[spin_20s_linear_infinite_reverse] opacity-20 ${isDark ? "border-indigo-500" : "border-slate-400"}`}
             />
 
-            <div className="relative group/hero-photo w-64 h-64 md:w-80 md:h-80">
+            <div className="relative group/hero-photo w-44 h-44 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80">
               <HeroEditHint
                 show={isEditable}
                 groupName="hero-photo"
@@ -972,37 +972,37 @@ export const Template1: React.FC<Template1Props> = ({
 
               <div
                 onClick={() => scrollTo("experiences")}
-                className={`absolute -bottom-8 -left-8 glass-premium p-4 rounded-2xl shadow-2xl flex items-center gap-4 animate-float hover-glow group cursor-pointer`}
+                className={`absolute -bottom-4 sm:-bottom-8 -left-4 sm:-left-8 glass-premium p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2 sm:gap-4 animate-float hover-glow group cursor-pointer max-w-[140px] sm:max-w-none`}
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-sm font-black text-white shadow-lg group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs sm:text-sm font-black text-white shadow-lg group-hover:scale-110 transition-transform flex-shrink-0">
                   {experiences.length > 0 ? `${experiences.length}+` : "0"}
                 </div>
-                <div className="text-left">
+                <div className="text-left min-w-0">
                   <p
-                    className={`text-[10px] uppercase font-bold tracking-[0.2em] ${isDark ? "text-blue-400/80" : "text-blue-600/80"}`}
+                    className={`text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.15em] sm:tracking-[0.2em] ${isDark ? "text-blue-400/80" : "text-blue-600/80"} truncate`}
                   >
                     {lang === "en" ? "Professional" : "Expériences"}
                   </p>
                   <p
-                    className={`text-sm font-bold ${isDark ? "text-white" : "text-slate-900"}`}
+                    className={`text-xs sm:text-sm font-bold ${isDark ? "text-white" : "text-slate-900"} truncate`}
                   >
-                    {lang === "en" ? "Experience" : "Professionnelles"}
+                    {lang === "en" ? "Experience" : "Pro"}
                   </p>
                 </div>
               </div>
 
               <div
                 onClick={() => scrollTo("projects")}
-                className={`absolute -top-6 -right-10 glass-premium p-4 rounded-2xl shadow-2xl flex items-center gap-4 animate-float hero-delay-700 hover-glow group cursor-pointer`}
+                className={`absolute -top-3 sm:-top-6 -right-4 sm:-right-10 glass-premium p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-2xl flex items-center gap-2 sm:gap-4 animate-float hero-delay-700 hover-glow group cursor-pointer`}
               >
                 <div className="text-left">
                   <p
-                    className={`text-lg font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500`}
+                    className={`text-base sm:text-lg font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500`}
                   >
                     {projects.length > 0 ? projects.length : "0"}+
                   </p>
                   <p
-                    className={`text-[10px] uppercase font-bold tracking-[0.2em] ${isDark ? "text-slate-400" : "text-slate-500"}`}
+                    className={`text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.15em] sm:tracking-[0.2em] ${isDark ? "text-slate-400" : "text-slate-500"}`}
                   >
                     {lang === "en" ? "Projects" : "Projets"}
                   </p>
@@ -1013,21 +1013,21 @@ export const Template1: React.FC<Template1Props> = ({
         </div>
 
         {/* Boutons Call to action - Premium Shimmer */}
-        <div className="relative z-10 w-full flex flex-col items-center justify-center gap-8 pb-8 pt-12">
-          <div className="flex flex-col sm:flex-row items-center gap-6 animate-fade-in-up hero-delay-700">
+        <div className="relative z-10 w-full flex flex-col items-center justify-center gap-6 sm:gap-8 pb-8 pt-8 sm:pt-12 px-4">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 animate-fade-in-up hero-delay-700 w-full sm:w-auto">
             <button
               onClick={() => scrollTo("projects")}
-              className="group relative px-10 py-5 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(249,115,22,0.3)] hover:shadow-[0_0_50px_rgba(249,115,22,0.5)]"
+              className="group relative w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold text-base sm:text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(249,115,22,0.3)] hover:shadow-[0_0_50px_rgba(249,115,22,0.5)]"
             >
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
-              <span className="relative flex items-center gap-3">
+              <span className="relative flex items-center justify-center gap-3">
                 {lang === "en" ? "See my projects" : "Voir mes projets"}
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
               </span>
             </button>
             <button
               onClick={() => scrollTo("contact")}
-              className={`px-10 py-5 rounded-full font-bold text-lg transition-all hover:scale-105 active:scale-95 border backdrop-blur-md ${isDark ? "border-white/10 bg-white/5 text-white hover:bg-white/10" : "border-slate-200 bg-white/50 text-slate-900 hover:bg-white"}`}
+              className={`w-full sm:w-auto px-6 sm:px-10 py-3 sm:py-5 rounded-full font-bold text-base sm:text-lg transition-all hover:scale-105 active:scale-95 border backdrop-blur-md ${isDark ? "border-white/10 bg-white/5 text-white hover:bg-white/10" : "border-slate-200 bg-white/50 text-slate-900 hover:bg-white"}`}
             >
               {lang === "en" ? "Contact me" : "Me contacter"}
             </button>
@@ -1892,7 +1892,7 @@ export const Template1: React.FC<Template1Props> = ({
                     aria-hidden
                   />
                   <div
-                    className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl ${isDark ? "bg-slate-800 border border-slate-700" : "bg-white border border-slate-200"} p-6 sm:p-8`}
+                    className={`fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[101] w-[calc(100%-2rem)] sm:w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl ${isDark ? "bg-slate-800 border border-slate-700" : "bg-white border border-slate-200"} p-5 sm:p-6 md:p-8`}
                     role="dialog"
                     aria-modal
                     aria-labelledby="project-modal-title"
@@ -2050,11 +2050,11 @@ export const Template1: React.FC<Template1Props> = ({
                           key={exp.id || index}
                           delay={index * 100}
                         >
-                          <div className="relative flex gap-8 sm:gap-10 md:gap-12 group">
+                          <div className="relative flex gap-4 sm:gap-8 md:gap-12 group">
                             {/* Nœud timeline : bulle avec icône + date en dessous */}
-                            <div className="relative z-10 flex-shrink-0 flex flex-col items-center gap-3 min-w-[100px]">
+                            <div className="relative z-10 flex-shrink-0 flex flex-col items-center gap-2 sm:gap-3 min-w-[56px] sm:min-w-[80px] md:min-w-[100px]">
                               <div
-                                className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-lg ${
+                                className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-lg ${
                                   isDark
                                     ? "bg-slate-800/80 border border-white/10 text-blue-400 group-hover:border-blue-500/50"
                                     : "bg-white border border-slate-200 text-blue-600 group-hover:border-blue-400"
@@ -2064,30 +2064,30 @@ export const Template1: React.FC<Template1Props> = ({
                                   <img
                                     src={exp.logo_url}
                                     alt={exp.company}
-                                    className="w-full h-full object-contain rounded-2xl"
+                                    className="w-full h-full object-contain rounded-xl sm:rounded-2xl"
                                   />
                                 ) : (
                                   <Briefcase
-                                    className="w-7 h-7"
+                                    className="w-5 h-5 sm:w-7 sm:h-7"
                                     strokeWidth={1.5}
                                   />
                                 )}
                               </div>
                               <span
-                                className={`text-[10px] sm:text-xs font-bold uppercase tracking-widest text-center leading-tight w-full px-0.5 ${isDark ? "text-slate-500 group-hover:text-blue-400" : "text-slate-400 group-hover:text-blue-600"} transition-colors duration-500`}
+                                className={`text-[8px] sm:text-[10px] font-bold uppercase tracking-tight sm:tracking-widest text-center leading-tight w-full px-0.5 ${isDark ? "text-slate-500 group-hover:text-blue-400" : "text-slate-400 group-hover:text-blue-600"} transition-colors duration-500`}
                               >
                                 {dateStr}
                               </span>
                             </div>
                             {/* Carte contenu - Glass Premium */}
                             <div
-                              className={`flex-1 min-w-0 glass-premium rounded-3xl p-6 sm:p-8 transition-all duration-500 hover-glow group-hover:-translate-y-1`}
+                              className={`flex-1 min-w-0 glass-premium rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 transition-all duration-500 hover-glow group-hover:-translate-y-1`}
                             >
                               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                                 <div className="flex items-start gap-5 flex-1 min-w-0">
                                   <div className="min-w-0 flex-1">
                                     <h3
-                                      className={`text-xl sm:text-2xl font-bold ${isDark ? "text-white" : "text-slate-900"}`}
+                                      className={`text-base sm:text-xl md:text-2xl font-bold ${isDark ? "text-white" : "text-slate-900"}`}
                                     >
                                       {exp.title || (lang === "en" ? "Position" : "Poste")}
                                     </h3>

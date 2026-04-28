@@ -47,24 +47,23 @@ export const djagaExperiencesEN: Experience[] = [
   {
     id: "exp-1",
     user_id: "user-djaga",
-    title: "Software Development Engineer (Apprentice - DevSecOps)",
+    title: "Software Development Engineer (Apprentice)",
     company: "Thales LAS France",
     location: "Rungis, France",
     start_date: "2023-09-01",
     end_date: "2026-08-31",
     is_current: false,
-    description: `Development and Automation (DevSecOps)
--DevSecOps Pipeline Design ("Faulty Projects"): Creation of an automated test environment to evaluate the relevance of vulnerability scanning tools (Semgrep, SonarQube, Grype, GitLab DepScan).
--Data Centralization: Integration and aggregation of analysis reports into the DefectDojo security dashboard.
--Infrastructure & Cloud: Pipeline deployment on isolated Kubernetes (K8s) clusters and Azure VM management (provisioning and security).
--Development: Automation of internal tool inventory via Python scripts.
-
-Governance, Risk and Compliance (GRC)
--ISO 27001 Standard: Steering compliance with security standards and producing audit evidence.
--Asset Management: Development of Python scripts interacting with Azure APIs for automated inventory of resources (VMs, DBaaS, users), published as detailed reporting pages via GitLab Pages for complete IT visibility.
--Security Approval: Application of security best practices imposed by the IT department within the support team.
--Threat Modeling: Creation of attack scenarios using Cyber Kill Chain and MITRE ATT&CK for each tool used by the team.
--Technical Documentation: Writing guides and creating architecture diagrams for the tools used.`,
+    description: `-Python script to list GitLab tokens: Developed a Python script to list the team's GitLab tokens.
+-CI/CD pipeline with GitLab to deploy Codetogether (in duo): Implementation of CI/CD pipelines with GitLab to automate the deployment of Codetogether.
+-CI/CD pipeline with GitLab to deploy DefectDojo (in duo): Implementation of CI/CD pipelines with GitLab to automate the deployment of DefectDojo.
+-Strengthening the security of Linux virtual machines with OpenSCAP: Strengthening the security of Linux virtual machines in the environment with OpenSCAP.
+-ISO 27001 Audit: Ensuring the team complies with all ISO 27001 audit requirements and producing the necessary evidence to prepare for certification.
+-Implementation of security measures: Implementation of security measures in the projects delivered by the team to meet the requirements of the Information Systems Department.
+-Mapping the architecture of Confluence and SonarQube: Mapped the architecture of Confluence and SonarQube and created the associated documentation for the team.
+-DevSecOps pipeline design — "Faulty Projects": Creation of an automated test environment to evaluate the relevance of vulnerability scanning tools (Semgrep, SonarQube, Grype, GitLab DepScan) and centralization of analysis reports into the DefectDojo security dashboard.
+-Infrastructure & Cloud: Pipeline deployment on isolated Kubernetes (K8s) clusters and Azure VM management (provisioning and security hardening).
+-Asset Management: Development of Python scripts leveraging Azure APIs for automated inventory of resources (VMs, DBaaS, users), published via GitLab Pages for complete visibility of the IT estate.
+-Threat Modeling — Cyber Kill Chain & MITRE ATT&CK: Creation of attack scenarios using the Cyber Kill Chain and MITRE ATT&CK for each tool used by the team.`,
     achievements: null,
     technologies: null,
     logo_url: "images/logos/thales.png",
@@ -78,7 +77,7 @@ Governance, Risk and Compliance (GRC)
     company: "Universiti Kebangsaan Malaysia (UKM)",
     location: "Malaysia",
     start_date: "2025-07-01",
-    end_date: "2025-09-30",
+    end_date: "2025-10-31",
     is_current: false,
     description: `Government Project: Contribution to a major state project aimed at developing sovereign AI for Malaysia.
 Research and Design: Writing the theoretical framework for the "IA-Warisan" project, a native Malaysian AI.
