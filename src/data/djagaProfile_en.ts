@@ -62,7 +62,7 @@ export const djagaExperiencesEN: Experience[] = [
 
 DevSecOps
 
-- Designed a testing environment (Faulty Projects) to validate the reliability of the vulnerability scanning tools used by the cyber team: Semgrep, SonarQube, Grype, GitLab DepScan and ClamAV. Built 6 deliberately vulnerable code projects per tool, across multiple languages (Python, Java) and 3 severity levels (clean, moderate, aggressive). Implemented an "orchestrator" project that automatically triggers scans across all child projects and centralizes the reports into the DefectDojo dashboard. Executed on a dedicated GitLab Runner inside an isolated Kubernetes cluster to safely host the malicious code.
+- Designed a testing pipeline (Faulty Projects) to validate the reliability of the security tools used by the cybersecurity team: Semgrep, SonarQube, Grype, GitLab DepScan and ClamAV. The pipeline embeds deliberately vulnerable code, runs the scans of each tool against that code, and forwards the results to DefectDojo, the team's vulnerability manager. Multi-language coverage (Python, Java) across 3 severity levels (clean, moderate, aggressive) to verify each tool's ability to detect the expected flaws. Executed on a dedicated GitLab Runner inside an isolated Kubernetes cluster to safely host the malicious code.
 
 - Designed and deployed in pair GitLab CI/CD pipelines to automate the deployment of Codetogether and DefectDojo.
 
@@ -226,10 +226,10 @@ export const djagaProjectsEN: Project[] = [
     id: "proj-faulty-thales",
     user_id: "user-djaga",
     name: "DevSecOps Initiative - Faulty Projects (Thales) · January - August 2026",
-    description: `Independently led, using Agile methodology (User Stories, Epics), a DevSecOps initiative to validate the reliability of the vulnerability scanning tools used by the cybersecurity team.
-→ Built 6 deliberately vulnerable code projects per tool, across multiple languages (Python, Java), with 3 severity levels (clean, moderate, aggressive), covering 5 market-leading tools: Semgrep, SonarQube, Grype, GitLab DepScan and ClamAV.
-→ Implemented a central "orchestrator" project that automatically triggers scans across all child projects and centralizes the reports into the DefectDojo dashboard.
-→ Executed on a dedicated GitLab Runner deployed in an isolated Kubernetes cluster to safely host the malicious code.`,
+    description: `Independently led, using Agile methodology (User Stories, Epics), a testing pipeline to validate the reliability of the security tools used by the cybersecurity team.
+→ The pipeline embeds deliberately vulnerable code, runs the scans of Semgrep, SonarQube, Grype, GitLab DepScan and ClamAV against that code, then forwards the results to DefectDojo, the team's vulnerability manager.
+→ Multi-language coverage (Python, Java) across 3 severity levels (clean, moderate, aggressive) to verify each tool's ability to detect the expected flaws.
+→ Executed on a dedicated GitLab Runner, deployed in an isolated Kubernetes cluster, to safely host the malicious code.`,
     url_demo: null,
     url_github: null,
     url_image: null,

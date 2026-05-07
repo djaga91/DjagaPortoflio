@@ -62,7 +62,7 @@ export const djagaExperiencesFR: Experience[] = [
 
 DevSecOps
 
-- Conception d'un environnement de test (Faulty Projects) pour valider la fiabilité des outils de scan de vulnérabilités utilisés par l'équipe cyber : Semgrep, SonarQube, Grype, GitLab DepScan et ClamAV. Création de 6 projets de code volontairement vulnérables par outil, multi-langages (Python, Java), avec 3 niveaux de gravité (clean, modéré, agressif). Mise en place d'un projet "chef d'orchestre" qui déclenche automatiquement les scans dans tous les projets enfants et centralisant les rapports vers le dashboard DefectDojo. Exécution sur GitLab Runner dédié dans un cluster Kubernetes isolé pour garantir la sûreté du code malveillant.
+- Conception d'un pipeline de test (Faulty Projects) pour valider la fiabilité des outils de sécurité utilisés par l'équipe cyber : Semgrep, SonarQube, Grype, GitLab DepScan et ClamAV. Le pipeline embarque du code volontairement vulnérable, exécute les scans des différents outils sur ce code, puis envoie les résultats vers DefectDojo, le gestionnaire de vulnérabilités de l'équipe. Couverture multi-langages (Python, Java) sur 3 niveaux de gravité (clean, modéré, agressif) pour vérifier la capacité de chaque outil à détecter les failles attendues. Exécution sur GitLab Runner dédié dans un cluster Kubernetes isolé pour garantir la sûreté du code malveillant.
 
 - Conception et déploiement en binôme de pipelines GitLab CI/CD pour automatiser le déploiement de Codetogether et DefectDojo.
 
@@ -226,9 +226,9 @@ export const djagaProjectsFR: Project[] = [
     id: "proj-faulty-thales",
     user_id: "user-djaga",
     name: "Initiative DevSecOps - Faulty Projects (Thales) · Janvier - Août 2026",
-    description: `Pilotage en autonomie et en méthode Agile (User Stories, Epics) d'une initiative DevSecOps visant à valider la fiabilité des outils de scan de vulnérabilités utilisés par l'équipe cyber.
-→ Création de 6 projets de code volontairement vulnérables par outil, multi-langages (Python, Java), avec 3 niveaux de gravité (clean, modéré, agressif), couvrant 5 outils du marché : Semgrep, SonarQube, Grype, GitLab DepScan et ClamAV.
-→ Mise en place d'un projet central « chef d'orchestre » qui déclenche automatiquement les scans dans tous les projets enfants et centralise les rapports vers le dashboard DefectDojo.
+    description: `Pilotage en autonomie et en méthode Agile (User Stories, Epics) d'un pipeline de test pour valider la fiabilité des outils de sécurité utilisés par l'équipe cyber.
+→ Le pipeline embarque du code volontairement vulnérable, exécute les scans de Semgrep, SonarQube, Grype, GitLab DepScan et ClamAV sur ce code, puis envoie les résultats vers DefectDojo, le gestionnaire de vulnérabilités de l'équipe.
+→ Couverture multi-langages (Python, Java) sur 3 niveaux de gravité (clean, modéré, agressif) pour vérifier la capacité de chaque outil à détecter les failles attendues.
 → Exécution sur GitLab Runner dédié, déployé dans un cluster Kubernetes isolé, pour garantir la sûreté du code malveillant.`,
     url_demo: null,
     url_github: null,
