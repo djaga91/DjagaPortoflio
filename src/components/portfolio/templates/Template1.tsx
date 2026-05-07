@@ -185,9 +185,8 @@ const RevealOnScroll: React.FC<{
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`transition-all duration-1000 transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -632,11 +631,10 @@ export const Template1: React.FC<Template1Props> = ({
                     <button
                       key={id}
                       onClick={() => scrollTo(scrollId)}
-                      className={`px-2 xl:px-3 py-1.5 rounded-md text-xs xl:text-sm font-medium transition-colors duration-300 whitespace-nowrap flex-shrink-0 ${
-                        activeSection === id
+                      className={`px-2 xl:px-3 py-1.5 rounded-md text-xs xl:text-sm font-medium transition-colors duration-300 whitespace-nowrap flex-shrink-0 ${activeSection === id
                           ? `${isDark ? "text-blue-400 bg-white/5" : "text-blue-600 bg-blue-50"}`
                           : `${isDark ? "text-slate-400 hover:text-white hover:bg-white/5" : "text-slate-600 hover:text-slate-900 hover:bg-blue-50"}`
-                      }`}
+                        }`}
                     >
                       {label}
                     </button>
@@ -759,11 +757,10 @@ export const Template1: React.FC<Template1Props> = ({
             <button
               key={id}
               onClick={() => scrollTo(id)}
-              className={`whitespace-nowrap flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                activeSection === id
+              className={`whitespace-nowrap flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${activeSection === id
                   ? `${isDark ? "bg-blue-500 text-white" : "bg-blue-600 text-white"}`
                   : `${isDark ? "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white" : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600"}`
-              }`}
+                }`}
             >
               {label}
             </button>
@@ -815,8 +812,8 @@ export const Template1: React.FC<Template1Props> = ({
                   className={isDark ? "text-blue-300" : "text-blue-600"}
                 />
                 {isEditable &&
-                onHeroOverridesChange &&
-                editingField === "subtitle" ? (
+                  onHeroOverridesChange &&
+                  editingField === "subtitle" ? (
                   <input
                     type="text"
                     value={editingValue}
@@ -837,7 +834,7 @@ export const Template1: React.FC<Template1Props> = ({
                       isEditable &&
                       onHeroOverridesChange &&
                       (setEditingValue(heroSubtitle),
-                      setEditingField("subtitle"))
+                        setEditingField("subtitle"))
                     }
                     role={isEditable ? "button" : undefined}
                     title={isEditable ? (lang === "en" ? "Click to edit" : "Cliquer pour modifier") : undefined}
@@ -856,8 +853,8 @@ export const Template1: React.FC<Template1Props> = ({
                   className={isDark ? "text-blue-300" : "text-blue-600"}
                 />
                 {isEditable &&
-                onHeroOverridesChange &&
-                editingField === "title" ? (
+                  onHeroOverridesChange &&
+                  editingField === "title" ? (
                   <input
                     type="text"
                     value={editingValue}
@@ -1075,7 +1072,7 @@ export const Template1: React.FC<Template1Props> = ({
           const showSkillsInAbout =
             checkSectionVisible("skills") &&
             visibleSectionsInOrder.findIndex((s) => s.id === "skills") ===
-              sectionIndex + 1;
+            sectionIndex + 1;
           return (
             <section
               key={section.id}
@@ -1118,8 +1115,7 @@ export const Template1: React.FC<Template1Props> = ({
                                         });
                                       }
                                     }}
-                                    className={`px-2 py-1 text-[10px] rounded border transition-all flex items-center justify-center ${
-                                      (templateOverrides?.about_layout ||
+                                    className={`px-2 py-1 text-[10px] rounded border transition-all flex items-center justify-center ${(templateOverrides?.about_layout ||
                                         "image_top") === layout.value
                                         ? isDark
                                           ? "bg-blue-500/20 border-blue-500/50 text-blue-300"
@@ -1127,7 +1123,7 @@ export const Template1: React.FC<Template1Props> = ({
                                         : isDark
                                           ? "border-slate-600 hover:bg-slate-700 text-slate-400"
                                           : "border-slate-300 hover:bg-slate-100 text-slate-600"
-                                    }`}
+                                      }`}
                                     title={layout.label}
                                   >
                                     <span>{layout.icon}</span>
@@ -1206,14 +1202,14 @@ export const Template1: React.FC<Template1Props> = ({
                             <div className={`glass-premium p-8 sm:p-10 rounded-3xl relative overflow-hidden group animate-fade-in-up hover-glow`}>
                               <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700" />
                               <h3 className={`text-xl sm:text-2xl font-bold mb-6 ${isDark ? "text-white" : "text-slate-900"}`}>
-                                {lang === "en" 
-                                  ? "No matter where I am, I will find a way to thrive !" 
+                                {lang === "en"
+                                  ? "No matter where I am, I will find a way to thrive !"
                                   : "Peu importe où je me retrouve, je trouverai comment prospérer"}
                               </h3>
                               <p className={`text-lg leading-relaxed ${isDark ? "text-slate-400" : "text-slate-600"} font-light whitespace-pre-line`}>
                                 {aboutText || (useCustomAbout ? "" : bio)}
                               </p>
-                              
+
 
                             </div>
                           </div>
@@ -1280,10 +1276,9 @@ export const Template1: React.FC<Template1Props> = ({
                               <div
                                 key={index}
                                 className={`group relative px-4 py-2.5 rounded-xl border transition-all duration-300 hover:scale-105
-                                  ${
-                                    isDark
-                                      ? "bg-gradient-to-br from-white/5 to-white/10 border-white/10 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10"
-                                      : "bg-white border-slate-200 hover:border-blue-300 hover:shadow-lg"
+                                  ${isDark
+                                    ? "bg-gradient-to-br from-white/5 to-white/10 border-white/10 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/10"
+                                    : "bg-white border-slate-200 hover:border-blue-300 hover:shadow-lg"
                                   }`}
                               >
                                 {/* Glow effect */}
@@ -1346,10 +1341,10 @@ export const Template1: React.FC<Template1Props> = ({
           const skillsToGrid =
             itemOrder?.skills && itemOrder.skills.length > 0
               ? applyItemOrder(
-                  orderedSkills,
-                  itemOrder.skills,
-                  (s) => s.id || s.name,
-                )
+                orderedSkills,
+                itemOrder.skills,
+                (s) => s.id || s.name,
+              )
               : orderedSkills;
 
           // orderedSkills already excludes __radar__ items — no slice needed
@@ -1555,7 +1550,7 @@ export const Template1: React.FC<Template1Props> = ({
                       {lang === "en" ? "My Skills" : "Mes Compétences"}
                     </h2>
                     <p className={`mt-4 text-lg ${isDark ? "text-slate-400" : "text-slate-600"} max-w-2xl mx-auto`}>
-                      {lang === "en" ? "Technologies and tools I master" : "Technologies et outils que je maîtrise"}
+                      {lang === "en" ? "Areas of expertise and skills" : "Domaines d'expertise et compétences"}
                     </p>
                   </div>
                 </RevealOnScroll>
@@ -1858,7 +1853,7 @@ export const Template1: React.FC<Template1Props> = ({
                   <span
                     className={`text-sm font-medium mt-auto ${isDark ? "text-blue-400" : "text-blue-600"}`}
                   >
-                    {lang === "en" ? "View description →" : "Voir la description →"}
+                    {lang === "en" ? "View project →" : "Voir le projet →"}
                   </span>
                 </div>
               </div>
@@ -2050,7 +2045,7 @@ export const Template1: React.FC<Template1Props> = ({
                           .split("\n")
                           .filter((line) => line.trim().length > 0);
                       }
-                      
+
                       const safeDate = (
                         d: string | null | undefined,
                       ): string => {
@@ -2059,9 +2054,9 @@ export const Template1: React.FC<Template1Props> = ({
                         return Number.isNaN(date.getTime())
                           ? "—"
                           : date.toLocaleDateString(lang === "en" ? "en-US" : "fr-FR", {
-                              month: "short",
-                              year: "numeric",
-                            });
+                            month: "short",
+                            year: "numeric",
+                          });
                       };
                       const startStr = safeDate(exp.start_date);
                       const endStr = exp.is_current
@@ -2081,11 +2076,10 @@ export const Template1: React.FC<Template1Props> = ({
                             {/* Nœud timeline : bulle avec icône + date en dessous */}
                             <div className="relative z-10 flex-shrink-0 flex flex-col items-center gap-2 sm:gap-3 min-w-[56px] sm:min-w-[80px] md:min-w-[100px]">
                               <div
-                                className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-lg ${
-                                  isDark
+                                className={`w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-xl sm:rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-lg ${isDark
                                     ? "bg-slate-800/80 border border-white/10 text-blue-400 group-hover:border-blue-500/50"
                                     : "bg-white border border-slate-200 text-blue-600 group-hover:border-blue-400"
-                                }`}
+                                  }`}
                               >
                                 {exp.logo_url ? (
                                   <img
@@ -2134,17 +2128,16 @@ export const Template1: React.FC<Template1Props> = ({
                                 </div>
                                 {exp.is_current && (
                                   <span
-                                    className={`inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase flex-shrink-0 ${
-                                      isDark
+                                    className={`inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-black tracking-widest uppercase flex-shrink-0 ${isDark
                                         ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
                                         : "bg-blue-50 text-blue-600 border border-blue-100"
-                                    }`}
+                                      }`}
                                   >
                                     {lang === "en" ? "Current" : "En cours"}
                                   </span>
                                 )}
                               </div>
-                              
+
                               {descriptionItems.length > 0 && (
                                 <ul
                                   className={`mt-6 space-y-4 ${isDark ? "text-slate-400" : "text-slate-600"} text-sm sm:text-base`}
@@ -2229,9 +2222,9 @@ export const Template1: React.FC<Template1Props> = ({
                       return Number.isNaN(date.getTime())
                         ? ""
                         : date.toLocaleDateString(lang === "en" ? "en-US" : "fr-FR", {
-                            month: "long",
-                            year: "numeric",
-                          });
+                          month: "long",
+                          year: "numeric",
+                        });
                     };
 
                     const startStr = safeEduDate(edu.start_date);
@@ -2257,11 +2250,10 @@ export const Template1: React.FC<Template1Props> = ({
                             <div className="flex items-start gap-6 flex-1">
                               {edu.logo_url && (
                                 <div
-                                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-lg flex-shrink-0 ${
-                                    isDark
+                                  className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 shadow-lg flex-shrink-0 ${isDark
                                       ? "bg-slate-800/80 border border-white/10"
                                       : "bg-white border border-slate-200"
-                                  }`}
+                                    }`}
                                 >
                                   <img
                                     src={edu.logo_url}
@@ -2392,8 +2384,8 @@ export const Template1: React.FC<Template1Props> = ({
                     </div>
                   </RevealOnScroll>
                   {isEditable &&
-                  onItemOrderChange &&
-                  orderedLanguages.length > 0 ? (
+                    onItemOrderChange &&
+                    orderedLanguages.length > 0 ? (
                     <DragAndDropList
                       items={orderedLanguages}
                       onReorder={(reorderedLanguages) => {
@@ -2429,7 +2421,7 @@ export const Template1: React.FC<Template1Props> = ({
                                   {lang.code === 'ta' ? (
                                     <span className="text-2xl pt-1">த</span>
                                   ) : lang.code ? (
-                                    <img 
+                                    <img
                                       src={`/icons/languages/${lang.code}.svg`}
                                       alt={lang.name}
                                       className="w-full h-full object-cover"
@@ -2497,7 +2489,7 @@ export const Template1: React.FC<Template1Props> = ({
                                     {lang.code === 'ta' ? (
                                       <span className="text-xl pt-1">த</span>
                                     ) : lang.code ? (
-                                      <img 
+                                      <img
                                         src={`/icons/languages/${lang.code}.svg`}
                                         alt={lang.name}
                                         className="w-full h-full object-cover"
@@ -2553,8 +2545,8 @@ export const Template1: React.FC<Template1Props> = ({
                           <p
                             className={`text-sm ${isDark ? "text-slate-500" : "text-slate-500"}`}
                           >
-                            {lang === "en" 
-                              ? "No languages recorded. Add them to your profile." 
+                            {lang === "en"
+                              ? "No languages recorded. Add them to your profile."
                               : "Aucune langue renseignée. Ajoutez-en dans votre profil."}
                           </p>
                         </div>
@@ -2589,8 +2581,8 @@ export const Template1: React.FC<Template1Props> = ({
                     </div>
                   </RevealOnScroll>
                   {isEditable &&
-                  onItemOrderChange &&
-                  orderedCertifications.length > 0 ? (
+                    onItemOrderChange &&
+                    orderedCertifications.length > 0 ? (
                     <DragAndDropList
                       items={orderedCertifications}
                       onReorder={(reorderedCerts) => {
@@ -2639,8 +2631,8 @@ export const Template1: React.FC<Template1Props> = ({
                                   >
                                     {cert.date_obtained
                                       ? new Date(
-                                          cert.date_obtained,
-                                        ).getFullYear()
+                                        cert.date_obtained,
+                                      ).getFullYear()
                                       : "—"}
                                   </span>
                                 </p>
@@ -2652,11 +2644,10 @@ export const Template1: React.FC<Template1Props> = ({
                                   href={cert.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-300 ${
-                                    isDark
+                                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-300 ${isDark
                                       ? "bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/40"
                                       : "bg-blue-50 text-blue-600 border border-blue-100 hover:bg-blue-100 hover:border-blue-200"
-                                  }`}
+                                    }`}
                                 >
                                   <LucideIcons.FileText size={14} className="flex-shrink-0" />
                                   {lang === "en" ? "CONSULT" : "CONSULTER"}
@@ -2702,8 +2693,8 @@ export const Template1: React.FC<Template1Props> = ({
                                     >
                                       {cert.date_obtained
                                         ? new Date(
-                                            cert.date_obtained,
-                                          ).getFullYear()
+                                          cert.date_obtained,
+                                        ).getFullYear()
                                         : "—"}
                                     </span>
                                   </p>
@@ -2715,11 +2706,10 @@ export const Template1: React.FC<Template1Props> = ({
                                     href={cert.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-300 ${
-                                      isDark
+                                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold tracking-wider transition-all duration-300 ${isDark
                                         ? "bg-blue-500/10 text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 hover:border-blue-500/40"
                                         : "bg-blue-50 text-blue-600 border border-blue-100 hover:bg-blue-100 hover:border-blue-200"
-                                    }`}
+                                      }`}
                                   >
                                     <LucideIcons.FileText size={14} className="flex-shrink-0" />
                                     {lang === "en" ? "VIEW" : "CONSULTER"}
@@ -2785,14 +2775,14 @@ export const Template1: React.FC<Template1Props> = ({
                         className={`portfolio-section-intro text-sm leading-relaxed ${isDark ? "text-slate-400" : "text-slate-600"}`}
                       >
                         {lang === "en"
-                           ? "Fields and topics that fuel my curiosity and daily motivation."
-                           : "Domaines et sujets qui nourrissent ma curiosité et ma motivation au quotidien."}
+                          ? "Fields and topics that fuel my curiosity and daily motivation."
+                          : "Domaines et sujets qui nourrissent ma curiosité et ma motivation au quotidien."}
                       </p>
                     </div>
                   </RevealOnScroll>
                   {isEditable &&
-                  onItemOrderChange &&
-                  orderedInterests.length > 0 ? (
+                    onItemOrderChange &&
+                    orderedInterests.length > 0 ? (
                     <DragAndDropList
                       items={orderedInterests}
                       onReorder={(reorderedInterests) => {

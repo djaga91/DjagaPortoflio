@@ -55,8 +55,13 @@ const SKILL_CONFIGS: Array<[string[], SkillConfig]> = [
   [["yaml"],                    { icon: "FileCode",   color: "#f59e0b", svgFile: "yaml.svg" }],
   [["prompt engineering"],      { icon: "Sparkles",   color: "#a855f7" }],
 
-  // ── Cloud & DevOps (spécifiques) ──────────────────────────
-  [["hyperviseur", "hypervisor", "vmware", "virtualbox", "vm &"], { icon: "Monitor",  color: "#10b981" }],
+  // ── Outils de sécurité & Frameworks ──────────────────────
+  [["owasp"],                                                       { icon: "ShieldAlert",color: "#3b82f6" }],
+  [["mitre", "att&ck"],                                             { icon: "Crosshair",  color: "#ef4444" }],
+  [["kill chain"],                                                  { icon: "Link",       color: "#f97316" }],
+  [["threat modeling", "modélisation des menaces"],                 { icon: "Focus",      color: "#a855f7" }],
+  [["clamav", "antivirus"],                                         { icon: "BugOff",     color: "#10b981" }],
+  [["hyperviseur", "hypervisor", "vmware", "virtualbox", "vm &"],   { icon: "Monitor",    color: "#10b981" }],
   [["malware", "sandbox"],                                          { icon: "Microscope", color: "#dc2626" }],
   [["depscan"],                                                     { icon: "ScanLine",   color: "#fc6d26" }],
   [["semgrep"],                                                     { icon: "Search",     color: "#f97316" }],
