@@ -75,7 +75,7 @@ Infrastructure and cloud
 
 - Developed a Python script that lists the team's hundred-plus GitLab access tokens, identifies their origin and generates an Excel report usable for security audits.
 
-- Deployed pipelines on isolated Kubernetes clusters and managed VMs on Azure (provisioning and hardening).`,
+- Created and configured virtual machines on Azure to meet the team's specific needs. Managed application deployments to Kubernetes clusters via GitLab. Set up a dedicated GitLab Runner in an isolated cluster to execute security analyses for Faulty Projects.`,
     achievements: null,
     technologies: null,
     logo_url: "images/logos/thales.png",
