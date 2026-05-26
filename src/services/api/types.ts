@@ -110,9 +110,9 @@ export interface Skill {
   user_id: string;
   name: string;
   category: string | null;
-  level: string | null;
-  years_experience: number | null;
-  order: number;
+  level?: string | null;
+  years_experience?: number | null;
+  order?: number;
 }
 
 export interface SkillCreate {

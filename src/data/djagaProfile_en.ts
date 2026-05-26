@@ -26,7 +26,7 @@ Alongside my main work, I successfully managed several independent projects. I c
 
 Regarding soft skills, I am the captain of an amateur 5-a-side football team. This role has taught me how to manage people and make decisions under pressure. I am also highly interested in geopolitics, digital marketing, and strategic analysis. These fields shape how I approach and solve complex problems.
 
-I want to bring this mindset to my next role. As I finish my apprenticeship, I am actively looking for a position where I can apply my hybrid technical and business skills`,
+I am not the best developer  but I am the one who understands tech AND knows how to make it drive business value.`,
   title: "Computer Engineer",
   location: "Paris, France",
   phone: "",
@@ -226,10 +226,10 @@ export const djagaProjectsEN: Project[] = [
     id: "proj-faulty-thales",
     user_id: "user-djaga",
     name: "DevSecOps Initiative - Faulty Projects (Thales) · January - August 2026",
-    description: `Independently led, using Agile methodology (User Stories, Epics), a testing pipeline to validate the reliability of the security tools used by the development team.
-→ The pipeline embeds deliberately vulnerable code, runs the scans of Semgrep, SonarQube, Grype, GitLab DepScan and ClamAV against that code, then forwards the results to DefectDojo, the team's vulnerability manager.
-→ Multi-language coverage (Python, Java) across 3 severity levels (clean, moderate, aggressive) to verify each tool's ability to detect the expected flaws.
-→ Executed on a dedicated GitLab Runner, deployed in an isolated Kubernetes cluster, to safely host the malicious code.`,
+    description: `Independently led, using Agile methodology (User Stories, Epics), a testing pipeline designed to validate the reliability of the cyber team's security tools.
+→ The pipeline embeds deliberately vulnerable code, runs the scans of Semgrep, SonarQube, Grype, GitLab DepScan and ClamAV, then feeds the results into DefectDojo, the team's vulnerability manager.
+→ Multi-language coverage (Python, Java) across 3 severity levels (clean, moderate, aggressive) to measure each tool's real ability to detect the expected flaws.
+→ Outcome: a quality-control asset still in use by the team today to keep its detection chain reliable across all its projects.`,
     url_demo: null,
     url_github: null,
     url_image: null,
@@ -244,10 +244,10 @@ export const djagaProjectsEN: Project[] = [
     id: "proj-portfolia",
     user_id: "user-djaga",
     name: "Functional Auditor & GRC - Portfolia.fr Project · January - March 2026",
-    description: `Comprehensive cybersecurity audit of the Portfolia.fr SaaS platform, conducted under the ISO 27017 (cloud security) and OWASP ASVS (application security) standards.
-→ Acted as functional auditor and primary interlocutor with the management team: conducted interviews, evaluated security governance and presented findings.
-→ Identified critical vulnerabilities: lack of MFA, insecure JWT token storage, absence of SAST/DAST controls. Co-built a risk mapping.
-→ Formulated prioritized strategic recommendations to fix application-level flaws and harden the cloud infrastructure hosted on DigitalOcean.`,
+    description: `Cybersecurity audit of the Portfolia.fr SaaS platform, conducted under the ISO 27017 (cloud security) and OWASP ASVS (application security) standards.
+→ Acted as functional auditor and direct interlocutor with management: led interviews, assessed security governance and presented findings.
+→ Surfaced critical risks the client was unaware of: no MFA, insecure JWT token storage, no SAST/DAST controls. Built a risk map to make them readable by non-technical decision-makers.
+→ Delivered prioritized strategic recommendations to fix application flaws and harden the cloud infrastructure, turning a security blind spot into a concrete action plan.`,
     url_demo: "https://portfolia.fr",
     url_github: null,
     url_image: null,
@@ -264,8 +264,8 @@ export const djagaProjectsEN: Project[] = [
     name: "Project Manager - Mimirian Platform · October 2025 - February 2026",
     description: `Led an ambitious student project: the design of Mimirian, a sovereign digital investigation platform for law enforcement and intelligence services.
 → Defined the product vision, built the go-to-market strategy and reached out to institutional partners.
-→ Led the design of the Blind Alert innovation, a mechanism that allows multiple investigators to collaborate on sensitive cases without revealing the content of their respective files.
-→ Prepared and delivered oral defenses in front of the jury and produced the official presentation video.`,
+→ Led the design of the Blind Alert innovation, a mechanism that lets multiple investigators collaborate on sensitive cases without revealing the content of their respective files.
+→ Outcome: a project recognized by the jury for its quality, carried from the initial vision through to the defense and the official presentation video.`,
     url_demo: null,
     url_github: null,
     url_image: null,
@@ -358,17 +358,11 @@ export const djagaSkillsEN: Skill[] = [
   { id: "skill-29", user_id: "user-djaga", name: "Prompt Engineering and AI-augmented Development", category: "Development and Data" },
 
   // 🎯 Soft Skills
-  { id: "skill-30", user_id: "user-djaga", name: "Project Management", category: "Soft Skills" },
-  { id: "skill-31", user_id: "user-djaga", name: "Team Coordination", category: "Soft Skills" },
-  { id: "skill-32", user_id: "user-djaga", name: "Technical Popularization", category: "Soft Skills" },
-  { id: "skill-33", user_id: "user-djaga", name: "Interpersonal Intelligence", category: "Soft Skills" },
-  { id: "skill-34", user_id: "user-djaga", name: "Intercultural Adaptability", category: "Soft Skills" },
-  { id: "skill-35", user_id: "user-djaga", name: "Rigor and Compliance", category: "Soft Skills" },
-  { id: "skill-36", user_id: "user-djaga", name: "Leadership and Autonomy", category: "Soft Skills" },
-  { id: "skill-37", user_id: "user-djaga", name: "Problem Solving", category: "Soft Skills" },
-  { id: "skill-38", user_id: "user-djaga", name: "Marketing and Commercial Strategy", category: "Soft Skills" },
-  { id: "skill-39", user_id: "user-djaga", name: "Customer Relations and Sales", category: "Soft Skills" },
-  { id: "skill-40", user_id: "user-djaga", name: "Financial Management (Budget, Cash flow)", category: "Soft Skills" },
+  { id: "skill-30", user_id: "user-djaga", name: "Project Management", category: "Management & Soft Skills" },
+  { id: "skill-32", user_id: "user-djaga", name: "Technical Popularization", category: "Management & Soft Skills" },
+  { id: "skill-33", user_id: "user-djaga", name: "Interpersonal Intelligence", category: "Management & Soft Skills" },
+  { id: "skill-34", user_id: "user-djaga", name: "Intercultural Adaptability", category: "Management & Soft Skills" },
+  { id: "skill-38", user_id: "user-djaga", name: "Marketing and Commercial Strategy", category: "Management & Soft Skills" },
 ];
 
 export const djagaLanguagesEN: Language[] = [
