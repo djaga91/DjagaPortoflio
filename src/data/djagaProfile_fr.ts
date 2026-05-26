@@ -24,7 +24,7 @@ Mon approche se caractérise par une démarche analytique systématique : compar
 
 En parallèle, j'ai mené plusieurs projets en autonomie : un audit de sécurité SaaS (Portfolia), un projet d'investigation numérique (Mimirian) et la co-rédaction d'un cadre de recherche sur l'IA souveraine pour la conférence ICONI 2025. Mon profil intègre aussi une dimension entrepreneuriale avec le lancement de deux activités : une boutique de bijoux en ligne et un concept de dark kitchen (Vel Express). J'ai géré ces projets de la conception à l'exécution, incluant le marketing et la logistique.
 
-Côté soft skills, je suis capitaine d'une équipe de football amateur en 5 contre 5 un rôle qui m'a appris la gestion humaine et la prise de décision sous pression. Je nourris également un intérêt marqué pour la géopolitique, le marketing digital et l'analyse stratégique, autant de domaines qui structurent ma manière d'aborder les problèmes complexes.
+Côté soft skills, je suis capitaine d'une équipe de football amateur en 5 contre 5, un rôle qui m'a appris la gestion humaine et la prise de décision sous pression. Je nourris également un intérêt marqué pour la géopolitique, le marketing digital et l'analyse stratégique, autant de domaines qui structurent ma manière d'aborder les problèmes complexes.
 
 Je ne suis pas le meilleur développeur mais je suis celui qui comprend la tech ET sait la rendre utile au business.`,
   title: "Ingénieur en informatique",
