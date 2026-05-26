@@ -66,7 +66,7 @@ DevSecOps
 
 - Co-created a GitLab CI/CD pipeline to deploy DefectDojo, the cyber team's central vulnerability manager. This automation ensures fast production rollouts, and the team still relies on this infrastructure daily.
 
-- Mapped the architecture of Confluence and SonarQube and produced the related documentation for knowledge sharing within the team.
+- Created detailed architecture diagrams for Confluence and SonarQube. This technical documentation was presented to the team architect, who used it to validate these infrastructures with the IT department (DSI).
 
 
 Infrastructure and cloud

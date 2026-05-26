@@ -66,7 +66,7 @@ DevSecOps
 
 - Création en binôme d'un pipeline GitLab CI/CD pour déployer DefectDojo, le gestionnaire central des vulnérabilités de l'équipe cyber. Cette automatisation garantit une mise en production rapide et l'équipe utilise toujours cette infrastructure au quotidien.
 
-- Cartographie de l'architecture de Confluence et SonarQube, production de la documentation associée pour le partage de connaissances avec l'équipe.
+- Création de schémas d'architecture détaillés pour Confluence et SonarQube. Cette documentation technique a été présentée à l'architecte de l'équipe, qui s'en est servi pour valider ces infrastructures auprès de la DSI.
 
 
 Infrastructure et cloud
