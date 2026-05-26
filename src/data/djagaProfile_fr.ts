@@ -64,7 +64,7 @@ DevSecOps
 
 - Conception d'un pipeline de test (Faulty Projects) pour valider la fiabilité des outils de sécurité utilisés par l'équipe de développement : Semgrep, SonarQube, Grype, GitLab DepScan et ClamAV. Le pipeline embarque du code volontairement vulnérable, exécute les scans des différents outils sur ce code, puis envoie les résultats vers DefectDojo, le gestionnaire de vulnérabilités de l'équipe. Couverture multi-langages (Python, Java) sur 3 niveaux de gravité (clean, modéré, agressif) pour vérifier la capacité de chaque outil à détecter les failles attendues. Exécution sur GitLab Runner dédié dans un cluster Kubernetes isolé pour garantir la sûreté du code malveillant.
 
-- Conception et déploiement en binôme de pipelines GitLab CI/CD pour automatiser le déploiement de Codetogether et DefectDojo.
+- Création en binôme d'un pipeline GitLab CI/CD pour déployer DefectDojo, le gestionnaire central des vulnérabilités de l'équipe cyber. Cette automatisation garantit une mise en production rapide et l'équipe utilise toujours cette infrastructure au quotidien.
 
 - Cartographie de l'architecture de Confluence et SonarQube, production de la documentation associée pour le partage de connaissances avec l'équipe.
 
