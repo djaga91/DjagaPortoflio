@@ -63,10 +63,10 @@ export const djagaExperiencesEN: Experience[] = [
 DevSecOps
 
 Design and orchestration of a DevSecOps validation pipeline (Faulty Projects):
-- Automated testing : Reliability verification for security scanners (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV).
-- Target modeling : Injected intentionally vulnerable code (Python/Java) graduated across 3 levels (clean, normal, aggressive) with centralized and deduplicated reporting in DefectDojo (AppSec vulnerability management platform).
-- Infrastructure security : Isolated execution within a dedicated Secure Runner on a Kubernetes cluster (network and application layer defense-in-depth).
-- Managerial & Technical Success : Praised and validated by the Cybersecurity division (leading to new project assignments), ensuring ongoing governance and operational readiness of the team's security tools.
+  - Automated testing : Reliability verification for security scanners (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV).
+  - Target modeling : Injected intentionally vulnerable code (Python/Java) graduated across 3 levels (clean, normal, aggressive) with centralized and deduplicated reporting in DefectDojo (AppSec vulnerability management platform).
+  - Infrastructure security : Isolated execution within a dedicated Secure Runner on a Kubernetes cluster (network and application layer defense-in-depth).
+  - Managerial & Technical Success : Praised and validated by the Cybersecurity division (leading to new project assignments), ensuring ongoing governance and operational readiness of the team's security tools.
 
 - Co-created a GitLab CI/CD pipeline to deploy DefectDojo, the cyber team's central vulnerability manager. This automation ensures fast production rollouts, and the team still relies on this infrastructure daily.
 

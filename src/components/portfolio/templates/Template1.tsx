@@ -2144,6 +2144,7 @@ export const Template1: React.FC<Template1Props> = ({
                                 >
                                   {descriptionItems.map((item, i) => {
                                     const trimmedItem = item.trim();
+                                    const isSubBullet = item.startsWith("  -") || item.startsWith("\t-");
                                     const isBullet = trimmedItem.startsWith("-");
                                     const isHeader = !isBullet && (!trimmedItem.includes(":") || trimmedItem.endsWith(":")) && (trimmedItem.length < 60 || trimmedItem.endsWith(":"));
                                     const cleanItem = isBullet ? trimmedItem.substring(1).trim() : trimmedItem;
@@ -2153,6 +2154,29 @@ export const Template1: React.FC<Template1Props> = ({
                                         <li key={i} className="pt-2 first:pt-0 list-none">
                                           <span className={`font-bold text-base sm:text-lg ${isDark ? "text-blue-400" : "text-blue-600"}`}>
                                             {cleanItem}
+                                          </span>
+                                        </li>
+                                      );
+                                    }
+
+                                    if (isSubBullet) {
+                                      return (
+                                        <li
+                                          key={i}
+                                          className="flex items-start gap-3 pl-6 sm:pl-8 group/item list-none"
+                                        >
+                                          <span className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 ${isDark ? "bg-slate-500" : "bg-slate-400"}`} />
+                                          <span className="leading-relaxed text-sm opacity-90">
+                                            {(cleanItem.includes(" : ") || cleanItem.includes(": ")) ? (
+                                              <>
+                                                <span className={`font-bold ${isDark ? "text-slate-300" : "text-slate-700"}`}>
+                                                  {cleanItem.split(":")[0]}:
+                                                </span>
+                                                {cleanItem.split(":").slice(1).join(":")}
+                                              </>
+                                            ) : (
+                                              cleanItem
+                                            )}
                                           </span>
                                         </li>
                                       );
