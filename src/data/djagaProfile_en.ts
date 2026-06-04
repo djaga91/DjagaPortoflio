@@ -62,7 +62,13 @@ export const djagaExperiencesEN: Experience[] = [
 
 DevSecOps
 
-- Design and orchestration of a DevSecOps validation pipeline (Faulty Projects): Automated reliability testing for security scanners (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injected intentionally vulnerable code (Python/Java) graduated across 3 levels (clean, normal, aggressive) with centralized and deduplicated reporting in DefectDojo (AppSec vulnerability management platform). Secured the infrastructure by isolating execution within a dedicated Secure Runner on a Kubernetes cluster (network and application layer defense-in-depth). Managerial & Technical Success: Praised and validated by the Cybersecurity division (leading to new project assignments), ensuring ongoing governance and operational readiness of the team's security tools.
+- Design and orchestration of the DevSecOps validation pipeline (Faulty Projects)
+
+- Automated Quality Control : Built a repository of intentionally vulnerable code graduated across 3 levels (clean, normal, aggressive) to benchmark the detection accuracy of Semgrep, SonarQube, Grype, GitLab DepScan, and ClamAV.
+
+- Secure Kubernetes Architecture : Containerized and strictly isolated security scans within a dedicated Secure Runner (NetworkPolicies, Squid proxy) to ensure absolute containment within the review cluster.
+
+- AppSec Centralization & Impact : Streamlined reporting, deduplication, and vulnerability correlation within DefectDojo (vulnerability management platform). Project officially validated by the Cybersecurity division and adopted as the team's standard.
 
 - Co-created a GitLab CI/CD pipeline to deploy DefectDojo, the cyber team's central vulnerability manager. This automation ensures fast production rollouts, and the team still relies on this infrastructure daily.
 
@@ -73,7 +79,7 @@ Infrastructure and cloud
 
 - Cloud Inventory Automation (Azure / Active Directory) : Developed an automated Python pipeline using GitLab CI. The pipeline queries Azure ARM and MS Graph APIs to generate an interactive web dashboard on GitLab Pages. This solution replaces manual inventories and runs in 5 minutes. It serves as a central repository for cost optimization (FinOps) and cybersecurity compliance validation for ISO audits.
 
-- Developed a Python script that lists the team's hundred-plus GitLab access tokens, identifies their origin and generates an Excel report usable for security audits.
+- Automated Secrets Auditing : Developed a Python compliance script to map, trace origins, and dynamically audit 100+ active GitLab access tokens, generating actionable reporting for ISO 27001 readiness.
 
 - Created and configured virtual machines on Azure to meet the team's specific needs. Managed application deployments to Kubernetes clusters via GitLab. Set up a dedicated GitLab Runner in an isolated cluster to execute security analyses for Faulty Projects.`,
     achievements: null,

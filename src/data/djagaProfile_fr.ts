@@ -62,7 +62,13 @@ export const djagaExperiencesFR: Experience[] = [
 
 DevSecOps
 
-- Conception et orchestration d’un pipeline de validation DevSecOps (Faulty Projects) : Automatisation du contrôle de fiabilité des scanners de sécurité (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injection de code volontairement vulnérable (Python/Java) gradué sur 3 niveaux (clean, normal, agressif) avec centralisation et déduplication des rapports dans DefectDojo (plateforme de centralisation des vulnérabilités AppSec). Sécurisation de l’infrastructure par l'isolation du traitement dans un Secure Runner dédié sur cluster Kubernetes (défense en profondeur réseau/applicatif). Succès managérial et technique : projet salué et validé par la division Cybersécurité (ouverture de nouveaux projets), assurant aujourd'hui la gouvernance et le maintien opérationnel des outils de l'équipe.
+- Conception et orchestration de la chaîne de validation DevSecOps (Faulty Projects)
+
+- Automatisation du contrôle qualité : Création du catalogue de codes vulnérables gradués (clean, normal, agressif) pour éprouver la sensibilité de Semgrep, SonarQube, Grype, GitLab DepScan et ClamAV.
+
+- Architecture Kubernetes sécurisée : Conteneurisation et isolation stricte des analyses sur un Secure Runner dédié (NetworkPolicies, proxy Squid) pour garantir l'innocuité du cluster.
+
+- Centralisation & Impact : Pilotage des flux vers DefectDojo (plateforme de centralisation des vulnérabilités AppSec) ; projet validé par la Cybersécurité et devenu le standard de l'équipe.
 
 - Création en binôme d'un pipeline GitLab CI/CD pour déployer DefectDojo, le gestionnaire central des vulnérabilités de l'équipe cyber. Cette automatisation garantit une mise en production rapide et l'équipe utilise toujours cette infrastructure au quotidien.
 
@@ -73,7 +79,7 @@ Infrastructure et cloud
 
 - Automatisation de l'inventaire Cloud (Azure / Active Directory) : Développement d'un pipeline automatisé en Python (via GitLab CI) interrogeant les API Azure ARM et MS Graph pour générer un tableau de bord web interactif sur GitLab Pages. Cette solution remplace les inventaires manuels (exécution en 5 minutes). Elle sert de référentiel central pour l'optimisation des coûts (FinOps) et la validation de la conformité cybersécurité (audits ISO)
 
-- Développement d'un script Python qui liste la centaine de tokens d'accès GitLab de l'équipe, identifie leur provenance et génère un tableau Excel exploitable pour les audits de sécurité.
+- Automatisation de l'audit des secrets : Développement d'un outil de conformité en Python pour cartographier, analyser l'origine et auditer dynamiquement plus de 100 tokens d'accès GitLab de l'équipe (génération de rapports de conformité pour les audits ISO).
 
 - Création et configuration de machines virtuelles sur Azure pour répondre aux besoins spécifiques de l'équipe. Pilotage des déploiements applicatifs vers des clusters Kubernetes via GitLab. Mise en place d'un GitLab Runner dédié dans un cluster isolé pour exécuter les analyses de sécurité de Faulty Projects.`,
     achievements: null,
