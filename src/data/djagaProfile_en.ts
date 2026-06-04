@@ -71,8 +71,7 @@ DevSecOps
 
 Infrastructure and cloud
 
-- Cloud Inventory Automation (Azure / Active Directory)
-Developed an automated Python pipeline using GitLab CI. The pipeline queries Azure ARM and MS Graph APIs to generate an interactive web dashboard on GitLab Pages. This solution replaces manual inventories and runs in 5 minutes. It serves as a central repository for cost optimization (FinOps) and cybersecurity compliance validation for ISO audits.
+- Cloud Inventory Automation (Azure / Active Directory) : Developed an automated Python pipeline using GitLab CI. The pipeline queries Azure ARM and MS Graph APIs to generate an interactive web dashboard on GitLab Pages. This solution replaces manual inventories and runs in 5 minutes. It serves as a central repository for cost optimization (FinOps) and cybersecurity compliance validation for ISO audits.
 
 - Developed a Python script that lists the team's hundred-plus GitLab access tokens, identifies their origin and generates an Excel report usable for security audits.
 
