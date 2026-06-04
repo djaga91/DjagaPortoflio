@@ -62,16 +62,17 @@ export const djagaExperiencesEN: Experience[] = [
 
 DevSecOps
 
-- Designed a testing pipeline (Faulty Projects) to validate the reliability of the security tools used by the development team: Semgrep, SonarQube, Grype, GitLab DepScan and ClamAV. The pipeline embeds deliberately vulnerable code, runs the scans of each tool against that code, and forwards the results to DefectDojo, the team's vulnerability manager. Multi-language coverage (Python, Java) across 3 severity levels (clean, moderate, aggressive) to verify each tool's ability to detect the expected flaws. Executed on a dedicated GitLab Runner inside an isolated Kubernetes cluster to safely host the malicious code.
+- Design and orchestration of a DevSecOps validation pipeline (Faulty Projects): Automated reliability testing for security scanners (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injected intentionally vulnerable code (Python/Java) graduated across 3 levels (clean, normal, aggressive) with centralized and deduplicated reporting in DefectDojo (AppSec vulnerability management platform). Secured the infrastructure by isolating execution within a dedicated Secure Runner on a Kubernetes cluster (network and application layer defense-in-depth). Managerial & Technical Success: Praised and validated by the Cybersecurity division (leading to new project assignments), ensuring ongoing governance and operational readiness of the team's security tools.
 
 - Co-created a GitLab CI/CD pipeline to deploy DefectDojo, the cyber team's central vulnerability manager. This automation ensures fast production rollouts, and the team still relies on this infrastructure daily.
 
-- Created detailed architecture diagrams for Confluence and SonarQube. This technical documentation was presented to the team architect, who used it to validate these infrastructures with the IT department (DSI).
+- Created detailed architecture diagrams for Confluence and SonarQube. Presented this technical documentation to the team architect. The architect used it to validate the infrastructure with the IT department
 
 
 Infrastructure and cloud
 
-- Developed dedicated Python scripts (one per resource type) querying the Azure APIs to automatically inventory the environment: VMs, DBaaS, users, user groups, costs and cluster instances. Published the inventories via GitLab Pages to give the team centralized visibility on the cloud estate.
+- Cloud Inventory Automation (Azure / Active Directory)
+Developed an automated Python pipeline using GitLab CI. The pipeline queries Azure ARM and MS Graph APIs to generate an interactive web dashboard on GitLab Pages. This solution replaces manual inventories and runs in 5 minutes. It serves as a central repository for cost optimization (FinOps) and cybersecurity compliance validation for ISO audits.
 
 - Developed a Python script that lists the team's hundred-plus GitLab access tokens, identifies their origin and generates an Excel report usable for security audits.
 
@@ -226,16 +227,21 @@ export const djagaProjectsEN: Project[] = [
     id: "proj-faulty-thales",
     user_id: "user-djaga",
     name: "DevSecOps Initiative - Faulty Projects (Thales) · January - August 2026",
-    description: `Independently led, using Agile methodology (User Stories, Epics), a testing pipeline designed to validate the reliability of the cyber team's security tools.
-→ The pipeline embeds deliberately vulnerable code, runs the scans of Semgrep, SonarQube, Grype, GitLab DepScan and ClamAV, then feeds the results into DefectDojo, the team's vulnerability manager.
-→ Multi-language coverage (Python, Java) across 3 severity levels (clean, moderate, aggressive) to measure each tool's real ability to detect the expected flaws.
-→ Outcome: a quality-control asset still in use by the team today to keep its detection chain reliable across all its projects.`,
+    description: `End-to-End Agile Management: Autonomously scoped and managed (Epics, User Stories) the Control Center Cyber (CCC) pilot project to orchestrate and automate continuous non-regression testing campaigns.
+
+Vulnerable Target Modeling: Built a multi-language (Python, Java) repository of Faulty Projects graduated across 3 intensity levels (clean, normal, aggressive) to accurately benchmark the detection sensitivity of core scanners (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV).
+
+Kubernetes Architecture & Isolation: Containerized and securely isolated untrusted code execution within a dedicated Secure Runner (NetworkPolicies, Squid proxy), ensuring absolute safety and containment within the review cluster.
+
+AppSec Centralization: Automated the security reporting pipeline, implementing vulnerability deduplication and component-version correlation within DefectDojo.
+
+Critical Impact & Success: Project highly praised and officially validated by the Cybersecurity division (leading to further project extensions); framework adopted as the permanent QA standard to guarantee DevSecOps pipeline reliability.`,
     url_demo: null,
     url_github: null,
     url_image: null,
     project_icon: "ShieldAlert",
     order: 1,
-    technologies: ["DevSecOps", "Agile", "Kubernetes", "GitLab CI"],
+    technologies: ["DevSecOps", "Kubernetes", "GitLab CI/CD", "AppSec", "Agile Methodologies (Scrum)"],
     features: ["Automated Scanning", "Orchestration", "Isolated Environment"],
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),

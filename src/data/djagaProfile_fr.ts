@@ -62,7 +62,7 @@ export const djagaExperiencesFR: Experience[] = [
 
 DevSecOps
 
-- Conception d'un pipeline de test (Faulty Projects) pour valider la fiabilité des outils de sécurité utilisés par l'équipe de développement : Semgrep, SonarQube, Grype, GitLab DepScan et ClamAV. Le pipeline embarque du code volontairement vulnérable, exécute les scans des différents outils sur ce code, puis envoie les résultats vers DefectDojo, le gestionnaire de vulnérabilités de l'équipe. Couverture multi-langages (Python, Java) sur 3 niveaux de gravité (clean, modéré, agressif) pour vérifier la capacité de chaque outil à détecter les failles attendues. Exécution sur GitLab Runner dédié dans un cluster Kubernetes isolé pour garantir la sûreté du code malveillant.
+- Conception et orchestration d’un pipeline de validation DevSecOps (Faulty Projects) : Automatisation du contrôle de fiabilité des scanners de sécurité (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injection de code volontairement vulnérable (Python/Java) gradué sur 3 niveaux (clean, normal, agressif) avec centralisation et déduplication des rapports dans DefectDojo (plateforme de centralisation des vulnérabilités AppSec). Sécurisation de l’infrastructure par l'isolation du traitement dans un Secure Runner dédié sur cluster Kubernetes (défense en profondeur réseau/applicatif). Succès managérial et technique : projet salué et validé par la division Cybersécurité (ouverture de nouveaux projets), assurant aujourd'hui la gouvernance et le maintien opérationnel des outils de l'équipe.
 
 - Création en binôme d'un pipeline GitLab CI/CD pour déployer DefectDojo, le gestionnaire central des vulnérabilités de l'équipe cyber. Cette automatisation garantit une mise en production rapide et l'équipe utilise toujours cette infrastructure au quotidien.
 
@@ -71,7 +71,9 @@ DevSecOps
 
 Infrastructure et cloud
 
-- Développement de scripts Python dédiés (un par type de ressource) interrogeant les API Azure pour inventorier automatiquement l'environnement : VMs, DBaaS, utilisateurs, groupes d'utilisateurs, coûts et instances de clusters. Publication des inventaires via GitLab Pages pour offrir à l'équipe une visibilité centralisée du parc cloud.
+- Automatisation de l'inventaire Cloud (Azure / Active Directory)
+
+Développement d'un pipeline automatisé en Python (via GitLab CI) interrogeant les API Azure ARM et MS Graph pour générer un tableau de bord web interactif sur GitLab Pages. Cette solution remplace les inventaires manuels (exécution en 5 minutes). Elle sert de référentiel central pour l'optimisation des coûts (FinOps) et la validation de la conformité cybersécurité (audits ISO)
 
 - Développement d'un script Python qui liste la centaine de tokens d'accès GitLab de l'équipe, identifie leur provenance et génère un tableau Excel exploitable pour les audits de sécurité.
 
@@ -226,16 +228,21 @@ export const djagaProjectsFR: Project[] = [
     id: "proj-faulty-thales",
     user_id: "user-djaga",
     name: "Initiative DevSecOps - Faulty Projects (Thales) · Janvier - Août 2026",
-    description: `Pilotage en autonomie et en méthode Agile (User Stories, Epics) d'un pipeline de test conçu pour valider la fiabilité des outils de sécurité de l'équipe cyber.
-→ Le pipeline embarque du code volontairement vulnérable, lance les scans de Semgrep, SonarQube, Grype, GitLab DepScan et ClamAV, puis remonte les résultats vers DefectDojo, le gestionnaire de vulnérabilités de l'équipe.
-→ Couverture multi-langages (Python, Java) sur 3 niveaux de gravité (clean, modéré, agressif) pour mesurer la capacité réelle de chaque outil à détecter les failles attendues.
-→ Résultat : un outil de contrôle qualité que l'équipe utilise toujours aujourd'hui pour fiabiliser sa chaîne de détection sur l'ensemble de ses projets.`,
+    description: `Pilotage agile de bout en bout : Cadrage et gestion en autonomie (Epics, User Stories) du projet pilote Control Center Cyber (CCC) pour orchestrer et automatiser les campagnes de test de non-régression.
+
+Modélisation de cibles vulnérables : Création d'un catalogue de projets (Faulty Projects) multi-langages (Python, Java) gradués sur 3 niveaux d'intensité (clean, normal, agressif) afin de mesurer la sensibilité réelle des scanners de sécurité (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV).
+
+Architecture & Isolation Kubernetes : Conteneurisation et sécurisation stricte du traitement du code malveillant sur un Secure Runner dédié (NetworkPolicies, proxy Squid), garantissant l'innocuité totale du cluster de revue.
+
+Centralisation AppSec : Automatisation du flux de reporting, déduplication et corrélation des vulnérabilités par version de composants au sein de la plateforme DefectDojo.
+
+Impact & Succès critique : Projet salué et officiellement validé par la division Cybersécurité (ouverture de chantiers complémentaires) ; framework devenu le standard de contrôle qualité permanent pour fiabiliser la chaîne DevSecOps.`,
     url_demo: null,
     url_github: null,
     url_image: null,
     project_icon: "ShieldAlert",
     order: 1,
-    technologies: ["DevSecOps", "Agile", "Kubernetes", "GitLab CI"],
+    technologies: ["DevSecOps", "Kubernetes", "GitLab CI/CD", "AppSec", "Méthodes Agiles (Scrum)"],
     features: ["Automatisation des scans", "Orchestration", "Environnement isolé"],
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
