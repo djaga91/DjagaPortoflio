@@ -2145,7 +2145,7 @@ export const Template1: React.FC<Template1Props> = ({
                                   {descriptionItems.map((item, i) => {
                                     const trimmedItem = item.trim();
                                     const isBullet = trimmedItem.startsWith("-");
-                                    const isHeader = !isBullet && !trimmedItem.includes(":") && trimmedItem.length < 60;
+                                    const isHeader = !isBullet && (!trimmedItem.includes(":") || trimmedItem.endsWith(":")) && (trimmedItem.length < 60 || trimmedItem.endsWith(":"));
                                     const cleanItem = isBullet ? trimmedItem.substring(1).trim() : trimmedItem;
 
                                     if (isHeader) {
