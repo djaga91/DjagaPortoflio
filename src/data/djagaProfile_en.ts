@@ -59,14 +59,14 @@ export const djagaExperiencesEN: Experience[] = [
 
 - Applied the IT department's internal security requirements within the team's deliverables to meet corporate standards.
 
+- Created detailed architecture diagrams for Confluence and SonarQube. Presented this technical documentation to the team architect. The architect used it to validate the infrastructure with the IT department
+
 
 DevSecOps
 
 - Design and orchestration of a DevSecOps validation pipeline (Faulty Projects): Automated reliability testing for security scanners (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injected intentionally vulnerable code (Python/Java) graduated across 3 levels (clean, normal, aggressive) with centralized and deduplicated reporting in DefectDojo (AppSec vulnerability management platform). Secured the infrastructure by isolating execution within a dedicated Secure Runner on a Kubernetes cluster (network and application layer defense-in-depth). Managerial & Technical Success: Praised and validated by the Cybersecurity division (leading to new project assignments), ensuring ongoing governance and operational readiness of the team's security tools.
 
 - Co-created a GitLab CI/CD pipeline to deploy DefectDojo, the cyber team's central vulnerability manager. This automation ensures fast production rollouts, and the team still relies on this infrastructure daily.
-
-- Created detailed architecture diagrams for Confluence and SonarQube. Presented this technical documentation to the team architect. The architect used it to validate the infrastructure with the IT department
 
 
 Infrastructure and cloud

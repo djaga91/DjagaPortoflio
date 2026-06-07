@@ -59,14 +59,14 @@ export const djagaExperiencesFR: Experience[] = [
 
 - Application des exigences de sécurité de la DSI dans les projets livrés par l'équipe pour répondre aux standards internes du groupe.
 
+- Création de schémas d'architecture détaillés pour Confluence et SonarQube. Cette documentation technique a été présentée à l'architecte de l'équipe, qui s'en est servi pour valider ces infrastructures auprès de la DSI.
+
 
 DevSecOps
 
 - Conception et orchestration d’un pipeline de validation DevSecOps (Faulty Projects) : Automatisation du contrôle de fiabilité des scanners de sécurité (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injection de code volontairement vulnérable (Python/Java) gradué sur 3 niveaux (clean, normal, agressif) avec centralisation et déduplication des rapports dans DefectDojo (plateforme de centralisation des vulnérabilités AppSec). Sécurisation de l’infrastructure par l'isolation du traitement dans un Secure Runner dédié sur cluster Kubernetes (défense en profondeur réseau/applicatif). Succès managérial et technique : projet salué et validé par la division Cybersécurité (ouverture de nouveaux projets), assurant aujourd'hui la gouvernance et le maintien opérationnel des outils de l'équipe.
 
 - Création en binôme d'un pipeline GitLab CI/CD pour déployer DefectDojo, le gestionnaire central des vulnérabilités de l'équipe cyber. Cette automatisation garantit une mise en production rapide et l'équipe utilise toujours cette infrastructure au quotidien.
-
-- Création de schémas d'architecture détaillés pour Confluence et SonarQube. Cette documentation technique a été présentée à l'architecte de l'équipe, qui s'en est servi pour valider ces infrastructures auprès de la DSI.
 
 
 Infrastructure et cloud
