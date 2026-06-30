@@ -18,7 +18,7 @@ export const djagaUserFR: User = {
 export const djagaProfileFR: Profile = {
   id: "profile-djaga",
   user_id: "user-djaga",
-  bio: `Ingénieur en informatique diplômé de l'Efrei Paris en spécialité Réseaux et Sécurité, j'ai construit en 3 ans d'alternance chez Thales LAS un parcours hybride entre développement, DevOps et cybersécurité. Initialement positionné sur des missions de développement, j'ai identifié un besoin non couvert sur le volet sécurité de mon équipe et fait de cette zone mon expertise opérationnelle.
+  bio: `Ingénieur en Cybersécurité diplômé de l'Efrei Paris en spécialité Réseaux et Sécurité, j'ai construit en 3 ans d'alternance chez Thales LAS un parcours hybride entre développement, DevOps et cybersécurité. Initialement positionné sur des missions de développement, j'ai identifié un besoin non couvert sur le volet sécurité de mon équipe et fait de cette zone mon expertise opérationnelle.
 
 Mon approche se caractérise par une démarche analytique systématique : comparer, pondérer et optimiser pour trouver la solution au meilleur ratio valeur/coût. Ce réflexe se traduit aussi bien dans la conception de pipelines DevSecOps que dans la conduite de projets entrepreneuriaux ou la gestion d'équipe.
 
@@ -27,7 +27,7 @@ En parallèle, j'ai mené plusieurs projets en autonomie : un audit de sécurit�
 Côté soft skills, je suis capitaine d'une équipe de football amateur en 5 contre 5, un rôle qui m'a appris la gestion humaine et la prise de décision sous pression. Je nourris également un intérêt marqué pour la géopolitique, le marketing digital et l'analyse stratégique, autant de domaines qui structurent ma manière d'aborder les problèmes complexes.
 
 Je ne suis pas le meilleur développeur mais je suis celui qui comprend la tech ET sait la rendre utile au business.`,
-  title: "Ingénieur en informatique",
+  title: "Ingénieur en Cybersécurité",
   location: "Paris, France",
   phone: "",
   linkedin_url: "https://www.linkedin.com/in/djagam/",

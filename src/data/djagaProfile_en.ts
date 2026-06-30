@@ -18,7 +18,7 @@ export const djagaUserEN: User = {
 export const djagaProfileEN: Profile = {
   id: "profile-djaga",
   user_id: "user-djaga",
-  bio: `I am an IT engineer graduating from Efrei Paris, specializing in Networks and Security. During my 3-year apprenticeship at Thales LAS, I built a hybrid skill set spanning software development, DevOps, and cybersecurity. I initially started on development tasks. I then identified an unmet security need within my team. I took the initiative to fill this gap and made security my core operational expertise.
+  bio: `I am a Cybersecurity Engineer graduating from Efrei Paris, specializing in Networks and Security. During my 3-year apprenticeship at Thales LAS, I built a hybrid skill set spanning software development, DevOps, and cybersecurity. I initially started on development tasks. I then identified an unmet security need within my team. I took the initiative to fill this gap and made security my core operational expertise.
 
 I use a highly analytical approach in my work. I systematically compare, weigh, and optimize options to find the most cost-effective solutions. I apply this mindset to designing DevSecOps pipelines, leading entrepreneurial projects, and managing teams.
 
@@ -27,7 +27,7 @@ Alongside my main work, I successfully managed several independent projects. I c
 Regarding soft skills, I am the captain of an amateur 5-a-side football team. This role has taught me how to manage people and make decisions under pressure. I am also highly interested in geopolitics, digital marketing, and strategic analysis. These fields shape how I approach and solve complex problems.
 
 I am not the best developer  but I am the one who understands tech AND knows how to make it drive business value.`,
-  title: "Computer Engineer",
+  title: "Cybersecurity Engineer",
   location: "Paris, France",
   phone: "",
   linkedin_url: "https://www.linkedin.com/in/djagam/",
