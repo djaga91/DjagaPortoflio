@@ -47,7 +47,7 @@ export const djagaExperiencesFR: Experience[] = [
     company: "Thales LAS France",
     location: "Rungis, France",
     start_date: "2023-09-01",
-    end_date: "2026-09-30",
+    end_date: "2026-09-01",
     is_current: false,
     description: `Sécurité et conformité
 
