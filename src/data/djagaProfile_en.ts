@@ -18,15 +18,17 @@ export const djagaUserEN: User = {
 export const djagaProfileEN: Profile = {
   id: "profile-djaga",
   user_id: "user-djaga",
-  bio: `I am a Cybersecurity Engineer graduating from Efrei Paris, specializing in Networks and Security. During my 3-year apprenticeship at Thales LAS, I built a hybrid skill set spanning software development, DevOps, and cybersecurity. I initially started on development tasks. I then identified an unmet security need within my team. I took the initiative to fill this gap and made security my core operational expertise.
+  bio: `No matter where I find myself, I will figure out how to thrive.
 
-I use a highly analytical approach in my work. I systematically compare, weigh, and optimize options to find the most cost-effective solutions. I apply this mindset to designing DevSecOps pipelines, leading entrepreneurial projects, and managing teams.
+As a Cybersecurity Engineer graduating from Efrei Paris specializing in Networks and Security, I built a hybrid career path across development, DevOps, and cybersecurity over 3 years of apprenticeship at Thales LAS. Initially focused on software development tasks, I identified an unmet security need within my team and made it my core operational expertise.
 
-Alongside my main work, I successfully managed several independent projects. I conducted a security audit for a SaaS platform (Portfolia) and led a digital forensics project (Mimirian). I also co-authored a research framework on sovereign AI, which was presented at the ICONI 2025 international conference in Okinawa. My profile also features an entrepreneurial side. I launched and managed two ventures: an online jewelry store and a dark kitchen concept (Vel Express). I handled everything from initial design to operations, including marketing and logistics.
+Through these security, cloud, and DevSecOps projects, I realized that my true strengths lie in strategy and project management: feasibility analysis, cost optimization, and the ability to compare, weigh, and find the solution with the best value-to-cost ratio. I am now looking for a functional role as a Business Analyst, Functional Consultant, or AMOA (IT Business Consultant) where I can bridge the gap between business needs and technical teams.
 
-Regarding soft skills, I am the captain of an amateur 5-a-side football team. This role has taught me how to manage people and make decisions under pressure. I am also highly interested in geopolitics, digital marketing, and strategic analysis. These fields shape how I approach and solve complex problems.
+Alongside my main work, I successfully managed several independent projects: a SaaS security audit (Portfolia), the design of a sovereign digital investigation platform (Mimirian), and co-authoring a research framework on sovereign AI for the ICONI 2025 conference. My profile also features an entrepreneurial dimension with the launch of two businesses: an online jewelry store and a dark kitchen concept (Vel Express). I managed these projects from concept to execution, including marketing and logistics.
 
-I am not the best developer  but I am the one who understands tech AND knows how to make it drive business value.`,
+On the soft skills side, I am captain of an amateur 5-a-side football team—a role that taught me human management and decision-making under pressure. I also have a keen interest in geopolitics, digital marketing, and strategic analysis, all of which structure the way I tackle complex problems.
+
+I am not the best developer, but I am the one who understands tech AND knows how to make it drive business value.`,
   title: "Cybersecurity Engineer",
   location: "Paris, France",
   phone: "",

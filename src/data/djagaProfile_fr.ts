@@ -18,11 +18,13 @@ export const djagaUserFR: User = {
 export const djagaProfileFR: Profile = {
   id: "profile-djaga",
   user_id: "user-djaga",
-  bio: `Ingénieur en Cybersécurité diplômé de l'Efrei Paris en spécialité Réseaux et Sécurité, j'ai construit en 3 ans d'alternance chez Thales LAS un parcours hybride entre développement, DevOps et cybersécurité. Initialement positionné sur des missions de développement, j'ai identifié un besoin non couvert sur le volet sécurité de mon équipe et fait de cette zone mon expertise opérationnelle.
+  bio: `Peu importe où je me retrouve, je trouverai comment prospérer
 
-Mon approche se caractérise par une démarche analytique systématique : comparer, pondérer et optimiser pour trouver la solution au meilleur ratio valeur/coût. Ce réflexe se traduit aussi bien dans la conception de pipelines DevSecOps que dans la conduite de projets entrepreneuriaux ou la gestion d'équipe.
+Ingénieur en Cybersécurité diplômé de l'Efrei Paris en spécialité Réseaux et Sécurité, j'ai construit en 3 ans d'alternance chez Thales LAS un parcours hybride entre développement, DevOps et cybersécurité. Initialement positionné sur des missions de développement, j'ai identifié un besoin non couvert sur le volet sécurité de mon équipe et fait de cette zone mon expertise opérationnelle.
 
-En parallèle, j'ai mené plusieurs projets en autonomie : un audit de sécurité SaaS (Portfolia), un projet d'investigation numérique (Mimirian) et la co-rédaction d'un cadre de recherche sur l'IA souveraine pour la conférence ICONI 2025. Mon profil intègre aussi une dimension entrepreneuriale avec le lancement de deux activités : une boutique de bijoux en ligne et un concept de dark kitchen (Vel Express). J'ai géré ces projets de la conception à l'exécution, incluant le marketing et la logistique.
+À travers ces projets sécurité, cloud et DevSecOps, j'ai réalisé que mes véritables points forts résident dans la stratégie et la gestion de projet : l'analyse de faisabilité, l'optimisation des coûts et la capacité à comparer, pondérer et trouver la solution au meilleur ratio valeur/coût. Je recherche aujourd'hui un rôle fonctionnel Business Analyst, Consultant Fonctionnel ou AMOA où je peux faire le pont entre les besoins métier et les équipes techniques.
+
+En parallèle, j'ai mené plusieurs projets en autonomie : un audit de sécurité SaaS (Portfolia), la conception d'une plateforme d'investigation numérique souveraine (Mimirian) et la co-rédaction d'un cadre de recherche sur l'IA souveraine pour la conférence ICONI 2025. Mon profil intègre aussi une dimension entrepreneuriale avec le lancement de deux activités : une boutique de bijoux en ligne et un concept de dark kitchen (Vel Express). J'ai géré ces projets de la conception à l'exécution, incluant le marketing et la logistique.
 
 Côté soft skills, je suis capitaine d'une équipe de football amateur en 5 contre 5, un rôle qui m'a appris la gestion humaine et la prise de décision sous pression. Je nourris également un intérêt marqué pour la géopolitique, le marketing digital et l'analyse stratégique, autant de domaines qui structurent ma manière d'aborder les problèmes complexes.
 
