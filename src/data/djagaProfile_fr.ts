@@ -43,17 +43,17 @@ export const djagaExperiencesFR: Experience[] = [
   {
     id: "exp-1",
     user_id: "user-djaga",
-    title: "Alternant en développement informatique",
+    title: "Ingénieur Cybersécurité (Alternant)",
     company: "Thales LAS France",
     location: "Rungis, France",
     start_date: "2023-09-01",
-    end_date: "2026-08-31",
+    end_date: "2026-09-30",
     is_current: false,
     description: `Sécurité et conformité
 
-- Co-pilotage avec un ingénieur senior du respect des standards ISO 27001 sur une dizaine de contrôles : production des preuves d'audit, formalisation de la documentation et préparation à la certification.
+- Co-pilotage avec un ingénieur senior de la conformité aux standards ISO 27001 et 27007 sur une dizaine de contrôles : production des preuves d'audit, formalisation de la documentation et préparation à la certification.
 
-- Construction de scénarios d'attaque selon les frameworks Cyber Kill Chain et MITRE ATT&CK pour chaque outil utilisé par l'équipe, permettant d'identifier en amont les vecteurs d'attaque.
+- Construction de scénarios d'attaque selon les frameworks EBIOS, Cyber Kill Chain et MITRE ATT&CK pour chaque outil utilisé par l'équipe, permettant d'identifier en amont les vecteurs d'attaque et de prouver à la division Cybersécurité que l'environnement opère à faible risque.
 
 - Renforcement de la sécurité de plusieurs machines virtuelles Linux via OpenSCAP, conformément aux référentiels de sécurité de l'équipe.
 
@@ -64,9 +64,9 @@ export const djagaExperiencesFR: Experience[] = [
 
 DevSecOps
 
-- Conception et orchestration d’un pipeline de validation DevSecOps (Faulty Projects) : Automatisation du contrôle de fiabilité des scanners de sécurité (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injection de code volontairement vulnérable (Python/Java) gradué sur 3 niveaux (clean, normal, agressif) avec centralisation et déduplication des rapports dans DefectDojo (plateforme de centralisation des vulnérabilités AppSec). Sécurisation de l’infrastructure par l'isolation du traitement dans un Secure Runner dédié sur cluster Kubernetes (défense en profondeur réseau/applicatif). Succès managérial et technique : projet salué et validé par la division Cybersécurité (ouverture de nouveaux projets), assurant aujourd'hui la gouvernance et le maintien opérationnel des outils de l'équipe.
+- Conception et orchestration d'un pipeline de validation DevSecOps (Faulty Projects) : automatisation du contrôle de fiabilité des scanners de sécurité (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injection de code volontairement vulnérable (Python/Java) gradué sur 3 niveaux (clean, normal, agressif) avec centralisation et déduplication des rapports dans DefectDojo. Sécurisation de l'infrastructure par l'isolation du traitement dans un Secure Runner dédié sur cluster Kubernetes (défense en profondeur réseau/applicatif). Ce pipeline a permis de certifier que nos outils de sécurité étaient bien fonctionnels. Succès managérial et technique : projet salué et validé par la division Cybersécurité (ouverture de nouveaux projets).
 
-- Création en binôme d'un pipeline GitLab CI/CD pour déployer DefectDojo, le gestionnaire central des vulnérabilités de l'équipe cyber. Cette automatisation garantit une mise en production rapide et l'équipe utilise toujours cette infrastructure au quotidien.
+- Création en binôme d'un pipeline GitLab CI/CD pour déployer DefectDojo, outil open-source demandé par la division cybersécurité pour centraliser la gestion des vulnérabilités de l'équipe. Il permet d'avoir une vue globale unique sur l'ensemble des projets, avec pour chacun l'historique des scans réalisés et les vulnérabilités remontées — évitant d'avoir à consulter chaque rapport de scan individuellement. Cette automatisation de déploiement garantit une mise en production rapide et l'équipe utilise toujours cette infrastructure au quotidien.
 
 
 Infrastructure et cloud

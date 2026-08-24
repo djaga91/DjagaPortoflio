@@ -43,39 +43,39 @@ export const djagaExperiencesEN: Experience[] = [
   {
     id: "exp-1",
     user_id: "user-djaga",
-    title: "Software Development Engineer (Apprentice)",
+    title: "Cybersecurity Engineer (Apprentice)",
     company: "Thales LAS France",
     location: "Rungis, France",
     start_date: "2023-09-01",
-    end_date: "2026-08-31",
+    end_date: "2026-09-30",
     is_current: false,
     description: `Security and compliance
 
-- Co-led with a senior engineer the compliance with ISO 27001 standards across about ten controls: production of audit evidence, formalization of documentation and certification preparation.
+- Co-led with a senior engineer compliance with ISO 27001 and 27007 standards across about ten controls: production of audit evidence, formalization of documentation, and certification preparation.
 
-- Built attack scenarios using the Cyber Kill Chain and MITRE ATT&CK frameworks for each tool used by the team, enabling early identification of attack vectors.
+- Built attack scenarios using EBIOS, Cyber Kill Chain, and MITRE ATT&CK frameworks for each tool used by the team, identifying attack vectors early and proving to the Cybersecurity division that the environment operates at low risk.
 
 - Hardened several Linux virtual machines using OpenSCAP, in line with the team's security baselines.
 
 - Applied the IT department's internal security requirements within the team's deliverables to meet corporate standards.
 
-- Created detailed architecture diagrams for Confluence and SonarQube. Presented this technical documentation to the team architect. The architect used it to validate the infrastructure with the IT department
+- Created detailed architecture diagrams for Confluence and SonarQube. Presented this technical documentation to the team architect, who used it to validate these infrastructures with the IT department.
 
 
 DevSecOps
 
-- Design and orchestration of a DevSecOps validation pipeline (Faulty Projects): Automated reliability testing for security scanners (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injected intentionally vulnerable code (Python/Java) graduated across 3 levels (clean, normal, aggressive) with centralized and deduplicated reporting in DefectDojo (AppSec vulnerability management platform). Secured the infrastructure by isolating execution within a dedicated Secure Runner on a Kubernetes cluster (network and application layer defense-in-depth). Managerial & Technical Success: Praised and validated by the Cybersecurity division (leading to new project assignments), ensuring ongoing governance and operational readiness of the team's security tools.
+- Design and orchestration of a DevSecOps validation pipeline (Faulty Projects) : automated reliability testing of security scanners (Semgrep, SonarQube, Grype, GitLab DepScan, ClamAV). Injection of intentionally vulnerable code (Python/Java) graduated across 3 levels (clean, normal, aggressive) with centralized and deduplicated reporting in DefectDojo. Secured infrastructure by isolating processing in a dedicated Secure Runner on a Kubernetes cluster (network/application defense-in-depth). This pipeline certified that our security tools were fully functional. Managerial and technical success: project praised and validated by the Cybersecurity division (leading to new projects).
 
-- Co-created a GitLab CI/CD pipeline to deploy DefectDojo, the cyber team's central vulnerability manager. This automation ensures fast production rollouts, and the team still relies on this infrastructure daily.
+- Pair-creation of a GitLab CI/CD pipeline to deploy DefectDojo, an open-source tool requested by the cybersecurity division to centralize vulnerability management. It provides a single unified view across all projects, showing scan history and reported vulnerabilities—eliminating the need to consult each scan report individually. This deployment automation guarantees rapid production rollouts, and the team still relies on this infrastructure daily.
 
 
 Infrastructure and cloud
 
-- Cloud Inventory Automation (Azure / Active Directory) : Developed an automated Python pipeline using GitLab CI. The pipeline queries Azure ARM and MS Graph APIs to generate an interactive web dashboard on GitLab Pages. This solution replaces manual inventories and runs in 5 minutes. It serves as a central repository for cost optimization (FinOps) and cybersecurity compliance validation for ISO audits.
+- Cloud Inventory Automation (Azure / Active Directory) : developed an automated Python pipeline (via GitLab CI) querying Azure ARM and MS Graph APIs to inventory all VMs, clusters (AKS), users and their roles (RBAC), deployed COTS software (versions, vendors), and associated costs, generating an interactive web dashboard on GitLab Pages. This solution replaces manual inventories and reduces collection time from several days to 5 minutes. It serves as a central repository for cost optimization (FinOps) and cybersecurity compliance validation (ISO audits).
 
-- Developed a Python script that lists the team's hundred-plus GitLab access tokens, identifies their origin and generates an Excel report usable for security audits.
+- Developed a Python script listing all GitLab access tokens (projects and groups) across the global environment, covering multiple teams, identifying their origin and generating an Excel report usable for security audits and compliance.
 
-- Created and configured virtual machines on Azure to meet the team's specific needs. Managed application deployments to Kubernetes clusters via GitLab. Set up a dedicated GitLab Runner in an isolated cluster to execute security analyses for Faulty Projects.`,
+- Created and configured virtual machines on Azure to meet team-specific needs. Managed application deployments to Kubernetes clusters via GitLab. Set up a dedicated GitLab Runner in an isolated cluster to execute security analyses for Faulty Projects.`,
     achievements: null,
     technologies: null,
     logo_url: "images/logos/thales.png",
