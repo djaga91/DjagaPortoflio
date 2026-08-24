@@ -245,8 +245,8 @@ export const djagaProjectsEN: Project[] = [
     user_id: "user-djaga",
     name: "Functional Auditor & GRC - Portfolia.fr Project · January - March 2026",
     description: `Cybersecurity audit of the Portfolia.fr SaaS platform, conducted under the ISO 27017 (cloud security) and OWASP ASVS (application security) standards.
-→ Acted as functional auditor and direct interlocutor with management: led interviews, assessed security governance and presented findings.
-→ Surfaced critical risks the client was unaware of: no MFA, insecure JWT token storage, no SAST/DAST controls. Built a risk map to make them readable by non-technical decision-makers.
+→ Led a 5-person team as functional auditor and direct interlocutor with management: conducted interviews, assessed security governance, and presented findings.
+→ Identified 20 total vulnerabilities, including 8 critical ones the client was unaware of: no MFA, insecure JWT token storage, no SAST/DAST controls. Built a risk map to make them readable by non-technical decision-makers.
 → Delivered prioritized strategic recommendations to fix application flaws and harden the cloud infrastructure, turning a security blind spot into a concrete action plan.`,
     url_demo: "https://portfolia.fr",
     url_github: null,
@@ -262,10 +262,9 @@ export const djagaProjectsEN: Project[] = [
     id: "proj-mimirian",
     user_id: "user-djaga",
     name: "Project Manager - Mimirian Platform · October 2025 - February 2026",
-    description: `Led an ambitious student project: the design of Mimirian, a sovereign digital investigation platform for law enforcement and intelligence services.
-→ Defined the product vision, built the go-to-market strategy and reached out to institutional partners.
-→ Led the design of the Blind Alert innovation, a mechanism that lets multiple investigators collaborate on sensitive cases without revealing the content of their respective files.
-→ Outcome: a project recognized by the jury for its quality, carried from the initial vision through to the defense and the official presentation video.`,
+    description: `As project manager, led an ambitious student project: the design of Mimirian, a sovereign digital investigation platform for law enforcement services, conceived as a French alternative to Palantir.
+→ Defined the product vision, built the go-to-market strategy, and reached out to institutional partners.
+→ Outcome: a project recognized by the jury for its quality, carried from the initial vision through to the final defense and official presentation video.`,
     url_demo: null,
     url_github: null,
     url_image: null,

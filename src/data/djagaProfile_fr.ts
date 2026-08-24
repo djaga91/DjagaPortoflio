@@ -245,8 +245,8 @@ export const djagaProjectsFR: Project[] = [
     user_id: "user-djaga",
     name: "Auditeur Fonctionnel et GRC - Projet Portfolia.fr · Janvier - Mars 2026",
     description: `Audit de cybersécurité de la plateforme SaaS Portfolia.fr, conduit selon les standards ISO 27017 (sécurité cloud) et OWASP ASVS (sécurité applicative).
-→ Rôle d'auditeur fonctionnel et d'interlocuteur direct de la direction : conduite des entretiens, évaluation de la gouvernance de sécurité et restitution des constats.
-→ Mise au jour de risques critiques que le client ignorait : absence de MFA, stockage non sécurisé des tokens JWT, absence de contrôles SAST/DAST. Construction d'une cartographie des risques pour les rendre lisibles par des décideurs non techniques.
+→ Direction d'une équipe de 5 personnes dans le rôle d'auditeur fonctionnel et d'interlocuteur direct de la direction : conduite des entretiens, évaluation de la gouvernance de sécurité et restitution des constats.
+→ Identification de 20 vulnérabilités au total, dont 8 critiques que le client ignorait : absence de MFA, stockage non sécurisé des tokens JWT, absence de contrôles SAST/DAST. Construction d'une cartographie des risques pour les rendre lisibles par des décideurs non techniques.
 → Recommandations stratégiques hiérarchisées pour corriger les failles applicatives et durcir l'infrastructure cloud, transformant un angle mort de sécurité en plan d'action concret.`,
     url_demo: "https://portfolia.fr",
     url_github: null,
@@ -262,9 +262,8 @@ export const djagaProjectsFR: Project[] = [
     id: "proj-mimirian",
     user_id: "user-djaga",
     name: "Chef de Projet - Plateforme Mimirian · Octobre 2025 - Février 2026",
-    description: `Pilotage d'un projet étudiant ambitieux : la conception de Mimirian, une plateforme d'investigation numérique souveraine destinée aux services d'enquête.
+    description: `En tant que chef de projet, pilotage d'un projet étudiant ambitieux : la conception de Mimirian, une plateforme d'investigation numérique souveraine destinée aux services d'enquête, pensée comme une alternative française à Palantir.
 → Définition de la vision produit, élaboration de la stratégie de lancement et démarchage de partenaires institutionnels.
-→ Direction de la conception de l'innovation Blind Alert, un mécanisme permettant à plusieurs enquêteurs de collaborer sur des affaires sensibles sans révéler le contenu de leurs dossiers respectifs.
 → Résultat : un projet distingué par le jury pour sa qualité, porté de la vision initiale jusqu'à la soutenance et la vidéo de présentation officielle.`,
     url_demo: null,
     url_github: null,
