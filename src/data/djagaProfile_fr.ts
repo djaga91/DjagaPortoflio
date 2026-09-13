@@ -18,17 +18,17 @@ export const djagaUserFR: User = {
 export const djagaProfileFR: Profile = {
   id: "profile-djaga",
   user_id: "user-djaga",
-  bio: `Peu importe où je me retrouve, je trouverai comment prospérer
+  bio: `Ingénieur en Cybersécurité diplômé de l'Efrei Paris, je possède un profil hybride entre technique et stratégie d'affaires.
 
-Ingénieur en Cybersécurité diplômé de l'Efrei Paris en spécialité Réseaux et Sécurité, j'ai construit en 3 ans d'alternance chez Thales LAS un parcours hybride entre développement, DevOps et cybersécurité. Initialement positionné sur des missions de développement, j'ai identifié un besoin non couvert sur le volet sécurité de mon équipe et fait de cette zone mon expertise opérationnelle.
+Lors de mes trois années d'alternance chez Thales LAS, j'ai initialement intégré une équipe DevOps. J'ai rapidement identifié un besoin non couvert sur le volet sécurité de nos opérations. J'ai alors pris l'initiative d'en faire mon expertise, devenant l'intermédiaire direct entre les équipes DevOps et la division Cybersécurité. Cette évolution m'a permis d'aligner les exigences technologiques complexes avec les réalités du terrain.
 
-À travers ces projets sécurité, cloud et DevSecOps, j'ai réalisé que mes véritables points forts résident dans la stratégie et la gestion de projet : l'analyse de faisabilité, l'optimisation des coûts et la capacité à comparer, pondérer et trouver la solution au meilleur ratio valeur/coût. Je recherche aujourd'hui un rôle fonctionnel Business Analyst, Consultant Fonctionnel ou AMOA où je peux faire le pont entre les besoins métier et les équipes techniques.
+À travers ces projets, j'ai confirmé que mes véritables forces résident dans la gestion de projet et l'analyse stratégique. J'excelle dans l'analyse de faisabilité, l'optimisation des coûts et la sélection des solutions offrant le meilleur ratio valeur/coût. Mon objectif est de transformer des architectures techniques en solutions utiles et rentables pour l'entreprise.
 
-En parallèle, j'ai mené plusieurs projets en autonomie : un audit de sécurité SaaS (Portfolia), la conception d'une plateforme d'investigation numérique souveraine (Mimirian) et la co-rédaction d'un cadre de recherche sur l'IA souveraine pour la conférence ICONI 2025. Mon profil intègre aussi une dimension entrepreneuriale avec le lancement de deux activités : une boutique de bijoux en ligne et un concept de dark kitchen (Vel Express). J'ai géré ces projets de la conception à l'exécution, incluant le marketing et la logistique.
+J'aime construire un projet de la première idée jusqu'à son exécution. C'est cette curiosité qui me pousse à multiplier les expériences en autonomie. Sur le plan technique, j'ai audité la sécurité de l'application SaaS Portfolia et conçu la plateforme d'investigation numérique Mimirian. Pour confronter ma vision à l'international, je suis parti en stage en Malaisie, où j'ai co-rédigé un cadre de recherche sur l'IA présenté à la conférence ICONI 2025. Enfin, pour comprendre concrètement les réalités du marché, j'ai créé et géré deux entreprises : une boutique de bijoux en ligne et un concept de dark kitchen (Vel Express). De la logistique au marketing, ces expériences m'ont appris à piloter un projet d'affaires de A à Z.
 
-Côté soft skills, je suis capitaine d'une équipe de football amateur en 5 contre 5, un rôle qui m'a appris la gestion humaine et la prise de décision sous pression. Je nourris également un intérêt marqué pour la géopolitique, le marketing digital et l'analyse stratégique, autant de domaines qui structurent ma manière d'aborder les problèmes complexes.
+En dehors de la technique, mon rôle de capitaine d'une équipe de football amateur en 5 contre 5 m'a appris à fédérer un groupe, à gérer l'humain et à prendre des décisions rapides sous pression.
 
-Je ne suis pas le meilleur développeur mais je suis celui qui comprend la tech ET sait la rendre utile au business.`,
+Je possède aujourd'hui une double compétence : je comprends les systèmes technologiques en profondeur et je sais faire le lien avec les équipes pour les rendre performants et utiles au business.`,
   title: "Ingénieur en Cybersécurité",
   location: "Paris, France",
   phone: "",
@@ -51,7 +51,18 @@ export const djagaExperiencesFR: Experience[] = [
     start_date: "2023-09-01",
     end_date: "2026-09-01",
     is_current: false,
-    description: `Sécurité et conformité
+    description: `Méthodologie Agile & Gestion de projet
+
+- Travail en méthode Agile (Scrum) pendant 3 ans : organisation du travail en sprints de 2 semaines, participation aux sprint plannings, daily stand-ups, reviews et rétrospectives.
+
+- Pilotage de l'ensemble de mes projets personnels sur Jira : rédaction de User Stories et d'Epics de zéro, définition des critères d'acceptation, suivi du backlog et ajustement des priorités sprint après sprint.
+
+- Fonctionnement par jalons : décomposition des initiatives en jalons concrets, respect de chaque deadline, traçabilité complète de l'exigence à la livraison.
+
+- Rédaction et mise à jour de la documentation technique dans Confluence en parallèle de chaque sprint, assurant la transparence vis-à-vis de l'équipe et de la division Cybersécurité.
+
+
+Sécurité et conformité
 
 - Co-pilotage avec un ingénieur senior de la conformité aux standards ISO 27001 et 27007 sur une dizaine de contrôles : production des preuves d'audit, formalisation de la documentation et préparation à la certification.
 
@@ -357,6 +368,15 @@ export const djagaSkillsFR: Skill[] = [
   { id: "skill-26", user_id: "user-djaga", name: "YAML", category: "Développement et Data" },
   { id: "skill-28", user_id: "user-djaga", name: "Notions IA et Machine Learning", category: "Développement et Data" },
   { id: "skill-29", user_id: "user-djaga", name: "Prompt Engineering et IA appliquée au développement", category: "Développement et Data" },
+
+  // 🗂️ Agile & Gestion de projet
+  { id: "skill-pm-1", user_id: "user-djaga", name: "Agile / Scrum", category: "Agile & Gestion de projet" },
+  { id: "skill-pm-2", user_id: "user-djaga", name: "Jira", category: "Agile & Gestion de projet" },
+  { id: "skill-pm-3", user_id: "user-djaga", name: "Sprint Planning & Gestion du backlog", category: "Agile & Gestion de projet" },
+  { id: "skill-pm-4", user_id: "user-djaga", name: "Rédaction de User Stories & Epics", category: "Agile & Gestion de projet" },
+  { id: "skill-pm-5", user_id: "user-djaga", name: "Pilotage par jalons", category: "Agile & Gestion de projet" },
+  { id: "skill-pm-6", user_id: "user-djaga", name: "Respect des délais & Maîtrise du périmètre", category: "Agile & Gestion de projet" },
+  { id: "skill-pm-7", user_id: "user-djaga", name: "Confluence (Documentation)", category: "Agile & Gestion de projet" },
 
   // 🎯 Soft Skills
   { id: "skill-30", user_id: "user-djaga", name: "Gestion de projet", category: "Pilotage et Soft Skills" },

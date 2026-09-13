@@ -18,17 +18,17 @@ export const djagaUserEN: User = {
 export const djagaProfileEN: Profile = {
   id: "profile-djaga",
   user_id: "user-djaga",
-  bio: `No matter where I find myself, I will figure out how to thrive.
+  bio: `A Cybersecurity Engineer graduated from Efrei Paris, I bring a hybrid profile bridging technical depth and business strategy.
 
-As a Cybersecurity Engineer graduating from Efrei Paris specializing in Networks and Security, I built a hybrid career path across development, DevOps, and cybersecurity over 3 years of apprenticeship at Thales LAS. Initially focused on software development tasks, I identified an unmet security need within my team and made it my core operational expertise.
+During my three years of apprenticeship at Thales LAS, I initially joined a DevOps team. I quickly identified an unmet need on the security side of our operations and took the initiative to make it my expertise — becoming the direct interface between the DevOps teams and the Cybersecurity division. This evolution allowed me to align complex technological requirements with real-world operational constraints.
 
-Through these security, cloud, and DevSecOps projects, I realized that my true strengths lie in strategy and project management: feasibility analysis, cost optimization, and the ability to compare, weigh, and find the solution with the best value-to-cost ratio. I am now looking for a functional role as a Business Analyst, Functional Consultant, or AMOA (IT Business Consultant) where I can bridge the gap between business needs and technical teams.
+Through these projects, I confirmed that my true strengths lie in project management and strategic analysis. I excel at feasibility analysis, cost optimization, and selecting solutions that offer the best value-to-cost ratio. My goal is to turn technical architectures into useful, business-ready solutions.
 
-Alongside my main work, I successfully managed several independent projects: a SaaS security audit (Portfolia), the design of a sovereign digital investigation platform (Mimirian), and co-authoring a research framework on sovereign AI for the ICONI 2025 conference. My profile also features an entrepreneurial dimension with the launch of two businesses: an online jewelry store and a dark kitchen concept (Vel Express). I managed these projects from concept to execution, including marketing and logistics.
+I love building a project from the first idea all the way through to execution. It is this drive that pushes me to multiply hands-on experiences. On the technical side, I audited the security of the SaaS platform Portfolia and designed the digital investigation platform Mimirian. To challenge my vision on an international scale, I went on a placement in Malaysia, where I co-authored an AI research framework presented at the ICONI 2025 conference. Finally, to understand market realities firsthand, I founded and ran two businesses: an online jewelry store and a dark kitchen concept (Vel Express). From logistics to marketing, these experiences taught me how to drive a business project from A to Z.
 
-On the soft skills side, I am captain of an amateur 5-a-side football team—a role that taught me human management and decision-making under pressure. I also have a keen interest in geopolitics, digital marketing, and strategic analysis, all of which structure the way I tackle complex problems.
+Outside of tech, my role as captain of an amateur 5-a-side football team taught me how to rally a group, manage people, and make fast decisions under pressure.
 
-I am not the best developer, but I am the one who understands tech AND knows how to make it drive business value.`,
+I now hold a dual competency: I understand technological systems in depth, and I know how to bridge the gap with teams to make them perform and deliver real business value.`,
   title: "Cybersecurity Engineer",
   location: "Paris, France",
   phone: "",
@@ -51,7 +51,18 @@ export const djagaExperiencesEN: Experience[] = [
     start_date: "2023-09-01",
     end_date: "2026-09-01",
     is_current: false,
-    description: `Security and compliance
+    description: `Agile methodology & Project management
+
+- Worked in Agile (Scrum) methodology for 3 years: organized work in 2-week sprints, took part in sprint planning, daily stand-ups, sprint reviews and retrospectives.
+
+- Managed all personal projects end-to-end on Jira: wrote User Stories and Epics from scratch, defined acceptance criteria, tracked backlog progress and adjusted priorities sprint after sprint.
+
+- Operated with milestone-driven delivery: broke large initiatives into concrete milestones, met every agreed deadline, and maintained full traceability from requirement to delivered feature.
+
+- Produced and maintained technical documentation in Confluence alongside each sprint, ensuring transparency across the team and the Cybersecurity division.
+
+
+Security and compliance
 
 - Co-led with a senior engineer compliance with ISO 27001 and 27007 standards across about ten controls: production of audit evidence, formalization of documentation, and certification preparation.
 
@@ -357,6 +368,15 @@ export const djagaSkillsEN: Skill[] = [
   { id: "skill-26", user_id: "user-djaga", name: "YAML", category: "Development and Data" },
   { id: "skill-28", user_id: "user-djaga", name: "AI and Machine Learning Foundations", category: "Development and Data" },
   { id: "skill-29", user_id: "user-djaga", name: "Prompt Engineering and AI-augmented Development", category: "Development and Data" },
+
+  // 🗂️ Agile & Project Management
+  { id: "skill-pm-1", user_id: "user-djaga", name: "Agile / Scrum", category: "Agile & Project Management" },
+  { id: "skill-pm-2", user_id: "user-djaga", name: "Jira", category: "Agile & Project Management" },
+  { id: "skill-pm-3", user_id: "user-djaga", name: "Sprint Planning & Backlog Management", category: "Agile & Project Management" },
+  { id: "skill-pm-4", user_id: "user-djaga", name: "User Stories & Epics Authoring", category: "Agile & Project Management" },
+  { id: "skill-pm-5", user_id: "user-djaga", name: "Milestone-driven Delivery", category: "Agile & Project Management" },
+  { id: "skill-pm-6", user_id: "user-djaga", name: "Deadline & Scope Management", category: "Agile & Project Management" },
+  { id: "skill-pm-7", user_id: "user-djaga", name: "Confluence (Documentation)", category: "Agile & Project Management" },
 
   // 🎯 Soft Skills
   { id: "skill-30", user_id: "user-djaga", name: "Project Management", category: "Management & Soft Skills" },
