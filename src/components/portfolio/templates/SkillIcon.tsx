@@ -33,12 +33,20 @@ const SKILL_CONFIGS: Array<[string[], SkillConfig]> = [
   [["jenkins"],             { icon: "Settings",    color: "#d33833", svgFile: "jenkins.svg" }],
   [["terraform"],           { icon: "Layers",      color: "#7b42bc", svgFile: "terraform.svg" }],
   [["gitlab"],              { icon: "GitBranch",   color: "#fc6d26", svgFile: "gitlab.svg" }],
-  [["ansible"],             { icon: "Terminal",    color: "#e00", svgFile: "ansible.svg" }],
+  [["ansible"],             { icon: "Terminal",    color: "#e00",    svgFile: "ansible.svg" }],
   [["linux"],               { icon: "Terminal",    color: "#f9c642", svgFile: "linux.svg" }],
+  [["jira"],                { icon: "Trello",      color: "#0052CC", svgFile: "jira.svg" }],
+  [["confluence"],          { icon: "BookOpen",    color: "#0052CC", svgFile: "confluence.svg" }],
+  [["agile", "scrum"],      { icon: "RefreshCw",   color: "#27AE60", svgFile: "scrum.svg" }],
 
   // ── AWS / Azure : SVG + couleurs brand ────────────────────
   [["amazon web services", "aws"],  { icon: "Cloud",  color: "#ff9900", svgFile: "aws.svg" }],
   [["microsoft azure", "azure"],    { icon: "Cloud",  color: "#0078d4", svgFile: "azure.svg" }],
+
+  [["sprint planning", "backlog", "sprint"],                     { icon: "RefreshCw",   color: "#27AE60" }],
+  [["user stories", "user story", "epics", "epic"],             { icon: "FileText",    color: "#6366f1" }],
+  [["jalon", "jalons", "milestone", "milestone-driven", "pilotage par jalon"], { icon: "Flag", color: "#f59e0b" }],
+  [["délai", "deadline", "périmètre", "scope"],                 { icon: "Clock",       color: "#ef4444" }],
 
   // ── Concept & Domaines ─────────────────────────────────────
   [["cybersécurité", "cybersecurite", "cybersecurity"],        { icon: "Shield",      color: "#ef4444", svgFile: "cyber-security.svg" }],
